@@ -59,6 +59,8 @@ dependencies {
     implementation 'io.github.lucksiege:camerax:v3.11.1'
     //今日头条方案
     implementation 'com.github.JessYanCoding:AndroidAutoSize:v1.2.1'
+    //腾讯mmkv：https://github.com/Tencent/MMKV/wiki/android_tutorial_cn
+    implementation 'com.tencent:mmkv:1.2.16'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

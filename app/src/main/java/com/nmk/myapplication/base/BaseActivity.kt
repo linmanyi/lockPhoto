@@ -23,6 +23,10 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewBinding> : BaseVmVbActi
 
     }
 
+    open fun isImmersiveState(): Boolean {
+        return true
+    }
+
     /**
      * 状态栏字体是否为黑色
      * @return Boolean
@@ -33,7 +37,9 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewBinding> : BaseVmVbActi
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
-        StatusBarUtil.setImmersiveStatusBar(this, isFontIconDark())
+        if (isImmersiveState()) {
+            StatusBarUtil.setImmersiveStatusBar(this, isFontIconDark())
+        }
         ActivityManager.getInstance().pushActivity(this)
     }
 
