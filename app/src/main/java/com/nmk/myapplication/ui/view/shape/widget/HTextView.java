@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 
-import com.hray.library.widget.shape.ViewAttrsHelper;
+import com.nmk.myapplication.ui.view.shape.ViewAttrsHelper;
 
 /**
  * 超级TextView

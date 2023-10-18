@@ -3,7 +3,7 @@ package com.nmk.myapplication.ui.view.shape.widget;
 import android.content.Context;
 import android.util.AttributeSet;
 
-import com.hray.library.widget.shape.ViewAttrsHelper;
+import com.nmk.myapplication.ui.view.shape.ViewAttrsHelper;
 import com.hray.library.widget.shape.widget.CustomEditText;
 
 /**

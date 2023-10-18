@@ -5,7 +5,8 @@ import android.util.AttributeSet;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.hray.library.widget.shape.ViewAttrsHelper;
+import com.nmk.myapplication.ui.view.shape.ViewAttrsHelper;
+
 
 /**
  * @author H-ray

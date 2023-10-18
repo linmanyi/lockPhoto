@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'com.nmk.myapplication'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.nmk.myapplication"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -40,7 +40,7 @@ dependencies {
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.7.0'
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8::1.7.0'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.0'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
 
     implementation 'androidx.appcompat:appcompat:1.4.1'
@@ -57,6 +57,8 @@ dependencies {
     implementation 'io.github.lucksiege:compress:v3.11.1'
     implementation 'io.github.lucksiege:ucrop:v3.11.1'
     implementation 'io.github.lucksiege:camerax:v3.11.1'
+    //今日头条方案
+    implementation 'com.github.JessYanCoding:AndroidAutoSize:v1.2.1'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

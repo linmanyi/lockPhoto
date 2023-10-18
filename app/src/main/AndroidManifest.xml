@@ -12,8 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LockPhoto"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="design_width_in_dp"
+            android:value="375" />
+        <meta-data
+            android:name="design_height_in_dp"
+            android:value="778" />
+
         <activity
-            android:name=".ui.activity.MainActivity"
+            android:name=".ui.activity.LockActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.LockPhoto.NoActionBar">
@@ -28,7 +36,7 @@
                 android:value="" />
         </activity>
 
-        <activity android:name=".ui.activity.LockActivity"
+        <activity android:name=".ui.activity.MainActivity"
             android:screenOrientation="portrait"/>
     </application>
 

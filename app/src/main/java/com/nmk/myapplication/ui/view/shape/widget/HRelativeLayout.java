@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 
-import com.hray.library.widget.shape.ViewAttrsHelper;
+import com.nmk.myapplication.ui.view.shape.ViewAttrsHelper;
 
 /**
  * @author H-ray
