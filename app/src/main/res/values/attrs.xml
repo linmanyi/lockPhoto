@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- .......................公共属性........................ -->
+    <!-- 宽高比【宽与高不能都为wrap_content，否则无效】 -->
+    <attr name="h_aspect_ratio" format="float" />
+    <!-- shape属性集合【属性值可参考shape xml文件使用】 -->
+    <attr name="h_shape_solid" format="color" />
+    <attr name="h_shape_stroke_color" format="color" />
+    <attr name="h_shape_stroke_width" format="dimension" />
+    <attr name="h_shape_corners_radius" format="dimension" />
+    <attr name="h_shape_corners_radius_left_top" format="dimension" />
+    <attr name="h_shape_corners_radius_left_bottom" format="dimension" />
+    <attr name="h_shape_corners_radius_right_top" format="dimension" />
+    <attr name="h_shape_corners_radius_right_bottom" format="dimension" />
+    <attr name="h_shape_type" format="enum">
+        <enum name="rectangle" value="0" />
+        <enum name="oval" value="1" />
+        <enum name="line" value="2" />
+        <enum name="ring" value="3" />
+    </attr>
+    <attr name="h_shape_gradient_start_color" format="color" />
+    <attr name="h_shape_gradient_center_color" format="color" />
+    <attr name="h_shape_gradient_end_color" format="color" />
+    <attr name="h_shape_gradient_angle" format="integer" />
+    <!-- selector属性集合【属性值可参考shape xml文件使用】 -->
+    <!-- Pressed属性 -->
+    <attr name="h_selector_pressed_solid" format="color" />
+    <attr name="h_selector_pressed_stroke_color" format="color" />
+    <attr name="h_selector_pressed_stroke_width" format="dimension" />
+    <!-- Selected选择属性 -->
+    <attr name="h_selector_selected_solid" format="color" />
+    <attr name="h_selector_selected_stroke_color" format="color" />
+    <attr name="h_selector_selected_stroke_width" format="dimension" />
+    <!-- Enable属性 -->
+    <attr name="h_selector_enable_solid" format="color" />
+    <attr name="h_selector_enable_stroke_color" format="color" />
+    <attr name="h_selector_enable_stroke_width" format="dimension" />
+    <!-- Enable属性 -->
+    <attr name="h_selector_focused_solid" format="color" />
+    <attr name="h_selector_focused_stroke_color" format="color" />
+    <attr name="h_selector_focused_stroke_width" format="dimension" />
+
+    <!-- 默认颜色，必须定义 -->
+    <attr name="h_selector_default_text_color" format="color" />
+    <!-- 按压(Pressed)效果颜色 -->
+    <attr name="h_selector_pressed_text_color" format="color" />
+    <!-- 选择(Selected)效果颜色 -->
+    <attr name="h_selector_selected_text_color" format="color" />
+    <!-- 禁用(Enable)效果颜色 -->
+    <attr name="h_selector_enable_text_color" format="color" />
+    <!--shape属性是否使用RTL镜像角度和颜色-->
+    <attr name="h_shape_use_rtl" format="boolean"/>
+    <!-- .......................END........................ -->
+
+    <declare-styleable name="Background">
+        <attr name="h_aspect_ratio" />
+        <attr name="h_shape_solid" />
+        <attr name="h_shape_stroke_color" />
+        <attr name="h_shape_stroke_width" />
+        <attr name="h_shape_corners_radius" />
+        <attr name="h_shape_corners_radius_left_top" />
+        <attr name="h_shape_corners_radius_left_bottom" />
+        <attr name="h_shape_corners_radius_right_top" />
+        <attr name="h_shape_corners_radius_right_bottom" />
+        <attr name="h_shape_type" />
+        <attr name="h_shape_gradient_start_color" />
+        <attr name="h_shape_gradient_center_color" />
+        <attr name="h_shape_gradient_end_color" />
+        <attr name="h_shape_gradient_angle" />
+        <!--shape属性是否使用RTL镜像角度和颜色-->
+        <attr name="h_shape_use_rtl"/>
+        <attr name="h_selector_pressed_solid" />
+        <attr name="h_selector_pressed_stroke_color" />
+        <attr name="h_selector_pressed_stroke_width" />
+        <attr name="h_selector_selected_solid" />
+        <attr name="h_selector_selected_stroke_color" />
+        <attr name="h_selector_selected_stroke_width" />
+        <attr name="h_selector_enable_solid" />
+        <attr name="h_selector_enable_stroke_color" />
+        <attr name="h_selector_enable_stroke_width" />
+        <attr name="h_selector_focused_solid" />
+        <attr name="h_selector_focused_stroke_color" />
+        <attr name="h_selector_focused_stroke_width" />
+
+        <attr name="h_selector_default_text_color" />
+        <attr name="h_selector_pressed_text_color" />
+        <attr name="h_selector_selected_text_color" />
+        <attr name="h_selector_enable_text_color" />
+    </declare-styleable>
+
+    <declare-styleable name="HFrameLayout">
+        <attr name="h_aspect_ratio" />
+        <attr name="h_shape_solid" />
+        <attr name="h_shape_stroke_color" />
+        <attr name="h_shape_stroke_width" />
+        <attr name="h_shape_corners_radius" />
+        <attr name="h_shape_corners_radius_left_top" />
+        <attr name="h_shape_corners_radius_left_bottom" />
+        <attr name="h_shape_corners_radius_right_top" />
+        <attr name="h_shape_corners_radius_right_bottom" />
+        <attr name="h_shape_type" />
+        <attr name="h_shape_gradient_start_color" />
+        <attr name="h_shape_gradient_center_color" />
+        <attr name="h_shape_gradient_end_color" />
+        <attr name="h_shape_gradient_angle" />
+        <!--shape属性是否使用RTL镜像角度和颜色-->
+        <attr name="h_shape_use_rtl"/>
+        <attr name="h_selector_pressed_solid" />
+        <attr name="h_selector_pressed_stroke_color" />
+        <attr name="h_selector_pressed_stroke_width" />
+        <attr name="h_selector_selected_solid" />
+        <attr name="h_selector_selected_stroke_color" />
+        <attr name="h_selector_selected_stroke_width" />
+        <attr name="h_selector_enable_solid" />
+        <attr name="h_selector_enable_stroke_color" />
+        <attr name="h_selector_enable_stroke_width" />
+        <attr name="h_selector_focused_solid" />
+        <attr name="h_selector_focused_stroke_color" />
+        <attr name="h_selector_focused_stroke_width" />
+        <attr name="h_selector_default_text_color" />
+        <attr name="h_selector_pressed_text_color" />
+        <attr name="h_selector_selected_text_color" />
+        <attr name="h_selector_enable_text_color" />
+    </declare-styleable>
+
+    <declare-styleable name="HLinearLayout">
+        <attr name="h_aspect_ratio" />
+        <attr name="h_shape_solid" />
+        <attr name="h_shape_stroke_color" />
+        <attr name="h_shape_stroke_width" />
+        <attr name="h_shape_corners_radius" />
+        <attr name="h_shape_corners_radius_left_top" />
+        <attr name="h_shape_corners_radius_left_bottom" />
+        <attr name="h_shape_corners_radius_right_top" />
+        <attr name="h_shape_corners_radius_right_bottom" />
+        <attr name="h_shape_type" />
+        <attr name="h_shape_gradient_start_color" />
+        <attr name="h_shape_gradient_center_color" />
+        <attr name="h_shape_gradient_end_color" />
+        <attr name="h_shape_gradient_angle" />
+        <!--shape属性是否使用RTL镜像角度和颜色-->
+        <attr name="h_shape_use_rtl" />
+        <attr name="h_selector_pressed_solid" />
+        <attr name="h_selector_pressed_stroke_color" />
+        <attr name="h_selector_pressed_stroke_width" />
+        <attr name="h_selector_selected_solid" />
+        <attr name="h_selector_selected_stroke_color" />
+        <attr name="h_selector_selected_stroke_width" />
+        <attr name="h_selector_enable_solid" />
+        <attr name="h_selector_enable_stroke_color" />
+        <attr name="h_selector_enable_stroke_width" />
+        <attr name="h_selector_focused_solid" />
+        <attr name="h_selector_focused_stroke_color" />
+        <attr name="h_selector_focused_stroke_width" />
+        <attr name="h_selector_default_text_color" />
+        <attr name="h_selector_pressed_text_color" />
+        <attr name="h_selector_selected_text_color" />
+        <attr name="h_selector_enable_text_color" />
+    </declare-styleable>
+
+    <declare-styleable name="HRelativeLayout">
+        <attr name="h_aspect_ratio" />
+        <attr name="h_shape_solid" />
+        <attr name="h_shape_stroke_color" />
+        <attr name="h_shape_stroke_width" />
+        <attr name="h_shape_corners_radius" />
+        <attr name="h_shape_corners_radius_left_top" />
+        <attr name="h_shape_corners_radius_left_bottom" />
+        <attr name="h_shape_corners_radius_right_top" />
+        <attr name="h_shape_corners_radius_right_bottom" />
+        <attr name="h_shape_type" />
+        <attr name="h_shape_gradient_start_color" />
+        <attr name="h_shape_gradient_center_color" />
+        <attr name="h_shape_gradient_end_color" />
+        <attr name="h_shape_gradient_angle" />
+        <!--shape属性是否使用RTL镜像角度和颜色-->
+        <attr name="h_shape_use_rtl" />
+        <attr name="h_selector_pressed_solid" />
+        <attr name="h_selector_pressed_stroke_color" />
+        <attr name="h_selector_pressed_stroke_width" />
+        <attr name="h_selector_selected_solid" />
+        <attr name="h_selector_selected_stroke_color" />
+        <attr name="h_selector_selected_stroke_width" />
+        <attr name="h_selector_enable_solid" />
+        <attr name="h_selector_enable_stroke_color" />
+        <attr name="h_selector_enable_stroke_width" />
+        <attr name="h_selector_focused_solid" />
+        <attr name="h_selector_focused_stroke_color" />
+        <attr name="h_selector_focused_stroke_width" />
+        <attr name="h_selector_default_text_color" />
+        <attr name="h_selector_pressed_text_color" />
+        <attr name="h_selector_selected_text_color" />
+        <attr name="h_selector_enable_text_color" />
+    </declare-styleable>
+
+    <declare-styleable name="HConstraintLayout">
+        <attr name="h_aspect_ratio" />
+        <attr name="h_shape_solid" />
+        <attr name="h_shape_stroke_color" />
+        <attr name="h_shape_stroke_width" />
+        <attr name="h_shape_corners_radius" />
+        <attr name="h_shape_corners_radius_left_top" />
+        <attr name="h_shape_corners_radius_left_bottom" />
+        <attr name="h_shape_corners_radius_right_top" />
+        <attr name="h_shape_corners_radius_right_bottom" />
+        <attr name="h_shape_type" />
+        <attr name="h_shape_gradient_start_color" />
+        <attr name="h_shape_gradient_center_color" />
+        <attr name="h_shape_gradient_end_color" />
+        <attr name="h_shape_gradient_angle" />
+        <!--shape属性是否使用RTL镜像角度和颜色-->
+        <attr name="h_shape_use_rtl" />
+        <attr name="h_selector_pressed_solid" />
+        <attr name="h_selector_pressed_stroke_color" />
+        <attr name="h_selector_pressed_stroke_width" />
+        <attr name="h_selector_selected_solid" />
+        <attr name="h_selector_selected_stroke_color" />
+        <attr name="h_selector_selected_stroke_width" />
+        <attr name="h_selector_enable_solid" />
+        <attr name="h_selector_enable_stroke_color" />
+        <attr name="h_selector_enable_stroke_width" />
+        <attr name="h_selector_focused_solid" />
+        <attr name="h_selector_focused_stroke_color" />
+        <attr name="h_selector_focused_stroke_width" />
+        <attr name="h_selector_default_text_color" />
+        <attr name="h_selector_pressed_text_color" />
+        <attr name="h_selector_selected_text_color" />
+        <attr name="h_selector_enable_text_color" />
+    </declare-styleable>
+
+    <declare-styleable name="HTextView">
+        <attr name="h_aspect_ratio" />
+        <attr name="h_shape_solid" />
+        <attr name="h_shape_stroke_color" />
+        <attr name="h_shape_stroke_width" />
+        <attr name="h_shape_corners_radius" />
+        <attr name="h_shape_corners_radius_left_top" />
+        <attr name="h_shape_corners_radius_left_bottom" />
+        <attr name="h_shape_corners_radius_right_top" />
+        <attr name="h_shape_corners_radius_right_bottom" />
+        <attr name="h_shape_type" />
+        <attr name="h_shape_gradient_start_color" />
+        <attr name="h_shape_gradient_center_color" />
+        <attr name="h_shape_gradient_end_color" />
+        <attr name="h_shape_gradient_angle" />
+        <!--shape属性是否使用RTL镜像角度和颜色-->
+        <attr name="h_shape_use_rtl" />
+        <attr name="h_selector_pressed_solid" />
+        <attr name="h_selector_pressed_stroke_color" />
+        <attr name="h_selector_pressed_stroke_width" />
+        <attr name="h_selector_selected_solid" />
+        <attr name="h_selector_selected_stroke_color" />
+        <attr name="h_selector_selected_stroke_width" />
+        <attr name="h_selector_enable_solid" />
+        <attr name="h_selector_enable_stroke_color" />
+        <attr name="h_selector_enable_stroke_width" />
+        <attr name="h_selector_focused_solid" />
+        <attr name="h_selector_focused_stroke_color" />
+        <attr name="h_selector_focused_stroke_width" />
+        <attr name="h_selector_default_text_color" />
+        <attr name="h_selector_pressed_text_color" />
+        <attr name="h_selector_selected_text_color" />
+        <attr name="h_selector_enable_text_color" />
+    </declare-styleable>
+
+    <declare-styleable name="HImageView">
+        <attr name="h_aspect_ratio" />
+        <attr name="h_shape_solid" />
+        <attr name="h_shape_stroke_color" />
+        <attr name="h_shape_stroke_width" />
+        <attr name="h_shape_corners_radius" />
+        <attr name="h_shape_corners_radius_left_top" />
+        <attr name="h_shape_corners_radius_left_bottom" />
+        <attr name="h_shape_corners_radius_right_top" />
+        <attr name="h_shape_corners_radius_right_bottom" />
+        <attr name="h_shape_type" />
+        <attr name="h_shape_gradient_start_color" />
+        <attr name="h_shape_gradient_center_color" />
+        <attr name="h_shape_gradient_end_color" />
+        <attr name="h_shape_gradient_angle" />
+        <!--shape属性是否使用RTL镜像角度和颜色-->
+        <attr name="h_shape_use_rtl" />
+        <attr name="h_selector_pressed_solid" />
+        <attr name="h_selector_pressed_stroke_color" />
+        <attr name="h_selector_pressed_stroke_width" />
+        <attr name="h_selector_selected_solid" />
+        <attr name="h_selector_selected_stroke_color" />
+        <attr name="h_selector_selected_stroke_width" />
+        <attr name="h_selector_enable_solid" />
+        <attr name="h_selector_enable_stroke_color" />
+        <attr name="h_selector_enable_stroke_width" />
+        <attr name="h_selector_focused_solid" />
+        <attr name="h_selector_focused_stroke_color" />
+        <attr name="h_selector_focused_stroke_width" />
+        <attr name="h_selector_default_text_color" />
+        <attr name="h_selector_pressed_text_color" />
+        <attr name="h_selector_selected_text_color" />
+        <attr name="h_selector_enable_text_color" />
+    </declare-styleable>
+
+    <declare-styleable name="HButton">
+        <attr name="h_aspect_ratio" />
+        <attr name="h_shape_solid" />
+        <attr name="h_shape_stroke_color" />
+        <attr name="h_shape_stroke_width" />
+        <attr name="h_shape_corners_radius" />
+        <attr name="h_shape_corners_radius_left_top" />
+        <attr name="h_shape_corners_radius_left_bottom" />
+        <attr name="h_shape_corners_radius_right_top" />
+        <attr name="h_shape_corners_radius_right_bottom" />
+        <attr name="h_shape_type" />
+        <attr name="h_shape_gradient_start_color" />
+        <attr name="h_shape_gradient_center_color" />
+        <attr name="h_shape_gradient_end_color" />
+        <attr name="h_shape_gradient_angle" />
+        <!--shape属性是否使用RTL镜像角度和颜色-->
+        <attr name="h_shape_use_rtl" />
+        <attr name="h_selector_pressed_solid" />
+        <attr name="h_selector_pressed_stroke_color" />
+        <attr name="h_selector_pressed_stroke_width" />
+        <attr name="h_selector_selected_solid" />
+        <attr name="h_selector_selected_stroke_color" />
+        <attr name="h_selector_selected_stroke_width" />
+        <attr name="h_selector_enable_solid" />
+        <attr name="h_selector_enable_stroke_color" />
+        <attr name="h_selector_enable_stroke_width" />
+        <attr name="h_selector_focused_solid" />
+        <attr name="h_selector_focused_stroke_color" />
+        <attr name="h_selector_focused_stroke_width" />
+        <attr name="h_selector_default_text_color" />
+        <attr name="h_selector_pressed_text_color" />
+        <attr name="h_selector_selected_text_color" />
+        <attr name="h_selector_enable_text_color" />
+    </declare-styleable>
+
+    <declare-styleable name="HEditText">
+        <attr name="h_aspect_ratio" />
+        <attr name="h_shape_solid" />
+        <attr name="h_shape_stroke_color" />
+        <attr name="h_shape_stroke_width" />
+        <attr name="h_shape_corners_radius" />
+        <attr name="h_shape_corners_radius_left_top" />
+        <attr name="h_shape_corners_radius_left_bottom" />
+        <attr name="h_shape_corners_radius_right_top" />
+        <attr name="h_shape_corners_radius_right_bottom" />
+        <attr name="h_shape_type" />
+        <attr name="h_shape_gradient_start_color" />
+        <attr name="h_shape_gradient_center_color" />
+        <attr name="h_shape_gradient_end_color" />
+        <attr name="h_shape_gradient_angle" />
+        <!--shape属性是否使用RTL镜像角度和颜色-->
+        <attr name="h_shape_use_rtl" />
+        <attr name="h_selector_pressed_solid" />
+        <attr name="h_selector_pressed_stroke_color" />
+        <attr name="h_selector_pressed_stroke_width" />
+        <attr name="h_selector_selected_solid" />
+        <attr name="h_selector_selected_stroke_color" />
+        <attr name="h_selector_selected_stroke_width" />
+        <attr name="h_selector_enable_solid" />
+        <attr name="h_selector_enable_stroke_color" />
+        <attr name="h_selector_enable_stroke_width" />
+        <attr name="h_selector_focused_solid" />
+        <attr name="h_selector_focused_stroke_color" />
+        <attr name="h_selector_focused_stroke_width" />
+        <attr name="h_selector_default_text_color" />
+        <attr name="h_selector_pressed_text_color" />
+        <attr name="h_selector_selected_text_color" />
+        <attr name="h_selector_enable_text_color" />
+    </declare-styleable>
+
+    <!--  横向条自定义属性  -->
+    <declare-styleable name="BarView">
+        <!-- 左侧文字 -->
+        <attr name="leftText" format="string" />
+        <!-- 右侧文字（默认TextColor87） -->
+        <attr name="rightText" format="string" />
+        <!-- 左侧图片 -->
+        <attr name="leftImg" format="reference" />
+        <!-- 右侧图片 -->
+        <attr name="rightImg" format="reference" />
+        <!-- 右侧文字颜色 -->
+        <attr name="rightTextColor" format="color" />
+        <!-- 是否显示下划线（默认显示） -->
+        <attr name="isLine" format="boolean" />
+        <!-- 是否显示右侧图标（默认显示） -->
+        <attr name="isRightImg" format="boolean" />
+        <!-- 左侧文字大小 -->
+        <attr name="textSizes" format="integer" />
+        <!-- 右侧文字大小 -->
+        <attr name="rightTextSizes" format="integer" />
+        <!--右侧textview最大宽度-->
+        <attr name="rightTextMaxWidth" format="dimension"/>
+
+    </declare-styleable>
+
+    <!--  横向条(输入框)自定义属性  -->
+    <declare-styleable name="BarEditBar">
+        <!-- 左侧文字 -->
+        <attr name="leftTexts" format="string" />
+        <!-- 左侧文字最小宽度 -->
+        <attr name="leftTextMinWidth" format="dimension" />
+        <!-- 左侧图片 -->
+        <attr name="leftImgs" format="reference" />
+        <!-- 右侧图片 -->
+        <attr name="rightImgs" format="reference" />
+        <!-- EditText Hint-->
+        <attr name="editHints" format="string" />
+        <!-- 是否显示下划线（默认显示） -->
+        <attr name="isLines" format="boolean" />
+        <attr name="isCopy" format="boolean" />
+        <!--  输入框输入文本类型  -->
+        <attr name="inputType" format="string" />
+        <!--  输入框输入文本最多输入字符个数  -->
+        <attr name="inputMaxLength" format="integer" />
+        <attr name="inputTextSize" format="integer" />
+    </declare-styleable>
+
+    <!--手机号自定义框清除按钮-->
+    <declare-styleable name="MultiEditTextView">
+        <attr name="close_drawable" format="integer" />
+        <attr name="close_drawable_width" format="dimension" />
+        <attr name="close_drawable_height" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="codeInput">
+        <attr name="box" format="integer" />
+        <attr name="child_h_padding" format="dimension" />
+        <attr name="child_v_padding" format="dimension" />
+        <attr name="child_width" format="dimension" />
+        <attr name="child_height" format="dimension" />
+        <attr name="padding" format="dimension" />
+        <attr name="box_bg_focus" format="reference" />
+        <attr name="box_bg_normal" format="reference" />
+        <attr name="box_bg_error" format="reference" />
+        <attr name="box_bg_success" format="reference" />
+        <attr name="code_text_color" format="color" />
+        <attr name="input_type" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="CropImageView">
+        <attr name="cropMaskColor" format="color"/>
+        <attr name="cropBorderColor" format="color"/>
+        <attr name="cropBorderWidth" format="dimension"/>
+        <attr name="cropFocusWidth" format="dimension"/>
+        <attr name="cropFocusHeight" format="dimension"/>
+        <attr name="cropStyle" format="enum">
+            <enum name="rectangle" value="0"/>
+            <enum name="circle" value="1"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="StrokeTextView">
+        <attr name="strokeTextColor" format="color" />
+        <attr name="strokeTextWidth" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="RadiusCardView">
+        <attr name="rcv_topLeftRadiu" format="dimension" />
+        <attr name="rcv_topRightRadiu" format="dimension" />
+        <attr name="rcv_bottomRightRadiu" format="dimension" />
+        <attr name="rcv_bottomLeftRadiu" format="dimension" />
+    </declare-styleable>
+
+</resources>

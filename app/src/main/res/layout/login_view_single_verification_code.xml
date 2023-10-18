@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.nmk.myapplication.ui.view.shape.widget.HTextView
+        android:id="@+id/numberTv"
+        android:textSize="32sp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical|start"
+        android:gravity="center"
+        app:h_shape_corners_radius="4dp"
+        app:h_shape_solid="#F5F6F9"
+        app:h_shape_stroke_color="#E6E6E6"
+        app:h_shape_stroke_width="1px"
+        tools:text="1" />
+
+    <View
+        android:id="@+id/pointView"
+        android:layout_width="2dp"
+        android:layout_height="14dp"
+        android:layout_gravity="center"
+        android:background="@color/white"
+        android:visibility="gone" />
+
+</FrameLayout>
