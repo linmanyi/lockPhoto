@@ -27,42 +27,42 @@
         app:layout_constraintStart_toStartOf="@+id/inputEt"
         app:layout_constraintTop_toTopOf="@+id/inputEt">
 
-        <com.nmk.myapplication.ui.view.verification.VerificationCodeSingleInputView
+        <com.nmk.myapplication.work.ui.view.verification.VerificationCodeSingleInputView
             android:id="@+id/codeView0"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp" />
 
-        <com.nmk.myapplication.ui.view.verification.VerificationCodeSingleInputView
+        <com.nmk.myapplication.work.ui.view.verification.VerificationCodeSingleInputView
             android:id="@+id/codeView1"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp" />
 
-        <com.nmk.myapplication.ui.view.verification.VerificationCodeSingleInputView
+        <com.nmk.myapplication.work.ui.view.verification.VerificationCodeSingleInputView
             android:id="@+id/codeView2"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp" />
 
-        <com.nmk.myapplication.ui.view.verification.VerificationCodeSingleInputView
+        <com.nmk.myapplication.work.ui.view.verification.VerificationCodeSingleInputView
             android:id="@+id/codeView3"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp" />
 
-        <com.nmk.myapplication.ui.view.verification.VerificationCodeSingleInputView
+        <com.nmk.myapplication.work.ui.view.verification.VerificationCodeSingleInputView
             android:id="@+id/codeView4"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp" />
 
-        <com.nmk.myapplication.ui.view.verification.VerificationCodeSingleInputView
+        <com.nmk.myapplication.work.ui.view.verification.VerificationCodeSingleInputView
             android:id="@+id/codeView5"
             android:layout_width="48dp"
             android:layout_height="48dp"

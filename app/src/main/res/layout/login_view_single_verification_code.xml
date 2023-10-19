@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <com.nmk.myapplication.ui.view.shape.widget.HTextView
+    <com.nmk.myapplication.work.ui.view.shape.widget.HTextView
         android:id="@+id/numberTv"
         android:textSize="32sp"
         android:layout_width="match_parent"

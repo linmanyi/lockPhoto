@@ -52,7 +52,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.16.0'
     //mvvm:https://github.com/hegaojian/JetpackMvvm
     implementation 'com.github.hegaojian:JetpackMvvm:1.2.7'
-    //picture select
+    //picture select:https://github.com/LuckSiege/PictureSelector/blob/version_component/README_CN.md
     implementation 'io.github.lucksiege:pictureselector:v3.11.1'
     implementation 'io.github.lucksiege:compress:v3.11.1'
     implementation 'io.github.lucksiege:ucrop:v3.11.1'
@@ -61,6 +61,8 @@ dependencies {
     implementation 'com.github.JessYanCoding:AndroidAutoSize:v1.2.1'
     //腾讯mmkv：https://github.com/Tencent/MMKV/wiki/android_tutorial_cn
     implementation 'com.tencent:mmkv:1.2.16'
+    //BRV:https://github.com/liangjingkanji/BRV
+    implementation 'com.github.liangjingkanji:BRV:1.5.3'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
