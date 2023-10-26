@@ -10,6 +10,7 @@ import com.nmk.myapplication.work.base.BaseActivity
 import com.nmk.myapplication.databinding.ActivityMainBinding
 import com.nmk.myapplication.databinding.FolderItemBinding
 import com.nmk.myapplication.work.date.FolderInfo
+import com.nmk.myapplication.work.utils.glide.ImageUtil
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 
 /**
@@ -29,6 +30,8 @@ class MainActivity : BaseActivity<BaseViewModel, ActivityMainBinding>() {
             onBind {
                 val binding = getBinding<FolderItemBinding>()
                 val model = getModel<FolderInfo>()
+                ImageUtil.loadFile(this@MainActivity,binding.coverImg,model.cover)
+                binding.titleTv.text = model.fileName
             }
         }
     }
