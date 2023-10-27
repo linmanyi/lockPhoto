@@ -1,19 +1,17 @@
 package com.nmk.myapplication.work.utils.glide;
 
-import static android.os.Build.VERSION_CODES.R;
-
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.NinePatch;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.NinePatchDrawable;
 import android.os.Build;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
@@ -31,12 +29,10 @@ import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.bumptech.glide.signature.ObjectKey;
 import com.nmk.myapplication.R;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 /**
  * @author Created by H-ray on 2020/3/29
@@ -132,7 +128,7 @@ public class ImageUtil {
      * 加载圆形网络图片
      */
     public static void loadCircleImg(Context context, ImageView imgView, String imgUrl) {
-        loadCircleImg(context, imgView, imgUrl, R.drawable.img_header_default);
+        loadCircleImg(context, imgView, imgUrl, R.drawable.img_img_default);
     }
 
     public static void loadCircleImg(Context context, ImageView imgView, String imgUrl, int defaultResource) {
@@ -152,7 +148,7 @@ public class ImageUtil {
             return;
         }
         Glide.with(context).load(imgResource)
-                .placeholder(R.drawable.img_header_default)
+                .placeholder(R.drawable.img_img_default)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .apply(RequestOptions.bitmapTransform(new CircleCrop()))
                 .dontAnimate().into(imgView);
