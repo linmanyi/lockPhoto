@@ -6,6 +6,9 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.nmk.myapplication.work.db.data.FolderModel
 
+/**
+ * 文件夹-dao
+ */
 @Dao
 abstract class FolderDao {
 

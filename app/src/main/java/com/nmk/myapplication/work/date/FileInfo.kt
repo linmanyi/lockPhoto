@@ -16,8 +16,10 @@ data class FolderInfo(
 data class FileInfo(
     var id: Long = 0,
     var fileName: String = "",
-    var cover: String = "",
+    var content: String = "",
     var createTime: Long = 0L,
     var width: Int = 0,
     var height: Int = 0,
+    var type: String = "",//类型
+    var size: Long = 0,//文件大小
 )

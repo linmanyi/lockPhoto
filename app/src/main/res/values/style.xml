@@ -6,4 +6,28 @@
         <item name="android:textColor">@color/textColor_333333</item>
         <item name="android:textSize">14sp</item>
     </style>
+
+    <style name="titleBarStyle">
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="android:id">@id/titleBar</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <declare-styleable name="TitleBar">
+        <!-- 标题 -->
+        <attr name="title" format="string" />
+        <attr name="title_color" format="color" />
+        <!-- 左侧图标 -->
+        <attr name="left_src" format="reference" />
+        <attr name="enable_back" format="boolean" />
+        <!-- 右侧图标 -->
+        <attr name="right_src" format="reference" />
+        <!-- 右侧文字，颜色，大小 -->
+        <attr name="right_text" format="string" />
+        <attr name="right_text_color" format="color" />
+        <attr name="right_text_size" format="dimension" />
+        <attr name="right_bold" format="boolean" />
+    </declare-styleable>
 </resources>

@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="textColor_333333">#333333</color>
+    <color name="tranceColor">#00000000</color>
 
     <color name="common_default_or_error">#F0F0F0</color>
 </resources>

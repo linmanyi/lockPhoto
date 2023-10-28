@@ -8,7 +8,6 @@ import com.nmk.myapplication.work.base.BaseActivity
 import com.nmk.myapplication.databinding.ActivityLockBinding
 import com.nmk.myapplication.work.manager.UserInfoManager
 import com.nmk.myapplication.work.ui.view.numberKeyboard.NumberKeyboardView
-import com.nmk.myapplication.work.utils.common.CacheUtil
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 
 /**

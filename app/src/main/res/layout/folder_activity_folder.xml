@@ -12,7 +12,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:left_src="@mipmap/icon_setting"
-        app:right_src="@mipmap/icon_create"/>
+        app:right_src="@mipmap/icon_more"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/content"

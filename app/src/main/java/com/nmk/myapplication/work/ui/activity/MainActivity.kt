@@ -6,7 +6,6 @@ import android.os.Bundle
 import com.drake.brv.utils.grid
 import com.drake.brv.utils.models
 import com.drake.brv.utils.setup
-import com.luck.picture.lib.utils.ToastUtils
 import com.nmk.myapplication.R
 import com.nmk.myapplication.work.base.BaseActivity
 import com.nmk.myapplication.databinding.ActivityMainBinding
@@ -14,7 +13,6 @@ import com.nmk.myapplication.databinding.FolderItemBinding
 import com.nmk.myapplication.work.date.FolderInfo
 import com.nmk.myapplication.work.utils.glide.ImageUtil
 import com.nmk.myapplication.work.vm.MainVM
-import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 import me.hgj.jetpackmvvm.ext.view.visibleOrGone
 
 /**
@@ -36,6 +34,13 @@ class MainActivity : BaseActivity<MainVM, ActivityMainBinding>() {
                 val model = getModel<FolderInfo>()
                 ImageUtil.loadFile(this@MainActivity,binding.coverImg,model.cover)
                 binding.titleTv.text = model.fileName
+            }
+            onClick(R.id.rootView) {
+                //进入文件夹
+
+            }
+            onClick(R.id.moreImv) {
+                //更多
             }
         }
     }

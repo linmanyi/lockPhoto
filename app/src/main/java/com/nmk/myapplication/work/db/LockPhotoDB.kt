@@ -4,6 +4,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.nmk.myapplication.app.MyApplication
+import com.nmk.myapplication.work.db.dao.FileDao
 import com.nmk.myapplication.work.db.dao.FolderDao
 import com.nmk.myapplication.work.db.data.FolderModel
 
@@ -15,6 +16,7 @@ abstract class LockPhotoDB: RoomDatabase() {
      * 文件夹DAO
      */
     abstract fun folderDao(): FolderDao
+    abstract fun fileDao(): FileDao
     companion object {
         private const val DATABASE_NAME = "lock_photo.db"
 
