@@ -18,6 +18,10 @@ abstract class FolderDao {
     @Query("select * from db_folder")
     abstract fun queryData(): ArrayList<FolderModel>
 
+    @Query("select * from db_folder where db_id = :id")
+    abstract fun queryDataById(id: Long): ArrayList<FolderModel>
+
+
     @Query("delete from db_folder where db_id = :folderId")
     abstract fun deleteById(folderId: Long)
 

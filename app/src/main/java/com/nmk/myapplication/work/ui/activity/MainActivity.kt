@@ -3,6 +3,7 @@ package com.nmk.myapplication.work.ui.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import com.drake.brv.utils.grid
 import com.drake.brv.utils.models
 import com.drake.brv.utils.setup
@@ -11,6 +12,7 @@ import com.nmk.myapplication.work.base.BaseActivity
 import com.nmk.myapplication.databinding.ActivityMainBinding
 import com.nmk.myapplication.databinding.FolderItemBinding
 import com.nmk.myapplication.work.date.FolderInfo
+import com.nmk.myapplication.work.ui.view.titlebar.TitleBar
 import com.nmk.myapplication.work.utils.glide.ImageUtil
 import com.nmk.myapplication.work.vm.MainVM
 import me.hgj.jetpackmvvm.ext.view.visibleOrGone
@@ -37,12 +39,20 @@ class MainActivity : BaseActivity<MainVM, ActivityMainBinding>() {
             }
             onClick(R.id.rootView) {
                 //进入文件夹
-
+                val model = getModel<FolderInfo>()
+                FolderDetailActivity.startActivity(this@MainActivity,model.id)
             }
             onClick(R.id.moreImv) {
                 //更多
+
             }
         }
+        mViewBind.titleBar.onClickRightListener = object : TitleBar.OnClickRightListener{
+            override fun rightOnClick(v: View, position: Int) {
+
+            }
+        }
+        mViewModel.getData()
     }
 
     override fun createObserver() {

@@ -1,8 +1,12 @@
 package com.nmk.myapplication.work.vm
 
+import android.content.Context
+import android.widget.Toast
 import androidx.lifecycle.viewModelScope
+import com.luck.picture.lib.entity.LocalMedia
 import com.nmk.myapplication.work.date.FileInfo
 import com.nmk.myapplication.work.db.LockPhotoDB
+import com.nmk.myapplication.work.helper.picture.PictureSelectHelper
 import kotlinx.coroutines.launch
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 import me.hgj.jetpackmvvm.callback.livedata.event.EventLiveData
@@ -37,6 +41,13 @@ class FileMV : BaseViewModel() {
             }.onFailure {
                 getDataDE.postValue(arrayListOf())
             }
+        }
+    }
+
+    val addFilesED = EventLiveData<FileInfo>()
+    fun addFiles(context: Context,select: ArrayList<LocalMedia?>?) {
+        PictureSelectHelper.getDynamicImg(context,select) {
+            Toast.makeText(context,it?.size.toString(),Toast.LENGTH_LONG)
         }
     }
 }

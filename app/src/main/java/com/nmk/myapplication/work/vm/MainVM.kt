@@ -32,4 +32,25 @@ class MainVM: BaseViewModel() {
             }
         }
     }
+
+    val getFolderED = EventLiveData<FolderInfo>()
+    fun getFolder(id: Long) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val list = arrayListOf<FolderInfo>()
+            kotlin.runCatching {
+                LockPhotoDB.getInstance().folderDao().queryDataById(id).forEach{
+                    list.add(FolderInfo().apply {
+                        this.id = it.db_id
+                        fileName = it.fileName
+                        cover = it.cover
+                        createTime = it.createTime
+                    })
+                }
+            }.onSuccess {
+                getDataED.postValue(list)
+            }.onFailure {
+                getDataED.postValue(arrayListOf())
+            }
+        }
+    }
 }

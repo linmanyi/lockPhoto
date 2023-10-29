@@ -10,6 +10,7 @@ import com.nmk.myapplication.databinding.FileItemBinding
 import com.nmk.myapplication.databinding.FolderActivityFolderBinding
 import com.nmk.myapplication.work.base.BaseActivity
 import com.nmk.myapplication.work.date.FileInfo
+import com.nmk.myapplication.work.ext.setClickNotDoubleListener
 import com.nmk.myapplication.work.utils.glide.ImageUtil
 import com.nmk.myapplication.work.vm.FileMV
 
@@ -45,6 +46,9 @@ class FolderDetailActivity: BaseActivity<FileMV, FolderActivityFolderBinding>() 
             }
         }
         mViewModel.getData(id)
+        mViewBind.addImv.setClickNotDoubleListener{
+            mViewModel.addFiles(this@FolderDetailActivity,null)
+        }
     }
 
     override fun createObserver() {

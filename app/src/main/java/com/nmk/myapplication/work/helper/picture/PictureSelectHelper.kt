@@ -27,11 +27,10 @@ object PictureSelectHelper {
             .openGallery(SelectMimeType.ofImage())
             .setSelectorUIStyle(selectorStyle)
             .isDisplayCamera(true)
-            .setMaxSelectNum(4)
             .setSelectedData(select)
             .setImageEngine(GlideEngine.createGlideEngine())
             .setCompressEngine(ImageCompressEngine())
-            .setLanguage(LanguageConfig.AR)
+//            .setLanguage(LanguageConfig.AR)
             .setInjectLayoutResourceListener(MeOnInjectLayoutResourceListener())
             .forResult(object : OnResultCallbackListener<LocalMedia?> {
                 override fun onResult(result: ArrayList<LocalMedia?>?) {
