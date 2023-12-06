@@ -7,12 +7,18 @@ import android.view.View
 import com.drake.brv.utils.grid
 import com.drake.brv.utils.models
 import com.drake.brv.utils.setup
+import com.luck.picture.lib.utils.ToastUtils
 import com.nmk.myapplication.R
-import com.nmk.myapplication.work.base.BaseActivity
 import com.nmk.myapplication.databinding.ActivityMainBinding
 import com.nmk.myapplication.databinding.FolderItemBinding
+import com.nmk.myapplication.work.base.BaseActivity
 import com.nmk.myapplication.work.date.FolderInfo
+import com.nmk.myapplication.work.db.LockPhotoDB
+import com.nmk.myapplication.work.db.data.FolderModel
+import com.nmk.myapplication.work.ui.dialog.FolderMoreDialog
 import com.nmk.myapplication.work.ui.view.titlebar.TitleBar
+import com.nmk.myapplication.work.utils.file.FileConstance
+import com.nmk.myapplication.work.utils.file.FileUtil
 import com.nmk.myapplication.work.utils.glide.ImageUtil
 import com.nmk.myapplication.work.vm.MainVM
 import me.hgj.jetpackmvvm.ext.view.visibleOrGone
@@ -34,7 +40,9 @@ class MainActivity : BaseActivity<MainVM, ActivityMainBinding>() {
             onBind {
                 val binding = getBinding<FolderItemBinding>()
                 val model = getModel<FolderInfo>()
-                ImageUtil.loadFile(this@MainActivity,binding.coverImg,model.cover)
+                if (model.cover.isNotEmpty()) {
+                    ImageUtil.loadFile(this@MainActivity,binding.coverImg,model.cover)
+                }
                 binding.titleTv.text = model.fileName
             }
             onClick(R.id.rootView) {
@@ -44,12 +52,30 @@ class MainActivity : BaseActivity<MainVM, ActivityMainBinding>() {
             }
             onClick(R.id.moreImv) {
                 //更多
-
+                val model = getModel<FolderInfo>()
+                FolderMoreDialog.showDialog(this@MainActivity,model.id)
             }
         }
         mViewBind.titleBar.onClickRightListener = object : TitleBar.OnClickRightListener{
             override fun rightOnClick(v: View, position: Int) {
-
+                AddFolderDialog.showDialog(this@MainActivity) {
+                    //创建文件夹
+                    kotlin.runCatching {
+                        FileUtil.createMoreFiles("${FileConstance.mainPath}$it")
+                        LockPhotoDB.getInstance().folderDao().insert(
+                            FolderModel().apply {
+                                cover = ""
+                                fileName = it
+                                createTime = System.currentTimeMillis()
+                            }
+                        )
+                    }.onFailure {
+                        ToastUtils.showToast(this@MainActivity,"创建失败")
+                    }.onSuccess {
+                        mViewModel.getData()
+                        ToastUtils.showToast(this@MainActivity,"创建成功")
+                    }
+                }
             }
         }
         mViewModel.getData()

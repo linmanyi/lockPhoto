@@ -67,4 +67,19 @@
         style="@style/textStyle"
         tools:text="20G"/>
 
+    <com.nmk.myapplication.work.ui.view.shape.widget.HTextView
+        android:id="@+id/deleteTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="删除"
+        app:layout_constraintTop_toBottomOf="@+id/sizeContentTv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        app:h_shape_corners_radius="20dp"
+        android:textColor="@color/white"
+        app:h_shape_solid="#D11D1D"
+        android:paddingVertical="5dp" />
+
 </com.nmk.myapplication.work.ui.view.shape.widget.HConstraintLayout>

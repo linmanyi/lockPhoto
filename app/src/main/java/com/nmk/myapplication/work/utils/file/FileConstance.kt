@@ -1,7 +1,7 @@
 package com.nmk.myapplication.work.utils.file
 
 object FileConstance {
-    private const val mainPath = "/private"
+    const val mainPath = "private/"
 
     /**
      * 获取文件夹路径
