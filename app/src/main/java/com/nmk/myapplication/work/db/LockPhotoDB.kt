@@ -6,10 +6,12 @@ import androidx.room.RoomDatabase
 import com.nmk.myapplication.app.MyApplication
 import com.nmk.myapplication.work.db.dao.FileDao
 import com.nmk.myapplication.work.db.dao.FolderDao
+import com.nmk.myapplication.work.db.data.FileModel
 import com.nmk.myapplication.work.db.data.FolderModel
 
 @Database(entities = [
-    FolderModel::class
+    FolderModel::class,
+    FileModel::class
 ], version = 1, exportSchema = false)
 abstract class LockPhotoDB: RoomDatabase() {
     /**

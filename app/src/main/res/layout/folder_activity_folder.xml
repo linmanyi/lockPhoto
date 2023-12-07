@@ -11,7 +11,6 @@
         style="@style/titleBarStyle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:left_src="@mipmap/icon_setting"
         app:right_src="@mipmap/icon_more"/>
 
     <androidx.recyclerview.widget.RecyclerView

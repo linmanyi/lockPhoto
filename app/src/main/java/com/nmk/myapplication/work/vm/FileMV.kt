@@ -1,12 +1,13 @@
 package com.nmk.myapplication.work.vm
 
 import android.content.Context
-import android.widget.Toast
 import androidx.lifecycle.viewModelScope
 import com.luck.picture.lib.entity.LocalMedia
+import com.luck.picture.lib.utils.ToastUtils
 import com.nmk.myapplication.work.date.FileInfo
 import com.nmk.myapplication.work.db.LockPhotoDB
 import com.nmk.myapplication.work.helper.picture.PictureSelectHelper
+import com.nmk.myapplication.work.utils.file.FileUtil
 import kotlinx.coroutines.launch
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 import me.hgj.jetpackmvvm.callback.livedata.event.EventLiveData
@@ -47,7 +48,12 @@ class FileMV : BaseViewModel() {
     val addFilesED = EventLiveData<FileInfo>()
     fun addFiles(context: Context,select: ArrayList<LocalMedia?>?) {
         PictureSelectHelper.getDynamicImg(context,select) {
-            Toast.makeText(context,it?.size.toString(),Toast.LENGTH_LONG)
+            ToastUtils.showToast(context,it?.size.toString())
+            //todo:复制迁移文件
+            it?.forEach {
+//                FileUtil.saveFile(it.)
+            }
+
         }
     }
 }

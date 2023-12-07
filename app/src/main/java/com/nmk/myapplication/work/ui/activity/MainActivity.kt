@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.viewModelScope
 import com.drake.brv.utils.grid
 import com.drake.brv.utils.models
 import com.drake.brv.utils.setup
@@ -21,6 +22,8 @@ import com.nmk.myapplication.work.utils.file.FileConstance
 import com.nmk.myapplication.work.utils.file.FileUtil
 import com.nmk.myapplication.work.utils.glide.ImageUtil
 import com.nmk.myapplication.work.vm.MainVM
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import me.hgj.jetpackmvvm.ext.view.visibleOrGone
 
 /**
@@ -60,20 +63,22 @@ class MainActivity : BaseActivity<MainVM, ActivityMainBinding>() {
             override fun rightOnClick(v: View, position: Int) {
                 AddFolderDialog.showDialog(this@MainActivity) {
                     //创建文件夹
-                    kotlin.runCatching {
-                        FileUtil.createMoreFiles("${FileConstance.mainPath}$it")
-                        LockPhotoDB.getInstance().folderDao().insert(
-                            FolderModel().apply {
-                                cover = ""
-                                fileName = it
-                                createTime = System.currentTimeMillis()
-                            }
-                        )
-                    }.onFailure {
-                        ToastUtils.showToast(this@MainActivity,"创建失败")
-                    }.onSuccess {
-                        mViewModel.getData()
-                        ToastUtils.showToast(this@MainActivity,"创建成功")
+                    mViewModel.viewModelScope.launch(Dispatchers.IO) {
+                        kotlin.runCatching {
+                            FileUtil.createMoreFiles("${FileConstance.mainPath}$it")
+                            LockPhotoDB.getInstance().folderDao().insert(
+                                FolderModel().apply {
+                                    cover = ""
+                                    fileName = it
+                                    createTime = System.currentTimeMillis()
+                                }
+                            )
+                        }.onFailure {
+                            ToastUtils.showToast(this@MainActivity,"创建失败")
+                        }.onSuccess {
+                            mViewModel.getData()
+                            ToastUtils.showToast(this@MainActivity,"创建成功")
+                        }
                     }
                 }
             }

@@ -17,12 +17,12 @@ abstract class FileDao {
     abstract fun insert(model: FileModel)
 
     @Query("select * from db_file where db_id = :id")
-    abstract fun queryDataById(id: Long): ArrayList<FileModel>
+    abstract fun queryDataById(id: Long): List<FileModel>
 
     @Query("delete from db_file where db_id = :fileId")
     abstract fun deleteById(fileId: Long)
 
     @Query("select * from db_file where type = :type")
-    abstract fun deleteByType(type: String)
+    abstract fun queryByType(type: String): List<FileModel>
 
 }

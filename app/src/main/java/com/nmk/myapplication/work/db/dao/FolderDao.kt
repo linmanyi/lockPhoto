@@ -16,10 +16,10 @@ abstract class FolderDao {
     abstract fun insert(model: FolderModel)
 
     @Query("select * from db_folder")
-    abstract fun queryData(): ArrayList<FolderModel>
+    abstract fun queryData(): List<FolderModel>
 
     @Query("select * from db_folder where db_id = :id")
-    abstract fun queryDataById(id: Long): ArrayList<FolderModel>
+    abstract fun queryDataById(id: Long): List<FolderModel>
 
 
     @Query("delete from db_folder where db_id = :folderId")
