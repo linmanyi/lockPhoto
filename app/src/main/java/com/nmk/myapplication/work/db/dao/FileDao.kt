@@ -16,6 +16,9 @@ abstract class FileDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insert(model: FileModel)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    abstract fun insert(models: List<FileModel>)
+
     @Query("select * from db_file where db_id = :id")
     abstract fun queryDataById(id: Long): List<FileModel>
 

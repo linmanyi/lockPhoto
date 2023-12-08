@@ -21,5 +21,5 @@ data class FileInfo(
     var width: Int = 0,
     var height: Int = 0,
     var type: String = "",//类型
-    var size: Long = 0,//文件大小
+    var size: String = "0B",//文件大小
 )

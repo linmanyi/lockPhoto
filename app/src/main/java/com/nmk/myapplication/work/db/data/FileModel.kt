@@ -32,5 +32,5 @@ class FileModel {
     var type: String = ""
 
     @ColumnInfo(name = "size")
-    var size: Long = 0
+    var size: String = "0B"
 }

@@ -1,4 +1,4 @@
-package com.nmk.myapplication.work.ui.activity
+package com.nmk.myapplication.work.ui.dialog
 
 import android.content.Context
 import android.text.Editable
@@ -9,7 +9,6 @@ import com.nmk.myapplication.databinding.DialogAddFolderBinding
 import com.nmk.myapplication.work.ext.setClickNotDoubleListener
 import com.nmk.myapplication.work.ui.common.BaseBottomDialog
 import com.nmk.myapplication.work.ui.common.BaseCenterDialog
-import com.nmk.myapplication.work.utils.file.FileUtil
 
 /**
  * 添加文件夹弹窗

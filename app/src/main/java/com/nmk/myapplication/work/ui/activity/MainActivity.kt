@@ -16,6 +16,7 @@ import com.nmk.myapplication.work.base.BaseActivity
 import com.nmk.myapplication.work.date.FolderInfo
 import com.nmk.myapplication.work.db.LockPhotoDB
 import com.nmk.myapplication.work.db.data.FolderModel
+import com.nmk.myapplication.work.ui.dialog.AddFolderDialog
 import com.nmk.myapplication.work.ui.dialog.FolderMoreDialog
 import com.nmk.myapplication.work.ui.view.titlebar.TitleBar
 import com.nmk.myapplication.work.utils.file.FileConstance
@@ -51,7 +52,7 @@ class MainActivity : BaseActivity<MainVM, ActivityMainBinding>() {
             onClick(R.id.rootView) {
                 //进入文件夹
                 val model = getModel<FolderInfo>()
-                FolderDetailActivity.startActivity(this@MainActivity,model.id)
+                FolderDetailActivity.startActivity(this@MainActivity,model.id,model.fileName)
             }
             onClick(R.id.moreImv) {
                 //更多
@@ -65,14 +66,18 @@ class MainActivity : BaseActivity<MainVM, ActivityMainBinding>() {
                     //创建文件夹
                     mViewModel.viewModelScope.launch(Dispatchers.IO) {
                         kotlin.runCatching {
-                            FileUtil.createMoreFiles("${FileConstance.mainPath}$it")
-                            LockPhotoDB.getInstance().folderDao().insert(
-                                FolderModel().apply {
-                                    cover = ""
-                                    fileName = it
-                                    createTime = System.currentTimeMillis()
-                                }
-                            )
+                            if (FileUtil.isExitFile("${FileConstance.mainPath}$it")) {
+                                ToastUtils.showToast(this@MainActivity,"该文件夹已存在")
+                            } else {
+                                LockPhotoDB.getInstance().folderDao().insert(
+                                    FolderModel().apply {
+                                        cover = ""
+                                        fileName = it
+                                        createTime = System.currentTimeMillis()
+                                    }
+                                )
+                                FileUtil.createMoreFiles("${FileConstance.mainPath}$it")
+                            }
                         }.onFailure {
                             ToastUtils.showToast(this@MainActivity,"创建失败")
                         }.onSuccess {

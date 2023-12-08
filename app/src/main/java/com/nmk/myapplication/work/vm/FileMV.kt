@@ -1,16 +1,21 @@
 package com.nmk.myapplication.work.vm
 
 import android.content.Context
+import android.graphics.BitmapFactory
 import androidx.lifecycle.viewModelScope
 import com.luck.picture.lib.entity.LocalMedia
-import com.luck.picture.lib.utils.ToastUtils
 import com.nmk.myapplication.work.date.FileInfo
 import com.nmk.myapplication.work.db.LockPhotoDB
+import com.nmk.myapplication.work.db.data.FileModel
 import com.nmk.myapplication.work.helper.picture.PictureSelectHelper
+import com.nmk.myapplication.work.utils.file.FileConstance
 import com.nmk.myapplication.work.utils.file.FileUtil
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 import me.hgj.jetpackmvvm.callback.livedata.event.EventLiveData
+import java.io.File
 
 class FileMV : BaseViewModel() {
     val getDataDE = EventLiveData<ArrayList<FileInfo>>()
@@ -45,15 +50,38 @@ class FileMV : BaseViewModel() {
         }
     }
 
-    val addFilesED = EventLiveData<FileInfo>()
-    fun addFiles(context: Context,select: ArrayList<LocalMedia?>?) {
-        PictureSelectHelper.getDynamicImg(context,select) {
-            ToastUtils.showToast(context,it?.size.toString())
-            //todo:复制迁移文件
-            it?.forEach {
-//                FileUtil.saveFile(it.)
+    val addFilesED = EventLiveData<Boolean>()
+    fun addFiles(context: Context, folderName: String, select: ArrayList<LocalMedia?>?) {
+        PictureSelectHelper.getDynamicImg(context, select) {
+            kotlin.runCatching {
+                val list = arrayListOf<FileModel>()
+                viewModelScope.launch(Dispatchers.IO) {
+                    //复制迁移文件
+                    it?.forEach {
+                        if (File(it?.realPath.toString()).exists()) {
+                            val timeMillis = System.currentTimeMillis()
+                            val path = "${FileConstance.mainPath}${folderName}/$timeMillis${it?.fileName}"
+                            FileUtil.saveFile(BitmapFactory.decodeFile(it?.realPath), path)
+                            delay(500L)
+                            val fileSize = FileUtil.getAutoFileOrFilesSize(path)
+                            list.add(FileModel().apply {
+                                this.fileName = it?.fileName.toString()
+                                cover = path
+                                createTime = timeMillis
+                                width = it?.width?:0
+                                height = it?.height?:0
+                                type = "PNG"
+                                size = fileSize
+                            })
+                        }
+                    }
+                    LockPhotoDB.getInstance().fileDao().insert(list)
+                }
+            }.onSuccess {
+                addFilesED.postValue(true)
+            }.onFailure {
+                addFilesED.postValue(false)
             }
-
         }
     }
 }
