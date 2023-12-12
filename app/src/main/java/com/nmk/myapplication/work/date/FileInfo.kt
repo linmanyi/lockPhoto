@@ -16,6 +16,7 @@ data class FolderInfo(
 data class FileInfo(
     var id: Long = 0,
     var fileName: String = "",
+    var folderId: Long = 0,
     var content: String = "",
     var createTime: Long = 0L,
     var width: Int = 0,

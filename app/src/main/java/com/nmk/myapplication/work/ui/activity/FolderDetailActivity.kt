@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import com.drake.brv.BindingAdapter
 import com.drake.brv.utils.grid
 import com.drake.brv.utils.models
 import com.drake.brv.utils.setup
@@ -16,10 +17,12 @@ import com.nmk.myapplication.work.ext.setClickNotDoubleListener
 import com.nmk.myapplication.work.ui.view.titlebar.TitleBar
 import com.nmk.myapplication.work.utils.glide.ImageUtil
 import com.nmk.myapplication.work.vm.FileMV
+import me.hgj.jetpackmvvm.ext.view.visibleOrGone
 
 class FolderDetailActivity : BaseActivity<FileMV, FolderActivityFolderBinding>() {
     private var id = 0L
     private var fileName = ""
+    private lateinit var adapter: BindingAdapter
 
     companion object {
         fun startActivity(context: Context, id: Long, fileName: String) {
@@ -34,7 +37,7 @@ class FolderDetailActivity : BaseActivity<FileMV, FolderActivityFolderBinding>()
     override fun initView(savedInstanceState: Bundle?) {
         id = intent.getLongExtra("id", 0)
         fileName = intent.getStringExtra("fileName") ?: ""
-        mViewBind.content.grid(3).setup {
+        adapter = mViewBind.content.grid(3).setup {
             addType<FileInfo> { R.layout.file_item }
             onBind {
                 val binding = getBinding<FileItemBinding>()
@@ -61,13 +64,15 @@ class FolderDetailActivity : BaseActivity<FileMV, FolderActivityFolderBinding>()
         }
         mViewModel.getData(id)
         mViewBind.addImv.setClickNotDoubleListener {
-            mViewModel.addFiles(this@FolderDetailActivity,fileName, null)
+            mViewModel.addFiles(this@FolderDetailActivity, id, fileName, null)
         }
     }
 
     override fun createObserver() {
         mViewModel.getDataDE.observeInActivity(this) {
-            mViewBind.content.models = it
+            mViewBind.emptyLl.visibleOrGone(it.isEmpty())
+            adapter.models = it
+            adapter.notifyDataSetChanged()
         }
         mViewModel.addFilesED.observeInActivity(this) {
             mViewModel.getData(id)

@@ -24,15 +24,16 @@ class FileMV : BaseViewModel() {
             getDataDE.postValue(arrayListOf())
             return
         }
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val list = arrayListOf<FileInfo>()
             kotlin.runCatching {
-                val data = LockPhotoDB.getInstance().fileDao().queryDataById(id)
+                val data = LockPhotoDB.getInstance().fileDao().queryDataByFolder(id)
                 data.forEach {
                     list.add(
                         FileInfo(
                             id = it.db_id,
                             fileName = it.fileName,
+                            folderId = it.folderId,
                             content = it.cover,
                             createTime = it.createTime,
                             width = it.width,
@@ -51,7 +52,7 @@ class FileMV : BaseViewModel() {
     }
 
     val addFilesED = EventLiveData<Boolean>()
-    fun addFiles(context: Context, folderName: String, select: ArrayList<LocalMedia?>?) {
+    fun addFiles(context: Context, folderId: Long,folderName: String, select: ArrayList<LocalMedia?>?) {
         PictureSelectHelper.getDynamicImg(context, select) {
             kotlin.runCatching {
                 val list = arrayListOf<FileModel>()
@@ -60,13 +61,13 @@ class FileMV : BaseViewModel() {
                     it?.forEach {
                         if (File(it?.realPath.toString()).exists()) {
                             val timeMillis = System.currentTimeMillis()
-                            val path = "${FileConstance.mainPath}${folderName}/$timeMillis${it?.fileName}"
+                            val path = FileConstance.getPrivateFilePath(folderName,it?.fileName?:"")
                             FileUtil.saveFile(BitmapFactory.decodeFile(it?.realPath), path)
-                            delay(500L)
-                            val fileSize = FileUtil.getAutoFileOrFilesSize(path)
+                            val fileSize = FileUtil.getAutoFileOrFilesSize(FileUtil.getSdCardPath() + path)
                             list.add(FileModel().apply {
                                 this.fileName = it?.fileName.toString()
-                                cover = path
+                                this.folderId = folderId
+                                cover = FileUtil.getSdCardPath() + path
                                 createTime = timeMillis
                                 width = it?.width?:0
                                 height = it?.height?:0

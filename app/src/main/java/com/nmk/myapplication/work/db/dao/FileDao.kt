@@ -22,6 +22,9 @@ abstract class FileDao {
     @Query("select * from db_file where db_id = :id")
     abstract fun queryDataById(id: Long): List<FileModel>
 
+    @Query("select * from db_file where folderId = :folderId")
+    abstract fun queryDataByFolder(folderId: Long): List<FileModel>
+
     @Query("delete from db_file where db_id = :fileId")
     abstract fun deleteById(fileId: Long)
 

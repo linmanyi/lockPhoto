@@ -13,6 +13,9 @@ class FileModel {
     @ColumnInfo(name = "db_id")
     var db_id: Long = 0
 
+    @ColumnInfo(name = "folderId")
+    var folderId: Long = 0
+
     @ColumnInfo(name = "fileName")
     var fileName: String = ""
 

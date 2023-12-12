@@ -66,7 +66,7 @@ class MainActivity : BaseActivity<MainVM, ActivityMainBinding>() {
                     //创建文件夹
                     mViewModel.viewModelScope.launch(Dispatchers.IO) {
                         kotlin.runCatching {
-                            if (FileUtil.isExitFile("${FileConstance.mainPath}$it")) {
+                            if (FileUtil.isExitFile(FileConstance.getPrivateFolderPath(it))) {
                                 ToastUtils.showToast(this@MainActivity,"该文件夹已存在")
                             } else {
                                 LockPhotoDB.getInstance().folderDao().insert(
@@ -76,7 +76,7 @@ class MainActivity : BaseActivity<MainVM, ActivityMainBinding>() {
                                         createTime = System.currentTimeMillis()
                                     }
                                 )
-                                FileUtil.createMoreFiles("${FileConstance.mainPath}$it")
+                                FileUtil.createMoreFiles(FileConstance.getPrivateFolderPath(it))
                             }
                         }.onFailure {
                             ToastUtils.showToast(this@MainActivity,"创建失败")

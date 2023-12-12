@@ -1,12 +1,21 @@
 package com.nmk.myapplication.work.utils.file
 
+import android.annotation.SuppressLint
+
 object FileConstance {
-    const val mainPath = "/private/"
+    private const val mainPath = "/private"
+
+    /**
+     * 获取文件路径
+     */
+    fun getPrivateFilePath(folder: String, name: String): String {
+        return "$mainPath/$folder/$name"
+    }
 
     /**
      * 获取文件夹路径
      */
-    fun getFolderPath(folderPath: String): String {
-        return FileUtil.getSdCardPath() + folderPath  //录音存储路径
+    fun getPrivateFolderPath(folder: String): String {
+        return "$mainPath/$folder"
     }
 }
