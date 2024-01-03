@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".work.ui.activity.MainActivity">
+
+    <com.nmk.myapplication.work.ui.view.titlebar.TitleBar
+        android:id="@+id/titleBar"
+        style="@style/titleBarStyle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.nmk.myapplication.work.ui.view.shape.widget.HTextView
+        android:id="@+id/sureTv"
+        style="@style/textStyle"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/titleBar"
+        android:text="确定"
+        app:h_shape_solid="@color/main_color"
+        android:textColor="@color/white"
+        app:h_shape_corners_radius="12dp"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="3dp"
+        android:layout_marginEnd="16dp"
+        android:alpha="0.5"
+        app:layout_constraintTop_toTopOf="@+id/titleBar"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleBar" />
+
+    <LinearLayout
+        android:id="@+id/emptyLl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="@+id/content"
+        app:layout_constraintBottom_toBottomOf="@+id/content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/emptyTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/textStyle"
+            android:text="没有数据"/>
+
+    </LinearLayout>
+
+    <com.nmk.myapplication.work.ui.view.shape.widget.HImageView
+        android:id="@+id/addImv"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@mipmap/icon_create"
+        app:tint="@color/white"
+        app:h_shape_type="oval"
+        android:padding="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="35dp"
+        app:h_shape_solid="@color/ps_color_blue"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

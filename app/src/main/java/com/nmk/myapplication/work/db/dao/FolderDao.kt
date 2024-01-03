@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import com.nmk.myapplication.work.db.data.FolderModel
 
 /**
@@ -23,5 +24,8 @@ abstract class FolderDao {
 
     @Query("delete from db_folder where db_id = :folderId")
     abstract fun deleteById(folderId: Long)
+
+    @Update
+    abstract fun update(model: FolderModel)
 
 }

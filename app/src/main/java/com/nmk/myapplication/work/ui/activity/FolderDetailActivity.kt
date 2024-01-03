@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import com.drake.brv.BindingAdapter
 import com.drake.brv.utils.grid
-import com.drake.brv.utils.models
 import com.drake.brv.utils.setup
 import com.nmk.myapplication.R
 import com.nmk.myapplication.databinding.FileItemBinding
@@ -14,6 +13,7 @@ import com.nmk.myapplication.databinding.FolderActivityFolderBinding
 import com.nmk.myapplication.work.base.BaseActivity
 import com.nmk.myapplication.work.date.FileInfo
 import com.nmk.myapplication.work.ext.setClickNotDoubleListener
+import com.nmk.myapplication.work.ui.dialog.FileMoreDialog
 import com.nmk.myapplication.work.ui.view.titlebar.TitleBar
 import com.nmk.myapplication.work.utils.glide.ImageUtil
 import com.nmk.myapplication.work.vm.FileMV
@@ -55,6 +55,8 @@ class FolderDetailActivity : BaseActivity<FileMV, FolderActivityFolderBinding>()
             }
             onClick(R.id.moreImv) {
                 //更多
+                val model = getModel<FileInfo>()
+                FileMoreDialog.showDialog(this@FolderDetailActivity,model.id)
             }
         }
         mViewBind.titleBar.onClickLeftListener = object : TitleBar.OnClickLeftListener {

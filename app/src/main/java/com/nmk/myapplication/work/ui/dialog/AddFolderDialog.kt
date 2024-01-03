@@ -18,11 +18,13 @@ class AddFolderDialog(context: Context): BaseCenterDialog(context) {
     private lateinit var mViewBinding: DialogAddFolderBinding
     private val maxTextLength = 16
     private var block: ((String) -> Unit)? = null
+    private var name: String? = null
 
     companion object{
-        fun showDialog(context: Context,block: ((String) -> Unit)?) {
+        fun showDialog(context: Context, name: String? = null, block: ((String) -> Unit)?) {
             AddFolderDialog(context).apply {
                 this.block = block
+                this.name = name
             }.showDialog(BaseBottomDialog.Builder(dismissOnTouchOutside = false))
         }
     }
@@ -35,17 +37,17 @@ class AddFolderDialog(context: Context): BaseCenterDialog(context) {
             dismiss()
         }
         mViewBinding.edTv.addTextChangedListener {
-            initBt(it)
+            initBt(it.toString())
         }
         mViewBinding.edTv.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxTextLength))
         mViewBinding.sureTv.setClickNotDoubleListener{
             block?.let { it1 -> it1(mViewBinding.edTv.text.toString()) }
             dismiss()
         }
-        initBt(null)
+        initBt(name)
     }
 
-    private fun initBt(it: Editable?) {
+    private fun initBt(it: String?) {
         if (it?.isEmpty() == true) {
             mViewBinding.sureTv.isClickable = false
             mViewBinding.sureTv.isSelected = false

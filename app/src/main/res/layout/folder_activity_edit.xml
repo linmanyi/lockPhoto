@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <ImageView
         android:id="@+id/coverImv"
@@ -12,7 +13,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:src="@mipmap/icon_upload"
+        android:src="@mipmap/icon_folder"
         android:layout_marginTop="50dp"/>
 
     <TextView
@@ -25,7 +26,7 @@
         app:layout_constraintTop_toBottomOf="@+id/coverImv"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/titleEditView"
         android:layout_width="0dp"
         android:textSize="24sp"
@@ -35,10 +36,13 @@
         app:layout_constraintBottom_toBottomOf="@+id/titleTv"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="16dp"
+        android:ellipsize="end"
+        android:lines="1"
+        tools:text="name"
         android:layout_height="wrap_content"/>
 
     <com.nmk.myapplication.work.ui.view.shape.widget.HTextView
-        android:id="@+id/sureTv"
+        android:id="@+id/deleteTv"
         android:layout_width="0dp"
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -49,8 +53,7 @@
         app:h_shape_solid="@color/ps_color_blue"
         android:gravity="center"
         android:textColor="@color/white"
-        android:text="确定"
-        android:alpha="0.5"
+        android:text="删除"
         android:clickable="false"
         android:textSize="20sp"
         android:layout_marginHorizontal="16dp"/>

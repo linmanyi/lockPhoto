@@ -17,7 +17,6 @@ import com.nmk.myapplication.work.date.FolderInfo
 import com.nmk.myapplication.work.db.LockPhotoDB
 import com.nmk.myapplication.work.db.data.FolderModel
 import com.nmk.myapplication.work.ui.dialog.AddFolderDialog
-import com.nmk.myapplication.work.ui.dialog.FolderMoreDialog
 import com.nmk.myapplication.work.ui.view.titlebar.TitleBar
 import com.nmk.myapplication.work.utils.file.FileConstance
 import com.nmk.myapplication.work.utils.file.FileUtil
@@ -57,7 +56,7 @@ class MainActivity : BaseActivity<MainVM, ActivityMainBinding>() {
             onClick(R.id.moreImv) {
                 //更多
                 val model = getModel<FolderInfo>()
-                FolderMoreDialog.showDialog(this@MainActivity,model.id)
+                MainEditActivity.startActivity(this@MainActivity,model.id)
             }
         }
         mViewBind.titleBar.onClickRightListener = object : TitleBar.OnClickRightListener{
@@ -88,6 +87,10 @@ class MainActivity : BaseActivity<MainVM, ActivityMainBinding>() {
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
         mViewModel.getData()
     }
 

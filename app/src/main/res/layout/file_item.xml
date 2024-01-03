@@ -20,4 +20,14 @@
         app:layout_constraintWidth_percent="1"
         tools:src="@mipmap/icon_mp4" />
 
+    <ImageView
+        android:id="@+id/selectImv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:padding="6dp"
+        android:layout_marginBottom="6dp"
+        android:src="@mipmap/icon_un_select_trans"
+        android:layout_width="32dp"
+        android:layout_height="32dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

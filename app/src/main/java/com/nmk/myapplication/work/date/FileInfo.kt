@@ -23,4 +23,6 @@ data class FileInfo(
     var height: Int = 0,
     var type: String = "",//类型
     var size: String = "0B",//文件大小
+
+    var select: Boolean = false,//是否选择
 )
