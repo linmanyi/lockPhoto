@@ -4,10 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.viewModelScope
+import com.jeremyliao.liveeventbus.LiveEventBus
 import com.luck.picture.lib.utils.ToastUtils
 import com.nmk.myapplication.databinding.FolderActivityEditBinding
 import com.nmk.myapplication.databinding.FolderDialogMoreBinding
 import com.nmk.myapplication.work.base.BaseActivity
+import com.nmk.myapplication.work.base.EventConstant
+import com.nmk.myapplication.work.date.FileInfo
 import com.nmk.myapplication.work.db.LockPhotoDB
 import com.nmk.myapplication.work.ext.setClickNotDoubleListener
 import com.nmk.myapplication.work.helper.picture.PictureSelectHelper
@@ -41,12 +44,12 @@ class MainEditActivity: BaseActivity<MainVM, FolderActivityEditBinding>() {
             mViewModel.deleteFolder(id,mViewBind.titleEditView.text.toString())
         }
         mViewBind.titleEditView.setClickNotDoubleListener{
-            AddFolderDialog.showDialog(this@MainEditActivity) {
+            AddFolderDialog.showDialog(this@MainEditActivity,mViewBind.titleEditView.text.toString()) {
                 mViewModel.editFolderName(id,it)
             }
         }
-        mViewBind.coverImv.setClickNotDoubleListener{
-
+        mViewBind.selectTv.setClickNotDoubleListener{
+            SelectFileActivity.startActivity(this@MainEditActivity,id,1)
         }
     }
 
@@ -70,10 +73,15 @@ class MainEditActivity: BaseActivity<MainVM, FolderActivityEditBinding>() {
         }
 
         mViewModel.editFolderED.observeInActivity(this@MainEditActivity) {
-            if (it)
-                finish()
+            if (it.contains("name"))
+                mViewBind.titleEditView.text = it["name"]
+            else if (it.contains("cover"))
+                ImageUtil.loadImg(this,mViewBind.coverImv,it["cover"])
             else
                 ToastUtils.showToast(this@MainEditActivity,"修改失败")
+        }
+        LiveEventBus.get<List<FileInfo>>(EventConstant.SELECT_FILE).observe(this) {
+            mViewModel.editFolderCover(id,it[0].content)
         }
     }
 }

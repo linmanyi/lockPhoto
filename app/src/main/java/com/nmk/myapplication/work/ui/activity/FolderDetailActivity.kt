@@ -7,12 +7,14 @@ import android.view.View
 import com.drake.brv.BindingAdapter
 import com.drake.brv.utils.grid
 import com.drake.brv.utils.setup
+import com.luck.picture.lib.utils.ToastUtils
 import com.nmk.myapplication.R
 import com.nmk.myapplication.databinding.FileItemBinding
 import com.nmk.myapplication.databinding.FolderActivityFolderBinding
 import com.nmk.myapplication.work.base.BaseActivity
 import com.nmk.myapplication.work.date.FileInfo
 import com.nmk.myapplication.work.ext.setClickNotDoubleListener
+import com.nmk.myapplication.work.ui.common.loading.LoadingManager
 import com.nmk.myapplication.work.ui.dialog.FileMoreDialog
 import com.nmk.myapplication.work.ui.view.titlebar.TitleBar
 import com.nmk.myapplication.work.utils.glide.ImageUtil
@@ -47,16 +49,10 @@ class FolderDetailActivity : BaseActivity<FileMV, FolderActivityFolderBinding>()
                 } else if (ImageUtil.isMp4AnimUrl(model.content)) {
                     binding.contentImv.setImageResource(R.mipmap.icon_mp4)
                 }
-
             }
             onClick(R.id.rootView) {
                 //进入文件
 
-            }
-            onClick(R.id.moreImv) {
-                //更多
-                val model = getModel<FileInfo>()
-                FileMoreDialog.showDialog(this@FolderDetailActivity,model.id)
             }
         }
         mViewBind.titleBar.onClickLeftListener = object : TitleBar.OnClickLeftListener {
@@ -77,7 +73,11 @@ class FolderDetailActivity : BaseActivity<FileMV, FolderActivityFolderBinding>()
             adapter.notifyDataSetChanged()
         }
         mViewModel.addFilesED.observeInActivity(this) {
-            mViewModel.getData(id)
+            LoadingManager.getInstance().hideDialog()
+            if (it)
+                mViewModel.getData(id)
+            else
+                ToastUtils.showToast(this, "加载失败")
         }
     }
 }

@@ -17,6 +17,20 @@
         android:layout_marginTop="50dp"/>
 
     <TextView
+        android:id="@+id/selectTv"
+        android:layout_width="172dp"
+        android:layout_height="172dp"
+        android:background="#99000000"
+        android:text="点击选择封面"
+        android:gravity="center"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@mipmap/icon_folder"
+        android:layout_marginTop="50dp"/>
+
+    <TextView
         android:id="@+id/titleTv"
         style="@style/textStyle"
         android:textSize="20sp"

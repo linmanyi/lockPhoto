@@ -4,10 +4,13 @@ import android.content.Context
 import android.graphics.BitmapFactory
 import androidx.lifecycle.viewModelScope
 import com.luck.picture.lib.entity.LocalMedia
+import com.lxj.xpopup.XPopup
+import com.lxj.xpopup.impl.LoadingPopupView
 import com.nmk.myapplication.work.date.FileInfo
 import com.nmk.myapplication.work.db.LockPhotoDB
 import com.nmk.myapplication.work.db.data.FileModel
 import com.nmk.myapplication.work.helper.picture.PictureSelectHelper
+import com.nmk.myapplication.work.ui.common.loading.LoadingManager
 import com.nmk.myapplication.work.utils.file.FileConstance
 import com.nmk.myapplication.work.utils.file.FileUtil
 import kotlinx.coroutines.Dispatchers
@@ -53,6 +56,7 @@ class FileMV : BaseViewModel() {
 
     val addFilesED = EventLiveData<Boolean>()
     fun addFiles(context: Context, folderId: Long,folderName: String, select: ArrayList<LocalMedia?>?) {
+        LoadingManager.getInstance().showDialog(context)
         PictureSelectHelper.getDynamicImg(context, select) {
             kotlin.runCatching {
                 val list = arrayListOf<FileModel>()
@@ -64,6 +68,7 @@ class FileMV : BaseViewModel() {
                             val path = FileConstance.getPrivateFilePath(folderName,it?.fileName?:"")
                             FileUtil.saveFile(BitmapFactory.decodeFile(it?.realPath), path)
                             val fileSize = FileUtil.getAutoFileOrFilesSize(FileUtil.getSdCardPath() + path)
+                            val strings = path.split(".")
                             list.add(FileModel().apply {
                                 this.fileName = it?.fileName.toString()
                                 this.folderId = folderId
@@ -71,15 +76,18 @@ class FileMV : BaseViewModel() {
                                 createTime = timeMillis
                                 width = it?.width?:0
                                 height = it?.height?:0
-                                type = "PNG"
+                                type = strings[strings.size - 1].uppercase()
                                 size = fileSize
                             })
                         }
                     }
-                    LockPhotoDB.getInstance().fileDao().insert(list)
+                    kotlin.runCatching {
+                        LockPhotoDB.getInstance().fileDao().insert(list)
+                    }.onSuccess {
+                        addFilesED.postValue(true)
+                    }
                 }
             }.onSuccess {
-                addFilesED.postValue(true)
             }.onFailure {
                 addFilesED.postValue(false)
             }

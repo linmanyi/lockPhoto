@@ -25,6 +25,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:padding="6dp"
+        android:visibility="gone"
+        tools:visibility="visible"
         android:layout_marginBottom="6dp"
         android:src="@mipmap/icon_un_select_trans"
         android:layout_width="32dp"

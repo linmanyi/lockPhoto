@@ -39,6 +39,7 @@ class AddFolderDialog(context: Context): BaseCenterDialog(context) {
         mViewBinding.edTv.addTextChangedListener {
             initBt(it.toString())
         }
+        mViewBinding.edTv.setText(name)
         mViewBinding.edTv.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxTextLength))
         mViewBinding.sureTv.setClickNotDoubleListener{
             block?.let { it1 -> it1(mViewBinding.edTv.text.toString()) }

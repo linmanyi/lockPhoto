@@ -74,7 +74,7 @@ class MainVM: BaseViewModel() {
         }
     }
 
-    val editFolderED = EventLiveData<Boolean>()
+    val editFolderED = EventLiveData<Map<String,String>>()
     fun editFolderName(id: Long, name: String) {
         viewModelScope.launch(Dispatchers.IO) {
             kotlin.runCatching {
@@ -82,9 +82,11 @@ class MainVM: BaseViewModel() {
                 model.fileName = name
                 LockPhotoDB.getInstance().folderDao().update(model)
             }.onSuccess {
-                editFolderED.postValue(true)
+                editFolderED.postValue(mapOf(
+                    Pair("name",name)
+                ))
             }.onFailure {
-                editFolderED.postValue(false)
+                editFolderED.postValue(mapOf())
             }
         }
     }
@@ -96,9 +98,11 @@ class MainVM: BaseViewModel() {
                 model.cover = path
                 LockPhotoDB.getInstance().folderDao().update(model)
             }.onSuccess {
-                editFolderED.postValue(true)
+                editFolderED.postValue(mapOf(
+                    Pair("cover",path)
+                ))
             }.onFailure {
-                editFolderED.postValue(false)
+                editFolderED.postValue(mapOf())
             }
         }
     }
