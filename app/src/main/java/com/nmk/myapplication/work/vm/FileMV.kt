@@ -4,8 +4,6 @@ import android.content.Context
 import android.graphics.BitmapFactory
 import androidx.lifecycle.viewModelScope
 import com.luck.picture.lib.entity.LocalMedia
-import com.lxj.xpopup.XPopup
-import com.lxj.xpopup.impl.LoadingPopupView
 import com.nmk.myapplication.work.date.FileInfo
 import com.nmk.myapplication.work.db.LockPhotoDB
 import com.nmk.myapplication.work.db.data.FileModel
@@ -57,9 +55,9 @@ class FileMV : BaseViewModel() {
     val addFilesED = EventLiveData<Boolean>()
     fun addFiles(context: Context, folderId: Long,folderName: String, select: ArrayList<LocalMedia?>?) {
         LoadingManager.getInstance().showDialog(context)
+        val list = arrayListOf<FileModel>()
         PictureSelectHelper.getDynamicImg(context, select) {
             kotlin.runCatching {
-                val list = arrayListOf<FileModel>()
                 viewModelScope.launch(Dispatchers.IO) {
                     //复制迁移文件
                     it?.forEach {

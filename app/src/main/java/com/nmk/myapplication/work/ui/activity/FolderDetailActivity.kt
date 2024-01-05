@@ -52,7 +52,8 @@ class FolderDetailActivity : BaseActivity<FileMV, FolderActivityFolderBinding>()
             }
             onClick(R.id.rootView) {
                 //进入文件
-
+                val fileInfos = models as List<FileInfo>
+                SecondActivity.startActivity(this@FolderDetailActivity,fileInfos,layoutPosition + 1)
             }
         }
         mViewBind.titleBar.onClickLeftListener = object : TitleBar.OnClickLeftListener {

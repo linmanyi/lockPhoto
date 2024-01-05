@@ -1,5 +1,7 @@
 package com.nmk.myapplication.work.date
 
+import java.io.Serializable
+
 /**
  * 相册对象
  */
@@ -25,4 +27,4 @@ data class FileInfo(
     var size: String = "0B",//文件大小
 
     var select: Boolean = false,//是否选择
-)
+): Serializable

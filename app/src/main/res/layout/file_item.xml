@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:layout_constraintWidth_percent="1"
+    android:id="@+id/rootView"
     tools:layout_width="125dp">
 
     <com.nmk.myapplication.work.ui.view.shape.widget.HImageView

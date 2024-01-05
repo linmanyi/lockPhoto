@@ -16,6 +16,7 @@ import com.luck.picture.lib.style.SelectMainStyle
 import com.luck.picture.lib.style.TitleBarStyle
 import com.nmk.myapplication.R
 import com.nmk.myapplication.app.MyApplication
+import com.nmk.myapplication.work.ui.common.loading.LoadingManager
 
 object PictureSelectHelper {
 
@@ -37,7 +38,9 @@ object PictureSelectHelper {
                     result1?.invoke(result)
                 }
 
-                override fun onCancel() {}
+                override fun onCancel() {
+                    LoadingManager.getInstance().hideDialog()
+                }
             })
     }
 
