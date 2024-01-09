@@ -1,6 +1,7 @@
 package com.nmk.myapplication.work.db.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -27,6 +28,9 @@ abstract class FileDao {
 
     @Query("delete from db_file where db_id = :fileId")
     abstract fun deleteById(fileId: Long)
+
+    @Delete
+    abstract fun deleteList(models: List<FileModel>)
 
     @Query("select * from db_file where type = :type")
     abstract fun queryByType(type: String): List<FileModel>

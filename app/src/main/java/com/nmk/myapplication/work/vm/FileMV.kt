@@ -12,13 +12,15 @@ import com.nmk.myapplication.work.ui.common.loading.LoadingManager
 import com.nmk.myapplication.work.utils.file.FileConstance
 import com.nmk.myapplication.work.utils.file.FileUtil
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 import me.hgj.jetpackmvvm.callback.livedata.event.EventLiveData
 import java.io.File
 
 class FileMV : BaseViewModel() {
+    /**
+     * 获取文件数据
+     */
     val getDataDE = EventLiveData<ArrayList<FileInfo>>()
     fun getData(id: Long) {
         if (id == 0L) {
@@ -52,28 +54,38 @@ class FileMV : BaseViewModel() {
         }
     }
 
+    /**
+     * 新增文件
+     */
     val addFilesED = EventLiveData<Boolean>()
-    fun addFiles(context: Context, folderId: Long,folderName: String, select: ArrayList<LocalMedia?>?) {
+    fun addFiles(
+        context: Context,
+        folderId: Long,
+        folderName: String,
+        select: ArrayList<LocalMedia?>?
+    ) {
         LoadingManager.getInstance().showDialog(context)
         val list = arrayListOf<FileModel>()
-        PictureSelectHelper.getDynamicImg(context, select) {
+        PictureSelectHelper.getFiles(context, select) {
             kotlin.runCatching {
                 viewModelScope.launch(Dispatchers.IO) {
                     //复制迁移文件
                     it?.forEach {
                         if (File(it?.realPath.toString()).exists()) {
                             val timeMillis = System.currentTimeMillis()
-                            val path = FileConstance.getPrivateFilePath(folderName,it?.fileName?:"")
+                            val path =
+                                FileConstance.getPrivateFilePath(folderName, it?.fileName ?: "")
                             FileUtil.saveFile(BitmapFactory.decodeFile(it?.realPath), path)
-                            val fileSize = FileUtil.getAutoFileOrFilesSize(FileUtil.getSdCardPath() + path)
+                            val fileSize =
+                                FileUtil.getAutoFileOrFilesSize(FileUtil.getSdCardPath() + path)
                             val strings = path.split(".")
                             list.add(FileModel().apply {
                                 this.fileName = it?.fileName.toString()
                                 this.folderId = folderId
                                 cover = FileUtil.getSdCardPath() + path
                                 createTime = timeMillis
-                                width = it?.width?:0
-                                height = it?.height?:0
+                                width = it?.width ?: 0
+                                height = it?.height ?: 0
                                 type = strings[strings.size - 1].uppercase()
                                 size = fileSize
                             })
@@ -83,12 +95,40 @@ class FileMV : BaseViewModel() {
                         LockPhotoDB.getInstance().fileDao().insert(list)
                     }.onSuccess {
                         addFilesED.postValue(true)
+                    }.onFailure {
+                        LoadingManager.getInstance().hideDialog()
                     }
                 }
             }.onSuccess {
             }.onFailure {
                 addFilesED.postValue(false)
             }
+        }
+    }
+
+    val deleteFileED = EventLiveData<Boolean>()
+    fun deleteFile(
+        context: Context,
+        infos: ArrayList<FileInfo>,
+    ) {
+        LoadingManager.getInstance().showDialog(context)
+        kotlin.runCatching {
+            viewModelScope.launch(Dispatchers.IO) {
+                val models = arrayListOf<FileModel>()
+                infos.forEach {
+                    FileUtil.deleteFile(it.content)
+                    models.add(it.toModel())
+                }
+                kotlin.runCatching {
+                    LockPhotoDB.getInstance().fileDao().deleteList(models)
+                }.onSuccess {
+                    deleteFileED.postValue(true)
+                }.onFailure {
+                    deleteFileED.postValue(false)
+                }
+            }
+        }.onFailure {
+            deleteFileED.postValue(false)
         }
     }
 }

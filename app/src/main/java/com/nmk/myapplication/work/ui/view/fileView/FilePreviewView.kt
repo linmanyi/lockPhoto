@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.nmk.myapplication.databinding.FileViewPreviewBinding
+import com.nmk.myapplication.work.date.FileInfo
 import com.nmk.myapplication.work.utils.glide.ImageUtil
 import me.hgj.jetpackmvvm.ext.view.gone
 import me.hgj.jetpackmvvm.ext.view.visible
@@ -19,15 +20,15 @@ class FilePreviewView@JvmOverloads constructor(
         mViewBinder = FileViewPreviewBinding.inflate(LayoutInflater.from(context),this)
     }
 
-    fun setData(url: String) {
-        if (ImageUtil.isImgLinkerUrl(url)) {
+    fun setData(info: FileInfo) {
+        if (ImageUtil.isImgLinkerUrl(info.content)) {
             mViewBinder.imv.visible()
             mViewBinder.videoV.gone()
-            ImageUtil.loadImg(context, mViewBinder.imv, url)
+            ImageUtil.loadImg(context, mViewBinder.imv, info.content)
         } else {
             mViewBinder.imv.gone()
             mViewBinder.videoV.visible()
-            initVideoBg(url)
+            initVideoBg(info.content)
         }
     }
 

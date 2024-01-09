@@ -52,8 +52,8 @@ class FolderDetailActivity : BaseActivity<FileMV, FolderActivityFolderBinding>()
             }
             onClick(R.id.rootView) {
                 //进入文件
-                val fileInfos = models as List<FileInfo>
-                SecondActivity.startActivity(this@FolderDetailActivity,fileInfos,layoutPosition + 1)
+                val fileInfos = models as ArrayList<FileInfo>
+                SecondActivity.startActivity(this@FolderDetailActivity,fileInfos,layoutPosition)
             }
         }
         mViewBind.titleBar.onClickLeftListener = object : TitleBar.OnClickLeftListener {
@@ -61,10 +61,14 @@ class FolderDetailActivity : BaseActivity<FileMV, FolderActivityFolderBinding>()
                 this@FolderDetailActivity.finish()
             }
         }
-        mViewModel.getData(id)
         mViewBind.addImv.setClickNotDoubleListener {
             mViewModel.addFiles(this@FolderDetailActivity, id, fileName, null)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mViewModel.getData(id)
     }
 
     override fun createObserver() {

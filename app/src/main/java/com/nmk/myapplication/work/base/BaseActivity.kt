@@ -7,9 +7,10 @@ import android.os.PersistableBundle
 import android.os.StrictMode
 import android.view.View
 import androidx.viewbinding.ViewBinding
-import com.nmk.myapplication.work.ui.view.titlebar.TitleBar
 import com.nmk.myapplication.R
 import com.nmk.myapplication.work.manager.ActivityManager
+import com.nmk.myapplication.work.ui.common.BaseDialogManager
+import com.nmk.myapplication.work.ui.view.titlebar.TitleBar
 import com.nmk.myapplication.work.utils.system.StatusBarUtil
 import me.hgj.jetpackmvvm.base.activity.BaseVmVbActivity
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
@@ -37,11 +38,12 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewBinding> : BaseVmVbActi
         return true
     }
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         if (isImmersiveState()) {
             StatusBarUtil.setImmersiveStatusBar(this, isFontIconDark())
         }
+
         ActivityManager.getInstance().pushActivity(this)
         initTitleBar()
 
@@ -74,6 +76,7 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewBinding> : BaseVmVbActi
     }
 
     override fun onDestroy() {
+        BaseDialogManager.getInstance().removeAllDialog()
         ActivityManager.getInstance().pupActivity(this)
         super.onDestroy()
     }

@@ -9,7 +9,6 @@ import com.luck.picture.lib.config.SelectMimeType
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.interfaces.OnInjectLayoutResourceListener
 import com.luck.picture.lib.interfaces.OnResultCallbackListener
-import com.luck.picture.lib.language.LanguageConfig
 import com.luck.picture.lib.style.BottomNavBarStyle
 import com.luck.picture.lib.style.PictureSelectorStyle
 import com.luck.picture.lib.style.SelectMainStyle
@@ -22,7 +21,7 @@ object PictureSelectHelper {
 
     val selectorStyle by lazy { PictureSelectorStyle() }
 
-    fun getDynamicImg(context: Context, select: ArrayList<LocalMedia?>?, result1: ((ArrayList<LocalMedia?>?) -> Unit)? = null) {
+    fun getFiles(context: Context, select: ArrayList<LocalMedia?>?, result1: ((ArrayList<LocalMedia?>?) -> Unit)? = null) {
         initSelector()
         PictureSelector.create(context)
             .openGallery(SelectMimeType.ofImage())

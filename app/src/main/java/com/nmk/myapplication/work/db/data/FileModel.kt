@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 /**
- * 文件夹-表
+ * 文件-表
  */
 @Entity(tableName = "db_file")
 class FileModel {
