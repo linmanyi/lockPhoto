@@ -131,4 +131,26 @@ class FileMV : BaseViewModel() {
             deleteFileED.postValue(false)
         }
     }
+
+    val moveEd = EventLiveData<Any>()
+    fun moveFile(context: Context, newFolderId: Long, newFolderName: String, files: ArrayList<FileInfo>) {
+        LoadingManager.getInstance().showDialog(context)
+        kotlin.runCatching {
+            viewModelScope.launch(Dispatchers.IO) {
+                for (file in files) {
+                    LockPhotoDB.getInstance().fileDao().moveFolder(file.id,newFolderId)
+                    //迁移文件
+                    if (File(file.content).exists()) {
+                        val newPath = FileConstance.getPrivateFilePath(newFolderName, file.fileName)
+                        FileUtil.saveFile(BitmapFactory.decodeFile(file.content), newPath)
+                        FileUtil.deleteFile(File(file.content))
+                    }
+                }
+            }
+        }.onSuccess {
+            moveEd.postValue(Any())
+        }.onFailure {
+            moveEd.postValue(Any())
+        }
+    }
 }

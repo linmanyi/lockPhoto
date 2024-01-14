@@ -9,10 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
+import com.jeremyliao.liveeventbus.LiveEventBus
 import com.luck.picture.lib.utils.ToastUtils
 import com.nmk.myapplication.databinding.ActivitySecondBinding
 import com.nmk.myapplication.work.base.BaseActivity
+import com.nmk.myapplication.work.base.EventConstant
 import com.nmk.myapplication.work.date.FileInfo
+import com.nmk.myapplication.work.date.FolderInfo
 import com.nmk.myapplication.work.ext.setClickNotDoubleListener
 import com.nmk.myapplication.work.ui.common.loading.LoadingManager
 import com.nmk.myapplication.work.ui.dialog.FileMoreDialog
@@ -89,6 +92,7 @@ class SecondActivity : BaseActivity<FileMV, ActivitySecondBinding>() {
         }
         mViewBind.moveTv.setClickNotDoubleListener {
             //移动
+            SelectFolderActivity.startActivity(this,files[position].folderId)
         }
         mViewBind.shareTv.setClickNotDoubleListener {
             //分享
@@ -109,6 +113,13 @@ class SecondActivity : BaseActivity<FileMV, ActivitySecondBinding>() {
                 finish()
             else
                 ToastUtils.showToast(this,"删除失败")
+        }
+        LiveEventBus.get<FolderInfo>(EventConstant.SELECT_FOLDER).observe(this) {
+            mViewModel.moveFile(this,it.id,it.fileName, arrayListOf(files[position]))
+        }
+        mViewModel.moveEd.observeInActivity(this) {
+            LoadingManager.getInstance().hideDialog()
+            finish()
         }
     }
 

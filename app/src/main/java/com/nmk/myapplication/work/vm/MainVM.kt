@@ -1,5 +1,6 @@
 package com.nmk.myapplication.work.vm
 
+import android.content.Context
 import androidx.lifecycle.viewModelScope
 import com.luck.picture.lib.utils.ToastUtils
 import com.nmk.myapplication.work.date.FolderInfo
@@ -11,6 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 import me.hgj.jetpackmvvm.callback.livedata.event.EventLiveData
+import java.io.File
 
 class MainVM: BaseViewModel() {
     /**
@@ -33,6 +35,32 @@ class MainVM: BaseViewModel() {
                 getDataED.postValue(list)
             }.onFailure {
                 getDataED.postValue(arrayListOf())
+            }
+        }
+    }
+
+    val addEd = EventLiveData<String>()
+    fun addFolder(context: Context, name: String) {
+        //创建文件夹
+        viewModelScope.launch(Dispatchers.IO) {
+            kotlin.runCatching {
+                if (FileUtil.isExitFile(FileConstance.getPrivateFolderPath(name))) {
+                    addEd.postValue("该文件夹已存在")
+                } else {
+                    LockPhotoDB.getInstance().folderDao().insert(
+                        FolderModel().apply {
+                            cover = ""
+                            fileName = name
+                            createTime = System.currentTimeMillis()
+                        }
+                    )
+                    FileUtil.createMoreFiles(FileConstance.getPrivateFolderPath(name))
+                }
+            }.onFailure {
+                addEd.postValue("创建失败")
+            }.onSuccess {
+                getData()
+                addEd.postValue("创建成功")
             }
         }
     }
@@ -66,6 +94,7 @@ class MainVM: BaseViewModel() {
                     FileUtil.deleteFile(FileConstance.getPrivateFolderPath(name))
                 }
                 LockPhotoDB.getInstance().folderDao().deleteById(id)
+                LockPhotoDB.getInstance().fileDao().queryDataByFolder(id)
             }.onSuccess {
                 deleteFolderED.postValue(true)
             }.onFailure {
@@ -78,9 +107,14 @@ class MainVM: BaseViewModel() {
     fun editFolderName(id: Long, name: String) {
         viewModelScope.launch(Dispatchers.IO) {
             kotlin.runCatching {
-                val model = LockPhotoDB.getInstance().folderDao().queryDataById(id)[0]
-                model.fileName = name
-                LockPhotoDB.getInstance().folderDao().update(model)
+                if (File(name).exists()) {
+                    editFolderED.postValue(mapOf())
+                    return@launch
+                } else {
+                    val model = LockPhotoDB.getInstance().folderDao().queryDataById(id)[0]
+                    model.fileName = name
+                    LockPhotoDB.getInstance().folderDao().update(model)
+                }
             }.onSuccess {
                 editFolderED.postValue(mapOf(
                     Pair("name",name)

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.os.StrictMode
 import android.view.View
+import android.view.Window
 import androidx.viewbinding.ViewBinding
 import com.nmk.myapplication.R
 import com.nmk.myapplication.work.manager.ActivityManager
@@ -82,6 +83,9 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewBinding> : BaseVmVbActi
     }
 
     open fun initTitleBar() {
+        if (supportActionBar != null) {
+            supportActionBar!!.hide();
+        }
         titleBar = findViewById(R.id.titleBar) as? TitleBar
         if (titleBar != null) {
             titleBar?.onClickLeftListener = (object : TitleBar.OnClickLeftListener {

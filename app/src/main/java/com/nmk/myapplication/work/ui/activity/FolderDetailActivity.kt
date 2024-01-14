@@ -21,6 +21,9 @@ import com.nmk.myapplication.work.utils.glide.ImageUtil
 import com.nmk.myapplication.work.vm.FileMV
 import me.hgj.jetpackmvvm.ext.view.visibleOrGone
 
+/**
+ * 文件夹内
+ */
 class FolderDetailActivity : BaseActivity<FileMV, FolderActivityFolderBinding>() {
     private var id = 0L
     private var fileName = ""
@@ -60,6 +63,12 @@ class FolderDetailActivity : BaseActivity<FileMV, FolderActivityFolderBinding>()
             override fun leftOnClick(v: View, isBack: Boolean) {
                 this@FolderDetailActivity.finish()
             }
+        }
+        mViewBind.titleBar.onClickRightListener = object :TitleBar.OnClickRightListener {
+            override fun rightOnClick(v: View, position: Int) {
+                SelectFileActivity.startActivity(this@FolderDetailActivity,id,2)
+            }
+
         }
         mViewBind.addImv.setClickNotDoubleListener {
             mViewModel.addFiles(this@FolderDetailActivity, id, fileName, null)

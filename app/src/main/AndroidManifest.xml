@@ -89,6 +89,9 @@
 
         <activity android:name=".work.ui.activity.SecondActivity"
             android:screenOrientation="portrait"/>
+
+        <activity android:name=".work.ui.activity.SelectFolderActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

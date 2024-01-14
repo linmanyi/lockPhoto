@@ -62,28 +62,7 @@ class MainActivity : BaseActivity<MainVM, ActivityMainBinding>() {
         mViewBind.titleBar.onClickRightListener = object : TitleBar.OnClickRightListener{
             override fun rightOnClick(v: View, position: Int) {
                 AddFolderDialog.showDialog(this@MainActivity) {
-                    //创建文件夹
-                    mViewModel.viewModelScope.launch(Dispatchers.IO) {
-                        kotlin.runCatching {
-                            if (FileUtil.isExitFile(FileConstance.getPrivateFolderPath(it))) {
-                                ToastUtils.showToast(this@MainActivity,"该文件夹已存在")
-                            } else {
-                                LockPhotoDB.getInstance().folderDao().insert(
-                                    FolderModel().apply {
-                                        cover = ""
-                                        fileName = it
-                                        createTime = System.currentTimeMillis()
-                                    }
-                                )
-                                FileUtil.createMoreFiles(FileConstance.getPrivateFolderPath(it))
-                            }
-                        }.onFailure {
-                            ToastUtils.showToast(this@MainActivity,"创建失败")
-                        }.onSuccess {
-                            mViewModel.getData()
-                            ToastUtils.showToast(this@MainActivity,"创建成功")
-                        }
-                    }
+                    mViewModel.addFolder(this@MainActivity,it)
                 }
             }
         }
@@ -98,6 +77,9 @@ class MainActivity : BaseActivity<MainVM, ActivityMainBinding>() {
         mViewModel.getDataED.observeInActivity(this) {
             mViewBind.content.models = it
             mViewBind.emptyTv.visibleOrGone(it.isEmpty())
+        }
+        mViewModel.addEd.observeInActivity(this) {
+            ToastUtils.showToast(this,it)
         }
     }
 }

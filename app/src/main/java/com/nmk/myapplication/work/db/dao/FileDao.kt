@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import com.nmk.myapplication.work.db.data.FileModel
 import com.nmk.myapplication.work.db.data.FolderModel
 
@@ -34,5 +35,8 @@ abstract class FileDao {
 
     @Query("select * from db_file where type = :type")
     abstract fun queryByType(type: String): List<FileModel>
+
+    @Query("update db_file set folderId = :newId where db_id = :fileId")
+    abstract fun moveFolder(fileId: Long, newId: Long)
 
 }

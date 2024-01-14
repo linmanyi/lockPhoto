@@ -7,6 +7,7 @@ import com.drake.brv.utils.grid
 import com.drake.brv.utils.models
 import com.drake.brv.utils.setup
 import com.jeremyliao.liveeventbus.LiveEventBus
+import com.luck.picture.lib.utils.ToastUtils
 import com.nmk.myapplication.R
 import com.nmk.myapplication.databinding.FileItemBinding
 import com.nmk.myapplication.databinding.FolderActivitySelectBinding
@@ -69,16 +70,15 @@ class SelectFileActivity : BaseActivity<FileMV, FolderActivitySelectBinding>() {
                 updateBt()
                 notifyItemChanged(position)
             }
-            onClick(R.id.moreImv) {
-                //更多
-                val model = getModel<FileInfo>()
-                FileMoreDialog.showDialog(this@SelectFileActivity, model.id)
-            }
         }
 
         mViewBind.sureTv.setClickNotDoubleListener {
-            LiveEventBus.get<List<FileInfo>>(EventConstant.SELECT_FILE).post(getSelect())
-            finish()
+            if (type == 1) {
+                LiveEventBus.get<List<FileInfo>>(EventConstant.SELECT_FILE).post(getSelect())
+                finish()
+            } else {
+                ToastUtils.showToast(this@SelectFileActivity,"前面的区域以后再来探索吧")
+            }
         }
         mViewModel.getData(id)
         updateBt()
