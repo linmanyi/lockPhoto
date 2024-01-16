@@ -66,6 +66,11 @@ class MainActivity : BaseActivity<MainVM, ActivityMainBinding>() {
                 }
             }
         }
+        mViewBind.titleBar.onClickLeftListener = object : TitleBar.OnClickLeftListener {
+            override fun leftOnClick(v: View, isBack: Boolean) {
+                SettingActivity.startActivity(this@MainActivity)
+            }
+        }
     }
 
     override fun onResume() {

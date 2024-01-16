@@ -75,6 +75,9 @@
         <activity android:name=".work.ui.activity.MainActivity"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".work.ui.activity.SettingActivity"
+            android:screenOrientation="portrait"/>
+
         <activity android:name=".work.ui.activity.LockActivity"
             android:screenOrientation="portrait"/>
 

@@ -2,6 +2,7 @@ package com.nmk.myapplication.work.ui.activity
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import com.drake.brv.utils.grid
 import com.drake.brv.utils.models
@@ -14,12 +15,15 @@ import com.nmk.myapplication.databinding.FolderActivitySelectBinding
 import com.nmk.myapplication.work.base.BaseActivity
 import com.nmk.myapplication.work.base.EventConstant
 import com.nmk.myapplication.work.date.FileInfo
+import com.nmk.myapplication.work.date.FolderInfo
 import com.nmk.myapplication.work.ext.setClickNotDoubleListener
+import com.nmk.myapplication.work.ui.common.loading.LoadingManager
 import com.nmk.myapplication.work.ui.dialog.FileMoreDialog
 import com.nmk.myapplication.work.utils.glide.ImageUtil
 import com.nmk.myapplication.work.vm.FileMV
 import me.hgj.jetpackmvvm.ext.view.visible
 import me.hgj.jetpackmvvm.ext.view.visibleOrGone
+import java.io.File
 
 /**
  * 选择图片
@@ -72,23 +76,48 @@ class SelectFileActivity : BaseActivity<FileMV, FolderActivitySelectBinding>() {
             }
         }
 
+        mViewBind.sureTv.visibleOrGone(type == 1)
         mViewBind.sureTv.setClickNotDoubleListener {
             if (type == 1) {
                 LiveEventBus.get<List<FileInfo>>(EventConstant.SELECT_FILE).post(getSelect())
                 finish()
-            } else {
-                ToastUtils.showToast(this@SelectFileActivity,"前面的区域以后再来探索吧")
             }
         }
+        initEvent()
         mViewModel.getData(id)
         updateBt()
     }
 
+    private fun initEvent() {
+        mViewBind.deleteTv.setClickNotDoubleListener {
+            //删除
+            mViewModel.deleteFile(this, getSelect())
+        }
+        mViewBind.moveTv.setClickNotDoubleListener {
+            //移动
+            SelectFolderActivity.startActivity(this,id)
+        }
+    }
+
     override fun createObserver() {
         mViewModel.getDataDE.observeInActivity(this) {
-            mViewBind.emptyLl.visibleOrGone(it.isNotEmpty())
+            mViewBind.emptyLl.visibleOrGone(it.isEmpty())
             list.addAll(it)
             mViewBind.content.models = list
+        }
+        LiveEventBus.get<FolderInfo>(EventConstant.SELECT_FOLDER).observe(this) {
+            mViewModel.moveFile(this,it.id,it.fileName, getSelect())
+        }
+        mViewModel.moveEd.observeInActivity(this) {
+            LoadingManager.getInstance().hideDialog()
+            finish()
+        }
+        mViewModel.deleteFileED.observeInActivity(this) {
+            LoadingManager.getInstance().hideDialog()
+            if (it)
+                finish()
+            else
+                ToastUtils.showToast(this,"删除失败")
         }
     }
 
@@ -100,9 +129,13 @@ class SelectFileActivity : BaseActivity<FileMV, FolderActivitySelectBinding>() {
             mViewBind.sureTv.alpha = 0.5f
             mViewBind.sureTv.isClickable = false
         }
+        mViewBind.funLl.visibleOrGone(type == 2 && getSelect().isNotEmpty())
     }
 
-    private fun getSelect(): List<FileInfo> {
-        return list.filter { it.select }
+    private fun getSelect(): ArrayList<FileInfo> {
+        val arrayList = arrayListOf<FileInfo>()
+        val filter = list.filter { it.select }
+        arrayList.addAll(filter)
+        return arrayList
     }
 }
