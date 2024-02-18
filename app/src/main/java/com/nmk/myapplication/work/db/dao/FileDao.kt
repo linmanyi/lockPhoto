@@ -30,6 +30,9 @@ abstract class FileDao {
     @Query("delete from db_file where db_id = :fileId")
     abstract fun deleteById(fileId: Long)
 
+    @Query("delete from db_file")
+    abstract fun deleteAll()
+
     @Delete
     abstract fun deleteList(models: List<FileModel>)
 

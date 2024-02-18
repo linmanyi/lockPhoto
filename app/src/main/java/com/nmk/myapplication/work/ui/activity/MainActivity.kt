@@ -14,8 +14,7 @@ import com.nmk.myapplication.databinding.ActivityMainBinding
 import com.nmk.myapplication.databinding.FolderItemBinding
 import com.nmk.myapplication.work.base.BaseActivity
 import com.nmk.myapplication.work.date.FolderInfo
-import com.nmk.myapplication.work.db.LockPhotoDB
-import com.nmk.myapplication.work.db.data.FolderModel
+import com.nmk.myapplication.work.ext.setClickNotDoubleListener
 import com.nmk.myapplication.work.ui.dialog.AddFolderDialog
 import com.nmk.myapplication.work.ui.view.titlebar.TitleBar
 import com.nmk.myapplication.work.utils.file.FileConstance
@@ -66,10 +65,8 @@ class MainActivity : BaseActivity<MainVM, ActivityMainBinding>() {
                 }
             }
         }
-        mViewBind.titleBar.onClickLeftListener = object : TitleBar.OnClickLeftListener {
-            override fun leftOnClick(v: View, isBack: Boolean) {
-                SettingActivity.startActivity(this@MainActivity)
-            }
+        mViewBind.settingImv.setClickNotDoubleListener {
+            SettingActivity.startActivity(this@MainActivity)
         }
     }
 

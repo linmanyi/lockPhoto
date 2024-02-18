@@ -25,6 +25,9 @@ abstract class FolderDao {
     @Query("delete from db_folder where db_id = :folderId")
     abstract fun deleteById(folderId: Long)
 
+    @Query("delete from db_folder")
+    abstract fun deleteAll()
+
     @Update
     abstract fun update(model: FolderModel)
 

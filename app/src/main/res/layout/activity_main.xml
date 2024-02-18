@@ -9,10 +9,20 @@
     <com.nmk.myapplication.work.ui.view.titlebar.TitleBar
         android:id="@+id/titleBar"
         style="@style/titleBarStyle"
+        app:enable_back="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:left_src="@mipmap/icon_setting"
+        app:left_src="@color/tranceColor"
         app:right_src="@mipmap/icon_create"/>
+
+    <ImageView
+        android:id="@+id/settingImv"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/titleBar"
+        android:src="@mipmap/icon_setting"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/content"

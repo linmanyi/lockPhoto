@@ -7,8 +7,10 @@ import com.luck.picture.lib.basic.PictureSelector
 import com.luck.picture.lib.config.InjectResourceSource
 import com.luck.picture.lib.config.SelectMimeType
 import com.luck.picture.lib.entity.LocalMedia
+import com.luck.picture.lib.interfaces.OnExternalPreviewEventListener
 import com.luck.picture.lib.interfaces.OnInjectLayoutResourceListener
 import com.luck.picture.lib.interfaces.OnResultCallbackListener
+import com.luck.picture.lib.language.LanguageConfig
 import com.luck.picture.lib.style.BottomNavBarStyle
 import com.luck.picture.lib.style.PictureSelectorStyle
 import com.luck.picture.lib.style.SelectMainStyle
@@ -17,6 +19,7 @@ import com.nmk.myapplication.R
 import com.nmk.myapplication.app.MyApplication
 import com.nmk.myapplication.work.ui.common.loading.LoadingManager
 
+
 object PictureSelectHelper {
 
     val selectorStyle by lazy { PictureSelectorStyle() }
@@ -24,12 +27,17 @@ object PictureSelectHelper {
     fun getFiles(context: Context, select: ArrayList<LocalMedia?>?, result1: ((ArrayList<LocalMedia?>?) -> Unit)? = null) {
         initSelector()
         PictureSelector.create(context)
-            .openGallery(SelectMimeType.ofImage())
+            .openGallery(SelectMimeType.ofAll())
             .setSelectorUIStyle(selectorStyle)
             .isDisplayCamera(true)
             .setSelectedData(select)
+            .isGif(true)
+            .setMaxSelectNum(99)
+            .setMaxVideoSelectNum(99)
             .setImageEngine(GlideEngine.createGlideEngine())
-            .setCompressEngine(ImageCompressEngine())
+            //todo:压缩
+//            .setCompressEngine(ImageCompressEngine())
+            //todo:语言切换
 //            .setLanguage(LanguageConfig.AR)
             .setInjectLayoutResourceListener(MeOnInjectLayoutResourceListener())
             .forResult(object : OnResultCallbackListener<LocalMedia?> {

@@ -18,4 +18,8 @@ object FileConstance {
     fun getPrivateFolderPath(folder: String): String {
         return "$mainPath/$folder"
     }
+
+    fun getPrivatePath(): String {
+        return "$mainPath/"
+    }
 }
