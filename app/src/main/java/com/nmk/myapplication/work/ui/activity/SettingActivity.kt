@@ -3,14 +3,12 @@ package com.nmk.myapplication.work.ui.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.FileUtils
+import com.luck.picture.lib.utils.ToastUtils
 import com.nmk.myapplication.databinding.ActivitySettingBinding
 import com.nmk.myapplication.work.base.BaseActivity
-import com.nmk.myapplication.work.db.LockPhotoDB
 import com.nmk.myapplication.work.ext.setClickNotDoubleListener
 import com.nmk.myapplication.work.ui.activity.LockActivity.Companion.SETTING_PASSWORD
-import com.nmk.myapplication.work.utils.file.FileConstance.getPrivatePath
-import com.nmk.myapplication.work.utils.file.FileUtil
+import com.nmk.myapplication.work.ui.common.loading.LoadingManager
 import com.nmk.myapplication.work.vm.SettingMV
 
 /**
@@ -31,9 +29,14 @@ class SettingActivity: BaseActivity<SettingMV, ActivitySettingBinding>() {
             LockActivity.startActivity(this,SETTING_PASSWORD)
         }
         mViewBind.clearTv.setClickNotDoubleListener {
-            LockPhotoDB.getInstance().fileDao().deleteAll()
-            LockPhotoDB.getInstance().folderDao().deleteAll()
-            FileUtil.deleteFile(getPrivatePath())
+            mViewModel.deleteAll(this)
+        }
+    }
+
+    override fun createObserver() {
+        mViewModel.deleteAllED.observeInActivity(this) {
+            LoadingManager.getInstance().hideDialog()
+            if (!it) ToastUtils.showToast(this,"删除失败")
         }
     }
 }
