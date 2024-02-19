@@ -94,15 +94,9 @@ class SecondActivity : BaseActivity<FileMV, ActivitySecondBinding>() {
             //移动
             SelectFolderActivity.startActivity(this,files[position].folderId)
         }
-        mViewBind.shareTv.setClickNotDoubleListener {
-            //分享
-            val sendIntent = Intent()
-            sendIntent.action = Intent.ACTION_SEND
-            val file = File(files[position].content)
-            val fromFile = Uri.fromFile(file)
-            sendIntent.putExtra(Intent.EXTRA_EMAIL, fromFile)
-            sendIntent.type = "*/image"
-            startActivity(sendIntent)
+        mViewBind.downloadTv.setClickNotDoubleListener {
+            //下载
+            mViewModel.downloadFile(this, arrayListOf(files[position]))
         }
     }
 
@@ -120,6 +114,11 @@ class SecondActivity : BaseActivity<FileMV, ActivitySecondBinding>() {
         mViewModel.moveEd.observeInActivity(this) {
             LoadingManager.getInstance().hideDialog()
             finish()
+        }
+        mViewModel.downloadED.observeInActivity(this) {
+            LoadingManager.getInstance().hideDialog()
+            if (it) finish()
+            else ToastUtils.showToast(this,"下载失败")
         }
     }
 

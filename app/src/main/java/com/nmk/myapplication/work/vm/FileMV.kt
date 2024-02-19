@@ -77,7 +77,7 @@ class FileMV : BaseViewModel() {
                                 FileConstance.getPrivateFilePath(folderName, it?.fileName ?: "")
                             FileUtil.saveFile(BitmapFactory.decodeFile(it?.realPath), path)
                             val fileSize =
-                                FileUtil.getAutoFileOrFilesSize(FileUtil.getSdCardPath() + path)
+                                FileUtil.getAutoFileOrFilesSize(path)
                             val strings = path.split(".")
                             list.add(FileModel().apply {
                                 this.fileName = it?.fileName.toString()
@@ -91,13 +91,10 @@ class FileMV : BaseViewModel() {
                             })
                         }
                     }
-                    kotlin.runCatching {
-                        LockPhotoDB.getInstance().fileDao().insert(list)
-                    }.onSuccess {
-                        addFilesED.postValue(true)
-                    }.onFailure {
-                        LoadingManager.getInstance().hideDialog()
-                    }
+                    LockPhotoDB.getInstance().fileDao().insert(list)
+                }.invokeOnCompletion {
+                    LoadingManager.getInstance().hideDialog()
+                    addFilesED.postValue(it == null)
                 }
             }.onSuccess {
             }.onFailure {
@@ -132,13 +129,17 @@ class FileMV : BaseViewModel() {
         }
     }
 
-    val moveEd = EventLiveData<Any>()
+    val moveEd = EventLiveData<Boolean>()
     fun moveFile(context: Context, newFolderId: Long, newFolderName: String, files: ArrayList<FileInfo>) {
         LoadingManager.getInstance().showDialog(context)
         kotlin.runCatching {
             viewModelScope.launch(Dispatchers.IO) {
                 for (file in files) {
-                    LockPhotoDB.getInstance().fileDao().moveFolder(file.id,newFolderId)
+                    val model = file.apply {
+                        folderId = newFolderId
+                        content = FileConstance.getPrivateFilePath(newFolderName, file.fileName)
+                    }.toModel()
+                    LockPhotoDB.getInstance().fileDao().updateFolder(model)
                     //迁移文件
                     if (File(file.content).exists()) {
                         val newPath = FileConstance.getPrivateFilePath(newFolderName, file.fileName)
@@ -146,11 +147,42 @@ class FileMV : BaseViewModel() {
                         FileUtil.deleteFile(File(file.content))
                     }
                 }
+            }.invokeOnCompletion {
+                if (it == null)
+                    moveEd.postValue(true)
+                else {
+                    moveEd.postValue(false)
+                }
             }
-        }.onSuccess {
-            moveEd.postValue(Any())
         }.onFailure {
-            moveEd.postValue(Any())
+            moveEd.postValue(false)
+        }
+    }
+
+    /**
+     * 下载文件
+     */
+    val downloadED = EventLiveData<Boolean>()
+    fun downloadFile(context: Context, files: ArrayList<FileInfo>) {
+        LoadingManager.getInstance().showDialog(context)
+        kotlin.runCatching {
+            viewModelScope.launch(Dispatchers.IO) {
+                for (file in files) {
+                    //将文件保持到本地相册
+                    if (File(file.content).exists()) {
+                        val newPath = FileUtil.getSdCardPath() + file.fileName
+                        FileUtil.saveFile(BitmapFactory.decodeFile(file.content), newPath)
+                    }
+                }
+            }.invokeOnCompletion {
+                if (it == null)
+                    downloadED.postValue(true)
+                else {
+                    downloadED.postValue(false)
+                }
+            }
+        }.onFailure {
+            downloadED.postValue(false)
         }
     }
 }

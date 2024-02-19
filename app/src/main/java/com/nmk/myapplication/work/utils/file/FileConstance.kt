@@ -19,7 +19,14 @@ object FileConstance {
         return "$mainPath/$folder"
     }
 
+    /**
+     * 总文件夹
+     */
     fun getPrivatePath(): String {
         return "$mainPath/"
+    }
+
+    fun getLoadPath(): String {
+        return ""
     }
 }

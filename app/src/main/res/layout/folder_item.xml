@@ -46,7 +46,7 @@
             <TextView
                 android:id="@+id/titleTv"
                 style="@style/textStyle"
-                android:text="16sp"
+                android:textSize="16sp"
                 android:layout_width="0dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"

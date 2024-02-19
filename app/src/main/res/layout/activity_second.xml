@@ -70,13 +70,13 @@
             android:text="移动"/>
 
         <TextView
-            android:id="@+id/shareTv"
+            android:id="@+id/downloadTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableTop="@mipmap/ic_launcher"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="分享"/>
+            android:text="下载"/>
 
     </LinearLayout>
 

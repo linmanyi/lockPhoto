@@ -110,6 +110,7 @@ class SelectFileActivity : BaseActivity<FileMV, FolderActivitySelectBinding>() {
         }
         mViewModel.moveEd.observeInActivity(this) {
             LoadingManager.getInstance().hideDialog()
+            if (!it)ToastUtils.showToast(this,"移动失败")
             finish()
         }
         mViewModel.deleteFileED.observeInActivity(this) {

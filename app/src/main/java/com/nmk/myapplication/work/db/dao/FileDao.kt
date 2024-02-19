@@ -39,7 +39,7 @@ abstract class FileDao {
     @Query("select * from db_file where type = :type")
     abstract fun queryByType(type: String): List<FileModel>
 
-    @Query("update db_file set folderId = :newId where db_id = :fileId")
-    abstract fun moveFolder(fileId: Long, newId: Long)
+    @Update
+    abstract fun updateFolder(model: FileModel)
 
 }
