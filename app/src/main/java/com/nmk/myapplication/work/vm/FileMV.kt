@@ -10,6 +10,7 @@ import com.nmk.myapplication.work.db.data.FileModel
 import com.nmk.myapplication.work.helper.picture.PictureSelectHelper
 import com.nmk.myapplication.work.ui.common.loading.LoadingManager
 import com.nmk.myapplication.work.utils.file.FileConstance
+import com.nmk.myapplication.work.utils.file.FileConstance.getLoadPath
 import com.nmk.myapplication.work.utils.file.FileUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -93,7 +94,6 @@ class FileMV : BaseViewModel() {
                     }
                     LockPhotoDB.getInstance().fileDao().insert(list)
                 }.invokeOnCompletion {
-                    LoadingManager.getInstance().hideDialog()
                     addFilesED.postValue(it == null)
                 }
             }.onSuccess {
@@ -135,16 +135,17 @@ class FileMV : BaseViewModel() {
         kotlin.runCatching {
             viewModelScope.launch(Dispatchers.IO) {
                 for (file in files) {
+                    val oldPath = file.content
                     val model = file.apply {
                         folderId = newFolderId
-                        content = FileConstance.getPrivateFilePath(newFolderName, file.fileName)
+                        content = FileUtil.getSdCardPath() + FileConstance.getPrivateFilePath(newFolderName, file.fileName)
                     }.toModel()
                     LockPhotoDB.getInstance().fileDao().updateFolder(model)
                     //迁移文件
-                    if (File(file.content).exists()) {
+                    if (File(oldPath).exists()) {
                         val newPath = FileConstance.getPrivateFilePath(newFolderName, file.fileName)
-                        FileUtil.saveFile(BitmapFactory.decodeFile(file.content), newPath)
-                        FileUtil.deleteFile(File(file.content))
+                        FileUtil.saveFile(BitmapFactory.decodeFile(oldPath), newPath)
+                        FileUtil.deleteFile(File(oldPath))
                     }
                 }
             }.invokeOnCompletion {
@@ -170,7 +171,7 @@ class FileMV : BaseViewModel() {
                 for (file in files) {
                     //将文件保持到本地相册
                     if (File(file.content).exists()) {
-                        val newPath = FileUtil.getSdCardPath() + file.fileName
+                        val newPath = getLoadPath() + file.fileName
                         FileUtil.saveFile(BitmapFactory.decodeFile(file.content), newPath)
                     }
                 }

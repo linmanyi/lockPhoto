@@ -27,6 +27,6 @@ object FileConstance {
     }
 
     fun getLoadPath(): String {
-        return ""
+        return "/storage/emulated/0/Download/"
     }
 }

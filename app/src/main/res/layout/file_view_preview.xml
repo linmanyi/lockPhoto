@@ -12,10 +12,4 @@
         android:layout_height="match_parent"
         android:scaleType="fitCenter"/>
 
-    <VideoView
-        android:id="@+id/videoV"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
 </merge>

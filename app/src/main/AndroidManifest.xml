@@ -95,6 +95,9 @@
 
         <activity android:name=".work.ui.activity.SelectFolderActivity"
             android:screenOrientation="portrait"/>
+
+        <activity android:name=".work.ui.activity.FilePreviewActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
