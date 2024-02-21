@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.viewModelScope
 import com.drake.brv.utils.grid
 import com.drake.brv.utils.models
 import com.drake.brv.utils.setup
@@ -17,12 +16,8 @@ import com.nmk.myapplication.work.date.FolderInfo
 import com.nmk.myapplication.work.ext.setClickNotDoubleListener
 import com.nmk.myapplication.work.ui.dialog.AddFolderDialog
 import com.nmk.myapplication.work.ui.view.titlebar.TitleBar
-import com.nmk.myapplication.work.utils.file.FileConstance
-import com.nmk.myapplication.work.utils.file.FileUtil
 import com.nmk.myapplication.work.utils.glide.ImageUtil
 import com.nmk.myapplication.work.vm.MainVM
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import me.hgj.jetpackmvvm.ext.view.visibleOrGone
 
 /**

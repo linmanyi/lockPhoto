@@ -58,6 +58,7 @@
         android:layout_height="wrap_content"
         android:paddingHorizontal="25dp"
         android:paddingVertical="5dp"
+        android:background="@drawable/bg_picture_bottom_select"
         app:layout_constraintBottom_toBottomOf="@id/bottom_nar_bar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/bottom_nar_bar"

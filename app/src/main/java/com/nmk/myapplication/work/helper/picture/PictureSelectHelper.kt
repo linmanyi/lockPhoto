@@ -2,15 +2,12 @@ package com.nmk.myapplication.work.helper.picture
 
 import android.content.Context
 import androidx.core.content.ContextCompat
-import com.hray.library.helper.picture_selector.ImageCompressEngine
 import com.luck.picture.lib.basic.PictureSelector
 import com.luck.picture.lib.config.InjectResourceSource
 import com.luck.picture.lib.config.SelectMimeType
 import com.luck.picture.lib.entity.LocalMedia
-import com.luck.picture.lib.interfaces.OnExternalPreviewEventListener
 import com.luck.picture.lib.interfaces.OnInjectLayoutResourceListener
 import com.luck.picture.lib.interfaces.OnResultCallbackListener
-import com.luck.picture.lib.language.LanguageConfig
 import com.luck.picture.lib.style.BottomNavBarStyle
 import com.luck.picture.lib.style.PictureSelectorStyle
 import com.luck.picture.lib.style.SelectMainStyle
@@ -57,17 +54,17 @@ object PictureSelectHelper {
         val selectMainStyle = SelectMainStyle()
 
         whiteTitleBarStyle.titleBackgroundColor = ContextCompat.getColor(MyApplication.mContext,R.color.white)
-        whiteTitleBarStyle.titleLeftBackResource = R.mipmap.icon_back
+        whiteTitleBarStyle.titleLeftBackResource = R.mipmap.ic_x_back
         whiteTitleBarStyle.titleDrawableRightResource = R.mipmap.icon_select_arrow_down
         whiteTitleBarStyle.isHideCancelButton = true
         whiteTitleBarStyle.titleTextColor = ContextCompat.getColor(MyApplication.mContext,R.color.textColor_333333)
 
         whiteBottomNavBarStyle.bottomNarBarBackgroundColor = ContextCompat.getColor(MyApplication.mContext,R.color.white)
-        whiteBottomNavBarStyle.bottomSelectNumResources = R.color.tranceColor
+        whiteBottomNavBarStyle.bottomSelectNumResources = R.drawable.bg_picture_bottom_select
         whiteBottomNavBarStyle.bottomSelectNumTextColor = ContextCompat.getColor(MyApplication.mContext,R.color.white)
         whiteBottomNavBarStyle.bottomSelectNumTextSize = 14
         whiteBottomNavBarStyle.bottomPreviewSelectTextColor = ContextCompat.getColor(MyApplication.mContext,R.color.white)
-        whiteBottomNavBarStyle.bottomPreviewNormalTextColor = ContextCompat.getColor(MyApplication.mContext,R.color.white)
+        whiteBottomNavBarStyle.bottomPreviewNormalTextColor = ContextCompat.getColor(MyApplication.mContext,R.color.main_color)
 
         selectMainStyle.isDarkStatusBarBlack = true
         selectMainStyle.mainListBackgroundColor = ContextCompat.getColor(MyApplication.mContext,R.color.white)

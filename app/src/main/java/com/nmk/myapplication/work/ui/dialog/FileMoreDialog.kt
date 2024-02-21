@@ -41,7 +41,8 @@ class FileMoreDialog(context: Context): BaseBottomDialog(context) {
         fileVM.viewModelScope.launch(Dispatchers.IO) {
             kotlin.runCatching {
                 val info = LockPhotoDB.getInstance().fileDao().queryDataById(id).getOrNull(0)
-                val size = FileUtil.getAutoFileOrFilesSize(FileUtil.getSdCardPath() + FileConstance.getPrivateFolderPath(info?.fileName?:""))
+                val size = FileUtil.getAutoFileOrFilesSize(info?.cover)
+//                val size = info?.size.toString()
                 withContext(Dispatchers.Main){
                     info?.let {
                         mViewBinding.nameContentTv.text = it.fileName

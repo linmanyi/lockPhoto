@@ -1,8 +1,10 @@
 package com.nmk.myapplication.work.base
 
 import android.annotation.TargetApi
+import android.content.res.Resources
 import android.os.Build
 import android.os.Bundle
+import android.os.Looper
 import android.os.PersistableBundle
 import android.os.StrictMode
 import android.view.View
@@ -15,6 +17,7 @@ import com.nmk.myapplication.work.ui.view.titlebar.TitleBar
 import com.nmk.myapplication.work.utils.system.StatusBarUtil
 import me.hgj.jetpackmvvm.base.activity.BaseVmVbActivity
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
+import me.jessyan.autosize.AutoSizeCompat
 
 abstract class BaseActivity<VM : BaseViewModel, DB : ViewBinding> : BaseVmVbActivity<VM, DB>() {
 
@@ -96,5 +99,17 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewBinding> : BaseVmVbActi
                 }
             })
         }
+    }
+
+    protected var isCancelAutoSize = false
+
+    override fun getResources(): Resources {
+        //需要升级到 v1.1.2 及以上版本才能使用 AutoSizeCompat
+        if (!isCancelAutoSize) {
+            if (Looper.myLooper() == Looper.getMainLooper()) {
+                AutoSizeCompat.autoConvertDensityOfGlobal(super.getResources())
+            }
+        }
+        return super.getResources()
     }
 }

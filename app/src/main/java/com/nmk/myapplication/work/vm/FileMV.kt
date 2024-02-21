@@ -12,6 +12,7 @@ import com.nmk.myapplication.work.ui.common.loading.LoadingManager
 import com.nmk.myapplication.work.utils.file.FileConstance
 import com.nmk.myapplication.work.utils.file.FileConstance.getLoadPath
 import com.nmk.myapplication.work.utils.file.FileUtil
+import com.nmk.myapplication.work.utils.glide.ImageUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
@@ -93,6 +94,12 @@ class FileMV : BaseViewModel() {
                         }
                     }
                     LockPhotoDB.getInstance().fileDao().insert(list)
+                    //更新文件夹封面为最后一张添加的图片
+                    if (ImageUtil.isImgLinkerUrl(list.last().cover)) {
+                        val folderModels = LockPhotoDB.getInstance().folderDao().queryDataById(folderId)
+                        folderModels[0].cover = list.last().cover
+                        LockPhotoDB.getInstance().folderDao().update(folderModels[0])
+                    }
                 }.invokeOnCompletion {
                     addFilesED.postValue(it == null)
                 }
@@ -161,7 +168,7 @@ class FileMV : BaseViewModel() {
     }
 
     /**
-     * 下载文件
+     * 下载文件-假
      */
     val downloadED = EventLiveData<Boolean>()
     fun downloadFile(context: Context, files: ArrayList<FileInfo>) {

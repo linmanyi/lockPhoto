@@ -73,25 +73,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/title_bar" />
 
-    <com.nmk.myapplication.work.ui.view.shape.widget.HFrameLayout
-        android:layout_width="96dp"
-        android:layout_height="32dp"
+    <com.luck.picture.lib.widget.CompleteSelectView
+        android:id="@+id/ps_complete_select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="25dp"
+        android:paddingVertical="5dp"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_picture_bottom_select"
         android:layout_marginEnd="15dp"
-        android:visibility="gone"
-        app:h_shape_corners_radius="100dp"
-        app:h_shape_solid="@color/ps_color_blue"
         app:layout_constraintBottom_toBottomOf="@id/bottom_nar_bar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/bottom_nar_bar">
-
-        <com.luck.picture.lib.widget.CompleteSelectView
-            android:id="@+id/ps_complete_select"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:enabled="false" />
-
-    </com.nmk.myapplication.work.ui.view.shape.widget.HFrameLayout>
+        app:layout_constraintTop_toTopOf="@id/bottom_nar_bar"/>
 
 
     <com.luck.picture.lib.widget.MediumBoldTextView

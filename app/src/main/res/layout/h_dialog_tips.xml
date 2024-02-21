@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.nmk.myapplication.work.ui.view.shape.widget.HConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    app:h_shape_corners_radius="8dp"
+    app:h_shape_solid="@color/white">
+
+    <TextView
+        android:id="@+id/titleTv"
+        style="@style/textStyle"
+        android:textSize="18sp"
+        android:gravity="center_horizontal"
+        android:minWidth="300dp"
+        android:paddingTop="24dp"
+        android:textColor="@color/textColor_333333"
+        android:textFontWeight="600"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="标题" />
+
+    <TextView
+        android:id="@+id/tipsTv"
+        style="@style/textStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:lineSpacingExtra="2dp"
+        android:paddingStart="12dp"
+        android:paddingTop="24dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="24dp"
+        android:textColor="@color/textColor_333333"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleTv"
+        tools:text="说明文字" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#E7E7E7"
+        app:layout_constraintTop_toBottomOf="@+id/tipsTv" />
+
+    <LinearLayout
+        android:id="@+id/btnLinearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tipsTv" />
+
+</com.nmk.myapplication.work.ui.view.shape.widget.HConstraintLayout>
