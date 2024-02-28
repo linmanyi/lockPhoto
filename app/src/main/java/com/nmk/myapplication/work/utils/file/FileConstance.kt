@@ -25,8 +25,4 @@ object FileConstance {
     fun getPrivatePath(): String {
         return "$mainPath/"
     }
-
-    fun getLoadPath(): String {
-        return "/storage/emulated/0/Download/"
-    }
 }

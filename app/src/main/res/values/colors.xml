@@ -14,6 +14,7 @@
     <color name="textColor_666666">#666666</color>
     <color name="tranceColor">#00000000</color>
     <color name="lineColor_E7E7E7">#E7E7E7</color>
+    <color name="baseTransColor">#00000000</color>
 
     <color name="common_default_or_error">#F0F0F0</color>
 </resources>

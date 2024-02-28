@@ -10,7 +10,6 @@ import com.nmk.myapplication.work.db.data.FileModel
 import com.nmk.myapplication.work.helper.picture.PictureSelectHelper
 import com.nmk.myapplication.work.ui.common.loading.LoadingManager
 import com.nmk.myapplication.work.utils.file.FileConstance
-import com.nmk.myapplication.work.utils.file.FileConstance.getLoadPath
 import com.nmk.myapplication.work.utils.file.FileUtil
 import com.nmk.myapplication.work.utils.glide.ImageUtil
 import kotlinx.coroutines.Dispatchers
@@ -178,8 +177,7 @@ class FileMV : BaseViewModel() {
                 for (file in files) {
                     //将文件保持到本地相册
                     if (File(file.content).exists()) {
-                        val newPath = getLoadPath() + file.fileName
-                        FileUtil.saveFile(BitmapFactory.decodeFile(file.content), newPath)
+                        FileUtil.saveLoadFile(BitmapFactory.decodeFile(file.content), file.fileName)
                     }
                 }
             }.invokeOnCompletion {

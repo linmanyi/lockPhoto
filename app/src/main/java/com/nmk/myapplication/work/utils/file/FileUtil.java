@@ -1,5 +1,7 @@
 package com.nmk.myapplication.work.utils.file;
 
+import static android.os.Environment.DIRECTORY_DOWNLOADS;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -92,6 +94,16 @@ public class FileUtil {
         return sdCardPath;
     }
 
+    private static String downloadPath = "";
+
+    public static String getDownloadPath() {
+        if(!TextUtils.isEmpty(downloadPath)){
+            return downloadPath;
+        }
+        downloadPath = Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS).getPath();
+        return downloadPath;
+    }
+
     /**
      * 根据文件路径创建文件夹和文件
      * <p>
@@ -133,6 +145,31 @@ public class FileUtil {
             path = getSdCardPath() + fileName;
         } else {
             path = getSdCardPath() + File.separator + fileName;
+        }
+
+        File file = new File(path);
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return file;
+    }
+
+    /**
+     * 创建文件
+     */
+    public static File createLoadFile(String fileName) {
+        if (fileName.indexOf(".") == -1) {
+            return null;
+        }
+        String path;
+        if (fileName.startsWith("/")) {
+            path = getDownloadPath() + fileName;
+        } else {
+            path = getDownloadPath() + File.separator + fileName;
         }
 
         File file = new File(path);
@@ -200,6 +237,18 @@ public class FileUtil {
         inputstreamToFile(is, filesName);
     }
 
+    /**
+     * 将Bitmap写入SD卡中
+     *
+     * @param filesName 文件名称
+     */
+    public static void saveLoadFile(Bitmap bm, String filesName) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        InputStream is = new ByteArrayInputStream(baos.toByteArray());
+        inputstreamToLoadFile(is, filesName);
+    }
+
     public static InputStream getInputStream(Bitmap bitmap) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
@@ -243,6 +292,28 @@ public class FileUtil {
         }
 
         return createFile(fileName);
+    }
+
+    /**
+     * InputStream to file
+     */
+    public static File inputstreamToLoadFile(InputStream ins, String fileName) {
+        createLoadFile(fileName);
+        OutputStream os;
+        try {
+            os = new FileOutputStream(getDownloadPath() + fileName);
+            int bytesRead;
+            byte[] buffer = new byte[8192];
+            while ((bytesRead = ins.read(buffer, 0, 8192)) != -1) {
+                os.write(buffer, 0, bytesRead);
+            }
+            os.close();
+            ins.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return createLoadFile(fileName);
     }
 
     /**
