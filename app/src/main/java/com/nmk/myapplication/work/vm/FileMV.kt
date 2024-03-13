@@ -76,7 +76,7 @@ class FileMV : BaseViewModel() {
                             val timeMillis = System.currentTimeMillis()
                             val path =
                                 FileConstance.getPrivateFilePath(folderName, it?.fileName ?: "")
-                            FileUtil.saveFile(BitmapFactory.decodeFile(it?.realPath), path)
+                            FileUtil.saveFile(File(it?.realPath), path)
                             val fileSize =
                                 FileUtil.getAutoFileOrFilesSize(path)
                             val strings = path.split(".")
@@ -150,7 +150,7 @@ class FileMV : BaseViewModel() {
                     //迁移文件
                     if (File(oldPath).exists()) {
                         val newPath = FileConstance.getPrivateFilePath(newFolderName, file.fileName)
-                        FileUtil.saveFile(BitmapFactory.decodeFile(oldPath), newPath)
+                        FileUtil.saveFile(File(oldPath), newPath)
                         FileUtil.deleteFile(File(oldPath))
                     }
                 }
@@ -177,7 +177,7 @@ class FileMV : BaseViewModel() {
                 for (file in files) {
                     //将文件保持到本地相册
                     if (File(file.content).exists()) {
-                        FileUtil.saveLoadFile(BitmapFactory.decodeFile(file.content), file.fileName)
+                        FileUtil.saveLoadFile(File(file.content), file.fileName)
                     }
                 }
             }.invokeOnCompletion {

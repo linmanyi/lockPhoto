@@ -23,6 +23,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -230,11 +232,13 @@ public class FileUtil {
      *
      * @param filesName 文件名称
      */
-    public static void saveFile(Bitmap bm, String filesName) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        InputStream is = new ByteArrayInputStream(baos.toByteArray());
-        inputstreamToFile(is, filesName);
+    public static void saveFile(File file, String filesName) {
+        try {
+            InputStream inputStream = new FileInputStream(file.getPath());
+            inputstreamToFile(inputStream, filesName);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -242,11 +246,13 @@ public class FileUtil {
      *
      * @param filesName 文件名称
      */
-    public static void saveLoadFile(Bitmap bm, String filesName) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        InputStream is = new ByteArrayInputStream(baos.toByteArray());
-        inputstreamToLoadFile(is, filesName);
+    public static void saveLoadFile(File file, String filesName) {
+        try {
+            InputStream inputStream = new FileInputStream(file.getPath());
+            inputstreamToLoadFile(inputStream, filesName);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static InputStream getInputStream(Bitmap bitmap) {
