@@ -95,11 +95,11 @@ class MainVM: BaseViewModel() {
                 }
                 LockPhotoDB.getInstance().folderDao().deleteById(id)
                 LockPhotoDB.getInstance().fileDao().queryDataByFolder(id)
-            }.onSuccess {
-                deleteFolderED.postValue(true)
             }.onFailure {
                 deleteFolderED.postValue(false)
             }
+        }.invokeOnCompletion {
+            deleteFolderED.postValue(it == null)
         }
     }
 
