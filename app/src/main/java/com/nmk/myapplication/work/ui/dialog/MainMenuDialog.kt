@@ -3,6 +3,7 @@ package com.nmk.myapplication.work.ui.dialog
 import android.content.Context
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.core.PositionPopupView
+import com.lxj.xpopup.enums.DragOrientation
 import com.lxj.xpopup.enums.PopupAnimation
 import com.nmk.myapplication.R
 import com.nmk.myapplication.databinding.MainMenuDialogBinding
@@ -27,10 +28,14 @@ class MainMenuDialog(context: Context): PositionPopupView(context) {
                     .hasShadowBg(true)
                     .popupAnimation(PopupAnimation.TranslateFromLeft)
                     .popupHeight(ViewUtil.getScreenHeight())
-                    .enableDrag(false)
+                    .enableDrag(true)
                     .asCustom(this).show()
             }
         }
+    }
+
+    override fun getDragOrientation(): DragOrientation {
+        return DragOrientation.DragToLeft
     }
 
     override fun onCreate() {

@@ -4,6 +4,8 @@ import android.os.Parcel
 import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.PrimaryKey
+import com.drake.brv.annotaion.ItemOrientation
+import com.drake.brv.item.ItemSwipe
 import com.nmk.myapplication.work.db.data.FileModel
 import java.io.Serializable
 
@@ -14,8 +16,10 @@ data class FolderInfo(
     var id: Long = 0,
     var fileName: String = "",
     var cover: String = "",
-    var createTime: Long = 0L
-)
+    var createTime: Long = 0L,
+): ItemSwipe {
+    override var itemOrientationSwipe = ItemOrientation.RIGHT
+}
 
 /**
  * 文件对象

@@ -5,12 +5,14 @@ import android.content.Intent
 import android.os.Bundle
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.luck.picture.lib.utils.ToastUtils
+import com.nmk.myapplication.R
 import com.nmk.myapplication.databinding.FolderActivityEditBinding
 import com.nmk.myapplication.work.base.BaseActivity
 import com.nmk.myapplication.work.base.EventConstant
 import com.nmk.myapplication.work.date.FileInfo
 import com.nmk.myapplication.work.ext.setClickNotDoubleListener
 import com.nmk.myapplication.work.ui.dialog.AddFolderDialog
+import com.nmk.myapplication.work.ui.dialog.TipsDialog
 import com.nmk.myapplication.work.utils.glide.ImageUtil
 import com.nmk.myapplication.work.vm.MainVM
 
@@ -31,7 +33,18 @@ class MainEditActivity: BaseActivity<MainVM, FolderActivityEditBinding>() {
         id = intent.getLongExtra("id",0)
         mViewModel.getFolder(id)
         mViewBind.deleteTv.setClickNotDoubleListener {
-            mViewModel.deleteFolder(id,mViewBind.titleEditView.text.toString())
+            TipsDialog.Builder()
+                .setTitle("提示")
+                .setTips("是否删除相册？删除后不可恢复")
+                .addBtn("取消")
+                .addBtn("确定", getColor(R.color.main_color))
+                .create(this)
+                .setOnBtnClickListener { it1 ->
+                    if (it1 == 1) {
+                        //确认清除
+                        mViewModel.deleteFolder(id,mViewBind.titleEditView.text.toString())
+                    }
+                }
         }
         mViewBind.titleEditView.setClickNotDoubleListener{
             AddFolderDialog.showDialog(this@MainEditActivity,mViewBind.titleEditView.text.toString()) {
