@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="main_color">#8238DC</color>
+    <color name="main_color">#FFBF6B</color>
     <color name="gray">#CCCCCC</color>
+    <color name="shallow_gray">#FAFAFA</color>
 
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
@@ -15,6 +16,12 @@
     <color name="tranceColor">#00000000</color>
     <color name="lineColor_E7E7E7">#E7E7E7</color>
     <color name="baseTransColor">#00000000</color>
+    <color name="lineColor_E6E6E6">#E6E6E6</color>
 
-    <color name="common_default_or_error">#F0F0F0</color>
+    <!-- 通用颜色配置 -->
+    <color name="common_window_bg">#ffffff</color>    <!-- 页面通用背景色（最底层） -->
+    <color name="common_dialog_bg">#ffffff</color>    <!-- 导航栏通用背景色 -->
+    <color name="common_default_image_bg">#f2f2f2</color> <!--通用图片占位图背景色-->
+    <color name="common_default_or_error">#F0F0F0</color><!--加载错误背景色-->
+
 </resources>

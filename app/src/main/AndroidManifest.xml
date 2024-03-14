@@ -60,7 +60,7 @@
             android:name=".work.ui.activity.SplashActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.LockPhoto.NoActionBar">
+            android:theme="@style/lockTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -79,6 +79,7 @@
             android:screenOrientation="portrait"/>
 
         <activity android:name=".work.ui.activity.LockActivity"
+            android:theme="@style/lockTheme"
             android:screenOrientation="portrait"/>
 
         <activity android:name=".work.ui.activity.FolderDetailActivity"

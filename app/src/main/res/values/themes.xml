@@ -22,4 +22,8 @@
     <style name="Theme.LockPhoto.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.LockPhoto.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="lockTheme" parent="BaseAppTheme">
+        <item name="android:windowBackground">@color/main_color</item>
+    </style>
 </resources>

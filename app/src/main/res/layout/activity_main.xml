@@ -10,8 +10,11 @@
         android:id="@+id/titleBar"
         style="@style/titleBarStyle"
         app:enable_back="false"
+        android:background="@color/main_color"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:title="主页"
+        app:title_color="@color/white"
         app:left_src="@color/tranceColor"
         app:right_src="@mipmap/icon_create"/>
 
@@ -22,12 +25,13 @@
         android:padding="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="@+id/titleBar"
-        android:src="@mipmap/icon_setting"/>
+        android:src="@mipmap/icon_menu"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleBar" />
 

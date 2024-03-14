@@ -44,7 +44,8 @@ class LockActivity: BaseActivity<BaseViewModel, ActivityLockBinding>() {
             }
 
             override fun onClickDelete() {
-                var text = mViewBind.verificationCodeInputView.getEtView().text.toString()
+                val text = mViewBind.verificationCodeInputView.getEtView().text.toString()
+                if (text.isEmpty()) return
                 val newText: String = text.substring(0, text.length - 1)
                 mViewBind.verificationCodeInputView.getEtView().setText(newText)
                 mViewBind.verificationCodeInputView.getEtView().setSelection(newText.length)

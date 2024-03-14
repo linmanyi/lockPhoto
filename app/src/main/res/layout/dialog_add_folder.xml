@@ -1,75 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.nmk.myapplication.work.ui.view.shape.widget.HConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="320dp"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="52dp"
     app:h_shape_corners_radius="8dp"
-    android:paddingVertical="20dp"
     app:h_shape_solid="@color/white">
-    
-    <ImageView
-        android:id="@+id/iconImv"
-        android:layout_width="46dp"
-        android:layout_height="46dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@mipmap/ic_launcher"
-        />
 
     <TextView
         android:id="@+id/textTv"
         style="@style/textStyle"
-        app:layout_constraintTop_toBottomOf="@+id/iconImv"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="新增相册"
+        android:textFontWeight="600"
+        android:textSize="16sp"
+        android:textColor="@color/textColor_333333"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp"
-        android:text="创建新相册"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iconImv" />
+
+    <TextView
+        style="@style/textStyle"
+        android:textSize="14sp"
+        android:text="相册名称"
+        android:textFontWeight="600"
+        android:textColor="@color/textColor_333333"
+        app:layout_constraintBottom_toTopOf="@+id/edTv"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintStart_toStartOf="@+id/edTv"
+        />
 
     <com.nmk.myapplication.work.ui.view.shape.widget.HEditText
         android:id="@+id/edTv"
         android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="18dp"
+        android:layout_marginTop="46dp"
         android:background="@null"
-        android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/textTv"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="16dp"
-        android:paddingVertical="5dp"
+        android:hint="请输入"
+        android:textColorHint="@color/textColor_666666"
+        android:textSize="16sp"
         android:paddingHorizontal="10dp"
-        app:h_shape_corners_radius="20dp"
-        android:lines="1"
+        android:paddingVertical="8dp"
         android:textColor="@color/textColor_333333"
-        app:h_shape_stroke_width="1dp"
-        app:h_shape_stroke_color="@color/main_color"
-        android:layout_height="wrap_content"/>
+        app:h_shape_corners_radius="2dp"
+        app:h_shape_solid="#FCF2E3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textTv" />
 
     <com.nmk.myapplication.work.ui.view.shape.widget.HTextView
         android:id="@+id/sureTv"
         android:layout_width="0dp"
-        android:text="确定"
-        app:h_selector_selected_solid="@color/main_color"
-        app:h_shape_solid="@color/gray"
-        app:h_shape_corners_radius="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edTv"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="28dp"
         android:gravity="center"
         android:paddingVertical="6dp"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="50dp"
+        android:text="确定"
         android:textColor="@color/white"
-        android:layout_height="wrap_content"/>
+        app:h_selector_selected_solid="@color/main_color"
+        app:h_shape_corners_radius="2dp"
+        app:h_shape_solid="@color/gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="34dp"
+        app:layout_constraintTop_toBottomOf="@+id/edTv" />
 
-    <TextView
+    <ImageView
         android:id="@+id/closeImv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:padding="10dp"
-        android:text="x"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:tint="@color/gray"
+        android:src="@mipmap/ic_x_back"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="13dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </com.nmk.myapplication.work.ui.view.shape.widget.HConstraintLayout>

@@ -2,18 +2,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="48dp">
+    android:layout_height="20dp">
 
     <EditText
         android:id="@+id/inputEt"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="20dp"
         android:background="@null"
         android:cursorVisible="false"
         android:digits="0123456789"
         android:imeOptions="actionDone"
         android:inputType="number|none"
         android:lines="1"
+        android:visibility="invisible"
         android:maxLength="6"
         android:singleLine="true"
         android:textColor="@color/white"
@@ -27,47 +28,77 @@
         app:layout_constraintStart_toStartOf="@+id/inputEt"
         app:layout_constraintTop_toTopOf="@+id/inputEt">
 
-        <com.nmk.myapplication.work.ui.view.verification.VerificationCodeSingleInputView
+        <com.nmk.myapplication.work.ui.view.shape.widget.HImageView
             android:id="@+id/codeView0"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp" />
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:h_shape_type="oval"
+            app:h_selector_selected_solid="@color/white"
+            app:h_shape_stroke_width="1dp"
+            android:padding="1dp"
+            app:h_shape_stroke_color="@color/white"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
-        <com.nmk.myapplication.work.ui.view.verification.VerificationCodeSingleInputView
+        <com.nmk.myapplication.work.ui.view.shape.widget.HImageView
             android:id="@+id/codeView1"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp" />
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:h_shape_type="oval"
+            app:h_selector_selected_solid="@color/white"
+            app:h_shape_stroke_width="1dp"
+            android:padding="1dp"
+            app:h_shape_stroke_color="@color/white"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
-        <com.nmk.myapplication.work.ui.view.verification.VerificationCodeSingleInputView
+        <com.nmk.myapplication.work.ui.view.shape.widget.HImageView
             android:id="@+id/codeView2"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp" />
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:h_shape_type="oval"
+            app:h_selector_selected_solid="@color/white"
+            app:h_shape_stroke_width="1dp"
+            android:padding="1dp"
+            app:h_shape_stroke_color="@color/white"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
-        <com.nmk.myapplication.work.ui.view.verification.VerificationCodeSingleInputView
+        <com.nmk.myapplication.work.ui.view.shape.widget.HImageView
             android:id="@+id/codeView3"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp" />
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:h_shape_type="oval"
+            app:h_selector_selected_solid="@color/white"
+            app:h_shape_stroke_width="1dp"
+            android:padding="1dp"
+            app:h_shape_stroke_color="@color/white"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
-        <com.nmk.myapplication.work.ui.view.verification.VerificationCodeSingleInputView
+        <com.nmk.myapplication.work.ui.view.shape.widget.HImageView
             android:id="@+id/codeView4"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp" />
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:h_shape_type="oval"
+            app:h_selector_selected_solid="@color/white"
+            app:h_shape_stroke_width="1dp"
+            android:padding="1dp"
+            app:h_shape_stroke_color="@color/white"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
-        <com.nmk.myapplication.work.ui.view.verification.VerificationCodeSingleInputView
+        <com.nmk.myapplication.work.ui.view.shape.widget.HImageView
             android:id="@+id/codeView5"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp" />
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:h_shape_type="oval"
+            app:h_selector_selected_solid="@color/white"
+            app:h_shape_stroke_width="1dp"
+            android:padding="1dp"
+            app:h_shape_stroke_color="@color/white"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
     </LinearLayout>
 

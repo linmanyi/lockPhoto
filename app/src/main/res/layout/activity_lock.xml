@@ -11,18 +11,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="50dp"
-        android:src="@mipmap/ic_launcher"/>
+        android:layout_marginTop="143dp"
+        android:src="@mipmap/icon_logo"/>
 
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="请输入密码"
-        android:textSize="30sp"
+        android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="#333333"
-        android:layout_marginTop="42dp"
+        android:textColor="@color/white"
+        android:layout_marginTop="98dp"
         app:layout_constraintTop_toBottomOf="@+id/logoImv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -30,14 +30,15 @@
     <com.nmk.myapplication.work.ui.view.verification.VerificationCodeInputView
         android:id="@+id/verificationCodeInputView"
         android:layout_width="match_parent"
-        android:layout_marginTop="52dp"
-        android:layout_height="48dp"
+        android:layout_marginTop="14dp"
+        android:layout_height="20dp"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <com.nmk.myapplication.work.ui.view.numberKeyboard.NumberKeyboardView
         android:id="@+id/keyboardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="104dp"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

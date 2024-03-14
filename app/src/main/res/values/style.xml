@@ -42,4 +42,20 @@
         <attr name="right_text_size" format="dimension" />
         <attr name="right_bold" format="boolean" />
     </declare-styleable>
+
+    <!-- .......................样式定义....................... -->
+    <style name="BaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/baseTransColor</item>
+        <item name="colorPrimaryDark">@color/baseTransColor</item>
+        <item name="colorAccent">@color/main_color</item>
+        <item name="android:colorAccent">@color/main_color</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:listDivider">@color/lineColor_E6E6E6</item>
+        <item name="android:windowBackground">@color/common_window_bg</item>
+        <item name="android:background">@null</item>
+<!--        <item name="editTextStyle">@style/EditTextStyle.Alignment</item>-->
+<!--        <item name="android:textViewStyle">@style/TextViewStyle.TextDirection</item>-->
+<!--        <item name="android:fontFamily">@font/sf_arabic</item>-->
+    </style>
 </resources>

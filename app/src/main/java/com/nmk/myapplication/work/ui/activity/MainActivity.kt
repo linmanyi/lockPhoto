@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import com.drake.brv.utils.grid
+import com.drake.brv.item.ItemSwipe
 import com.drake.brv.utils.models
 import com.drake.brv.utils.setup
 import com.luck.picture.lib.utils.ToastUtils
@@ -15,7 +15,9 @@ import com.nmk.myapplication.work.base.BaseActivity
 import com.nmk.myapplication.work.date.FolderInfo
 import com.nmk.myapplication.work.ext.setClickNotDoubleListener
 import com.nmk.myapplication.work.ui.dialog.AddFolderDialog
+import com.nmk.myapplication.work.ui.dialog.MainMenuDialog
 import com.nmk.myapplication.work.ui.view.titlebar.TitleBar
+import com.nmk.myapplication.work.utils.common.CommonDateFormatUtil.getFormatHMYMD
 import com.nmk.myapplication.work.utils.glide.ImageUtil
 import com.nmk.myapplication.work.vm.MainVM
 import me.hgj.jetpackmvvm.ext.view.visibleOrGone
@@ -32,7 +34,7 @@ class MainActivity : BaseActivity<MainVM, ActivityMainBinding>() {
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-        mViewBind.content.grid(2).setup {
+        mViewBind.content.setup {
             addType<FolderInfo> { R.layout.folder_item }
             onBind {
                 val binding = getBinding<FolderItemBinding>()
@@ -41,6 +43,7 @@ class MainActivity : BaseActivity<MainVM, ActivityMainBinding>() {
                     ImageUtil.loadFile(this@MainActivity,binding.coverImg,model.cover)
                 }
                 binding.titleTv.text = model.fileName
+                binding.dateTv.text = getFormatHMYMD(model.createTime).replace("/","-")
             }
             onClick(R.id.rootView) {
                 //进入文件夹
@@ -61,7 +64,8 @@ class MainActivity : BaseActivity<MainVM, ActivityMainBinding>() {
             }
         }
         mViewBind.settingImv.setClickNotDoubleListener {
-            SettingActivity.startActivity(this@MainActivity)
+            MainMenuDialog.showDialog(this)
+//            SettingActivity.startActivity(this@MainActivity)
         }
     }
 

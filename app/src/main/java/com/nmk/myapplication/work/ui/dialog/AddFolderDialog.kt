@@ -49,12 +49,12 @@ class AddFolderDialog(context: Context): BaseCenterDialog(context) {
     }
 
     private fun initBt(it: String?) {
-        if (it?.isEmpty() == true) {
-            mViewBinding.sureTv.isClickable = false
-            mViewBinding.sureTv.isSelected = false
-        } else {
+        if (it?.isNotEmpty() == true) {
             mViewBinding.sureTv.isClickable = true
             mViewBinding.sureTv.isSelected = true
+        } else {
+            mViewBinding.sureTv.isClickable = false
+            mViewBinding.sureTv.isSelected = false
         }
     }
 

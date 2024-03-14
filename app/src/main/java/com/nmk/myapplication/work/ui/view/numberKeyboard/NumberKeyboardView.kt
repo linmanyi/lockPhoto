@@ -5,7 +5,9 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.luck.picture.lib.utils.ToastUtils
 import com.nmk.myapplication.databinding.NumberKeyboardBinding
+import com.nmk.myapplication.work.ext.setClickNotDoubleListener
 
 /**
  * 数字键盘
@@ -38,6 +40,9 @@ class NumberKeyboardView @JvmOverloads constructor(context: Context, attrs: Attr
         mViewBinding.deleteImv.setOnClickListener{
             //减去数字
             listener?.onClickDelete()
+        }
+        mViewBinding.helperImv.setClickNotDoubleListener {
+            ToastUtils.showToast(context, "不是老弟，就6位数都能忘？")
         }
     }
 
