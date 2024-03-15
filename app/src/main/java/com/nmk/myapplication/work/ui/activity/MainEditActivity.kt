@@ -42,7 +42,7 @@ class MainEditActivity: BaseActivity<MainVM, FolderActivityEditBinding>() {
                 .setOnBtnClickListener { it1 ->
                     if (it1 == 1) {
                         //确认清除
-                        mViewModel.deleteFolder(id,mViewBind.titleEditView.text.toString())
+//                        mViewModel.deleteFolder(id,mViewBind.titleEditView.text.toString())
                     }
                 }
         }
@@ -69,10 +69,10 @@ class MainEditActivity: BaseActivity<MainVM, FolderActivityEditBinding>() {
         }
 
         mViewModel.deleteFolderED.observeInActivity(this) {
-            if (it)
-                finish()
-            else
-                ToastUtils.showToast(this@MainEditActivity,getString(R.string.delete_failure))
+//            if (it)
+//                finish()
+//            else
+//                ToastUtils.showToast(this@MainEditActivity,getString(R.string.delete_failure))
         }
 
         mViewModel.editFolderED.observeInActivity(this@MainEditActivity) {

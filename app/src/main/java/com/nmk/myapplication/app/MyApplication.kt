@@ -3,6 +3,7 @@ package com.nmk.myapplication.app
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import com.nmk.myapplication.work.utils.log.XLogDiskManager
 import com.tencent.mmkv.MMKV
 
 class MyApplication: Application() {
@@ -16,6 +17,7 @@ class MyApplication: Application() {
     override fun onCreate() {
         super.onCreate()
         mContext = this
-        MMKV.initialize(mContext);
+        MMKV.initialize(mContext)
+        XLogDiskManager.getInstance().initXLogConfig()
     }
 }
