@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import com.luck.picture.lib.utils.ToastUtils
+import com.nmk.myapplication.R
 import com.nmk.myapplication.work.base.BaseActivity
 import com.nmk.myapplication.databinding.ActivityLockBinding
 import com.nmk.myapplication.work.manager.UserInfoManager
@@ -57,16 +58,16 @@ class LockActivity: BaseActivity<BaseViewModel, ActivityLockBinding>() {
         mViewBind.verificationCodeInputView.clearValue()
         mViewBind.title.text = when (type) {
             VALIDATE_PASSWORD -> {
-                "输入密码"
+                getString(R.string.lock_title_input)
             }
             SETTING_PASSWORD -> {
-                "设置密码"
+                getString(R.string.lock_title_setting)
             }
             CONFIRM_PASSWORD -> {
-                "再次输入密码"
+                getString(R.string.lock_title_input_again)
             }
             else -> {
-                "输入密码"
+                getString(R.string.lock_title_input)
             }
         }
     }
@@ -78,7 +79,7 @@ class LockActivity: BaseActivity<BaseViewModel, ActivityLockBinding>() {
                     MainActivity.startActivity(this)
                     finish()
                 } else {
-                    ToastUtils.showToast(this,"密码错误")
+                    ToastUtils.showToast(this,getString(R.string.password_error))
                 }
             }
             SETTING_PASSWORD -> {
@@ -92,7 +93,7 @@ class LockActivity: BaseActivity<BaseViewModel, ActivityLockBinding>() {
                     MainActivity.startActivity(this)
                     finish()
                 } else {
-                    ToastUtils.showToast(this,"输入密码不一致")
+                    ToastUtils.showToast(this,getString(R.string.password_different))
                     updateUI()
                 }
             }

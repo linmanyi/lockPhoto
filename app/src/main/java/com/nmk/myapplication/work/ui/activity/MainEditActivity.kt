@@ -34,10 +34,10 @@ class MainEditActivity: BaseActivity<MainVM, FolderActivityEditBinding>() {
         mViewModel.getFolder(id)
         mViewBind.deleteTv.setClickNotDoubleListener {
             TipsDialog.Builder()
-                .setTitle("提示")
-                .setTips("是否删除相册？删除后不可恢复")
-                .addBtn("取消")
-                .addBtn("确定", getColor(R.color.main_color))
+                .setTitle(getString(R.string.tip))
+                .setTips(getString(R.string.delete_photo_album_content))
+                .addBtn(getString(R.string.cancel))
+                .addBtn(getString(R.string.sure), getColor(R.color.main_color))
                 .create(this)
                 .setOnBtnClickListener { it1 ->
                     if (it1 == 1) {
@@ -64,7 +64,7 @@ class MainEditActivity: BaseActivity<MainVM, FolderActivityEditBinding>() {
                     ImageUtil.loadImg(this@MainEditActivity,mViewBind.coverImv,it.cover)
                 }
             } else {
-                ToastUtils.showToast(this@MainEditActivity,"没有找到该文件夹")
+                ToastUtils.showToast(this@MainEditActivity,getString(R.string.no_folder))
             }
         }
 
@@ -72,7 +72,7 @@ class MainEditActivity: BaseActivity<MainVM, FolderActivityEditBinding>() {
             if (it)
                 finish()
             else
-                ToastUtils.showToast(this@MainEditActivity,"删除失败")
+                ToastUtils.showToast(this@MainEditActivity,getString(R.string.delete_failure))
         }
 
         mViewModel.editFolderED.observeInActivity(this@MainEditActivity) {
@@ -81,7 +81,7 @@ class MainEditActivity: BaseActivity<MainVM, FolderActivityEditBinding>() {
             else if (it.contains("cover"))
                 ImageUtil.loadImg(this,mViewBind.coverImv,it["cover"])
             else
-                ToastUtils.showToast(this@MainEditActivity,"修改失败")
+                ToastUtils.showToast(this@MainEditActivity,getString(R.string.edit_failure))
         }
         LiveEventBus.get<List<FileInfo>>(EventConstant.SELECT_FILE).observe(this) {
             mViewModel.editFolderCover(id,it[0].content)

@@ -13,7 +13,7 @@
         android:id="@+id/titleTv"
         style="@style/textStyle"
         android:textSize="16sp"
-        android:text="文件详情"
+        android:text="@string/file_detail"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,7 @@
         android:id="@+id/nameTv"
         app:layout_constraintTop_toBottomOf="@+id/titleTv"
         style="@style/textStyle"
-        android:text="文件名："/>
+        android:text="@string/file_name"/>
 
     <TextView
         android:id="@+id/nameContentTv"
@@ -39,7 +39,7 @@
         android:id="@+id/timeTv"
         app:layout_constraintTop_toBottomOf="@+id/nameTv"
         style="@style/textStyle"
-        android:text="时间："/>
+        android:text="@string/file_time"/>
 
     <TextView
         android:id="@+id/timeContentTv"
@@ -55,7 +55,7 @@
         android:id="@+id/sizeTv"
         app:layout_constraintTop_toBottomOf="@+id/timeTv"
         style="@style/textStyle"
-        android:text="大小："/>
+        android:text="@string/file_size"/>
 
     <TextView
         android:id="@+id/sizeContentTv"

@@ -2,6 +2,7 @@ package com.nmk.myapplication.work.ui.activity
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import com.drake.brv.BindingAdapter
@@ -59,6 +60,8 @@ class FolderDetailActivity : BaseActivity<FileMV, FolderActivityFolderBinding>()
                 SecondActivity.startActivity(this@FolderDetailActivity,fileInfos,layoutPosition)
             }
         }
+        mViewBind.titleBar.setTitle(fileName)
+        mViewBind.titleBar.setLeftImgColor(getColor(R.color.white))
         mViewBind.titleBar.onClickLeftListener = object : TitleBar.OnClickLeftListener {
             override fun leftOnClick(v: View, isBack: Boolean) {
                 this@FolderDetailActivity.finish()
@@ -91,7 +94,7 @@ class FolderDetailActivity : BaseActivity<FileMV, FolderActivityFolderBinding>()
             if (it)
                 mViewModel.getData(id)
             else
-                ToastUtils.showToast(this, "加载失败")
+                ToastUtils.showToast(this, getString(R.string.loading_error))
         }
     }
 }

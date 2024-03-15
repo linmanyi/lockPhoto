@@ -8,7 +8,7 @@
     <com.nmk.myapplication.work.ui.view.titlebar.TitleBar
         android:id="@+id/titleBar"
         style="@style/titleBarStyle"
-        app:title="设置"
+        app:title="@string/main_setting"
         android:background="@color/white"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
@@ -43,7 +43,7 @@
             android:id="@+id/aboutTv"
             android:layout_width="match_parent"
             style="@style/textStyle"
-            android:text="关于我们"
+            android:text="@string/main_about"
             android:layout_marginBottom="5dp"
             android:background="@color/white"
             android:paddingVertical="10dp"

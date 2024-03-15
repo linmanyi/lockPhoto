@@ -11,6 +11,7 @@ import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.luck.picture.lib.utils.ToastUtils
+import com.nmk.myapplication.R
 import com.nmk.myapplication.databinding.ActivitySecondBinding
 import com.nmk.myapplication.work.base.BaseActivity
 import com.nmk.myapplication.work.base.EventConstant
@@ -106,7 +107,7 @@ class SecondActivity : BaseActivity<FileMV, ActivitySecondBinding>() {
             if (it)
                 finish()
             else
-                ToastUtils.showToast(this,"删除失败")
+                ToastUtils.showToast(this,getString(R.string.delete_failure))
         }
         LiveEventBus.get<FolderInfo>(EventConstant.SELECT_FOLDER).observe(this) {
             mViewModel.moveFile(this,it.id,it.fileName, arrayListOf(files[position]))
@@ -118,7 +119,7 @@ class SecondActivity : BaseActivity<FileMV, ActivitySecondBinding>() {
         mViewModel.downloadED.observeInActivity(this) {
             LoadingManager.getInstance().hideDialog()
             if (it) finish()
-            else ToastUtils.showToast(this,"下载失败")
+            else ToastUtils.showToast(this,getString(R.string.download_failure))
         }
     }
 

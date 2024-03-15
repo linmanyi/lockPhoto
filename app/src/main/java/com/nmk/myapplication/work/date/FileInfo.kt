@@ -17,9 +17,7 @@ data class FolderInfo(
     var fileName: String = "",
     var cover: String = "",
     var createTime: Long = 0L,
-): ItemSwipe {
-    override var itemOrientationSwipe = ItemOrientation.RIGHT
-}
+)
 
 /**
  * 文件对象

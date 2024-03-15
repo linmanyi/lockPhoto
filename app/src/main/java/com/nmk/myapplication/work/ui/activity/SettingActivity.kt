@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import com.luck.picture.lib.utils.ToastUtils
+import com.nmk.myapplication.R
 import com.nmk.myapplication.databinding.ActivitySettingBinding
 import com.nmk.myapplication.work.base.BaseActivity
 import com.nmk.myapplication.work.ext.setClickNotDoubleListener
@@ -36,7 +37,7 @@ class SettingActivity: BaseActivity<SettingMV, ActivitySettingBinding>() {
     override fun createObserver() {
         mViewModel.deleteAllED.observeInActivity(this) {
             LoadingManager.getInstance().hideDialog()
-            if (!it) ToastUtils.showToast(this,"删除失败")
+            if (!it) ToastUtils.showToast(this,getString(R.string.delete_failure))
         }
     }
 }

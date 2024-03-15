@@ -16,7 +16,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 import me.hgj.jetpackmvvm.callback.livedata.event.EventLiveData
-import me.hgj.jetpackmvvm.util.LogUtils
 import java.io.File
 
 class FileMV : BaseViewModel() {

@@ -9,6 +9,8 @@
     <com.nmk.myapplication.work.ui.view.titlebar.TitleBar
         android:id="@+id/titleBar"
         style="@style/titleBarStyle"
+        android:background="@color/main_color"
+        app:title_color="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:right_src="@mipmap/icon_more"/>
@@ -42,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/textStyle"
-            android:text="没有数据"/>
+            android:text="@string/empty"/>
 
     </LinearLayout>
 
@@ -58,6 +60,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="35dp"
-        app:h_shape_solid="@color/ps_color_blue"/>
+        app:h_shape_solid="@color/main_color"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

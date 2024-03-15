@@ -36,7 +36,7 @@
                 android:paddingStart="12dp"
                 android:drawablePadding="10dp"
                 android:paddingVertical="15dp"
-                android:text="相册"/>
+                android:text="@string/main_photo_album"/>
 
             <TextView
                 android:id="@+id/videoTv"
@@ -48,7 +48,7 @@
                 android:paddingStart="12dp"
                 android:drawablePadding="10dp"
                 android:paddingVertical="15dp"
-                android:text="视频"/>
+                android:text="@string/main_video"/>
 
             <TextView
                 android:id="@+id/settingTv"
@@ -60,7 +60,7 @@
                 android:paddingStart="12dp"
                 android:drawablePadding="10dp"
                 android:paddingVertical="15dp"
-                android:text="设置"/>
+                android:text="@string/main_setting"/>
 
             <TextView
                 android:id="@+id/aboutTv"
@@ -72,7 +72,7 @@
                 android:paddingStart="12dp"
                 android:drawablePadding="10dp"
                 android:paddingVertical="15dp"
-                android:text="关于我们"/>
+                android:text="@string/main_about"/>
 
         </LinearLayout>
 

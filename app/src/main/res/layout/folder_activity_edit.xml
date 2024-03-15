@@ -8,7 +8,7 @@
     <com.nmk.myapplication.work.ui.view.titlebar.TitleBar
         android:id="@+id/titleBar"
         style="@style/titleBarStyle"
-        app:title="编辑文件夹"
+        app:title="@string/edit_folder"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,7 +28,7 @@
         android:layout_width="172dp"
         android:layout_height="172dp"
         android:background="#99000000"
-        android:text="点击选择封面"
+        android:text="@string/choose_cover"
         android:gravity="center"
         android:textColor="@color/white"
         app:layout_constraintTop_toTopOf="@+id/coverImv"
@@ -72,7 +72,7 @@
         app:h_shape_solid="@color/ps_color_blue"
         android:gravity="center"
         android:textColor="@color/white"
-        android:text="删除"
+        android:text="@string/delete"
         android:clickable="false"
         android:textSize="20sp"
         android:layout_marginHorizontal="16dp"/>

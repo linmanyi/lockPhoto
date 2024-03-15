@@ -13,7 +13,7 @@
         android:background="@color/main_color"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="主页"
+        app:title="@string/home"
         app:title_color="@color/white"
         app:left_src="@color/tranceColor"
         app:right_src="@mipmap/icon_create"/>
@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/textStyle"
-            android:text="没有数据"/>
+            android:text="@string/empty"/>
 
     </LinearLayout>
 
