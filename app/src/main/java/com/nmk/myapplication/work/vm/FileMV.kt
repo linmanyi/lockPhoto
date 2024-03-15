@@ -16,6 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 import me.hgj.jetpackmvvm.callback.livedata.event.EventLiveData
+import me.hgj.jetpackmvvm.util.LogUtils
 import java.io.File
 
 class FileMV : BaseViewModel() {
@@ -177,7 +178,7 @@ class FileMV : BaseViewModel() {
                 for (file in files) {
                     //将文件保持到本地相册
                     if (File(file.content).exists()) {
-                        FileUtil.saveLoadFile(File(file.content), file.fileName)
+                        FileUtil.saveLoadFile(context, File(file.content))
                     }
                 }
             }.invokeOnCompletion {

@@ -4,16 +4,20 @@ import static android.os.Environment.DIRECTORY_DOWNLOADS;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
+import android.media.MediaScannerConnection;
 import android.os.Environment;
 import android.text.TextUtils;
 
 import androidx.core.content.ContextCompat;
 
 import com.nmk.myapplication.app.MyApplication;
+import com.nmk.myapplication.work.utils.glide.ImageUtil;
 
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -23,8 +27,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -161,31 +163,6 @@ public class FileUtil {
     }
 
     /**
-     * 创建文件
-     */
-    public static File createLoadFile(String fileName) {
-        if (fileName.indexOf(".") == -1) {
-            return null;
-        }
-        String path;
-        if (fileName.startsWith("/")) {
-            path = getDownloadPath() + fileName;
-        } else {
-            path = getDownloadPath() + File.separator + fileName;
-        }
-
-        File file = new File(path);
-        if (!file.exists()) {
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return file;
-    }
-
-    /**
      * 删除某个文件夹下全部文件
      *
      * @param filePath 文件夹路径
@@ -246,14 +223,98 @@ public class FileUtil {
      *
      * @param filesName 文件名称
      */
-    public static void saveLoadFile(File file, String filesName) {
+    public static boolean saveLoadFile(Context context,File file) {
+
         try {
-            InputStream inputStream = new FileInputStream(file.getPath());
-            inputstreamToLoadFile(inputStream, filesName);
+            if (ImageUtil.isImgLinkerUrl(file.getPath())) {
+                Bitmap bitmap = BitmapFactory.decodeFile(file.getPath());
+                return saveBitmapToAlbumBeforeQ(context, bitmap);
+            } else {
+                return saveVideoToAlbumBeforeQ(context,file.getPath());
+            }
+
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return false;
         }
     }
+
+    private static boolean saveBitmapToAlbumBeforeQ(Context context, Bitmap bitmap) {
+        File picDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
+        File destFile = new File(picDir, context.getPackageName() + File.separator + System.currentTimeMillis() + ".jpg");
+//            FileUtils.copy(imageFile, destFile.getAbsolutePath());
+        OutputStream os = null;
+        boolean result = false;
+        try {
+            if (!destFile.exists()) {
+                destFile.getParentFile().mkdirs();
+                destFile.createNewFile();
+            }
+            os = new BufferedOutputStream(new FileOutputStream(destFile));
+            result = bitmap.compress(Bitmap.CompressFormat.JPEG, 50, os);
+            if (!bitmap.isRecycled()) bitmap.recycle();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (os != null) {
+                    os.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        MediaScannerConnection.scanFile(
+                context,
+                new String[]{destFile.getAbsolutePath()},
+                new String[]{"image/*"},
+                (path, uri) -> {
+                    // Scan Completed
+                });
+        return result;
+    }
+
+    private static boolean saveVideoToAlbumBeforeQ(Context context, String videoFile) {
+        File picDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
+        File tempFile = new File(videoFile);
+        File destFile = new File(picDir, context.getPackageName() + File.separator + tempFile.getName());
+        FileInputStream ins = null;
+        BufferedOutputStream ous = null;
+        try {
+            ins = new FileInputStream(tempFile);
+            ous = new BufferedOutputStream(new FileOutputStream(destFile));
+            long nread = 0L;
+            byte[] buf = new byte[1024];
+            int n;
+            while ((n = ins.read(buf)) > 0) {
+                ous.write(buf, 0, n);
+                nread += n;
+            }
+            MediaScannerConnection.scanFile(
+                    context,
+                    new String[]{destFile.getAbsolutePath()},
+                    new String[]{"video/*"},
+                    (path, uri) -> {
+                        // Scan Completed
+                    });
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                if (ins != null) {
+                    ins.close();
+                }
+                if (ous != null) {
+                    ous.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
     public static InputStream getInputStream(Bitmap bitmap) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -298,28 +359,6 @@ public class FileUtil {
         }
 
         return createFile(fileName);
-    }
-
-    /**
-     * InputStream to file
-     */
-    public static File inputstreamToLoadFile(InputStream ins, String fileName) {
-        createLoadFile(fileName);
-        OutputStream os;
-        try {
-            os = new FileOutputStream(getDownloadPath() + fileName);
-            int bytesRead;
-            byte[] buffer = new byte[8192];
-            while ((bytesRead = ins.read(buffer, 0, 8192)) != -1) {
-                os.write(buffer, 0, bytesRead);
-            }
-            os.close();
-            ins.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return createLoadFile(fileName);
     }
 
     /**
