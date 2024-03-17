@@ -1,11 +1,13 @@
 package com.nmk.myapplication.work.ui.fragment.preview
 
+import android.R
 import android.net.Uri
 import android.os.Bundle
+import cn.jzvd.Jzvd
 import com.nmk.myapplication.databinding.FragmentVideoPreviewBinding
 import com.nmk.myapplication.work.base.BaseFragment
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
-import me.hgj.jetpackmvvm.util.get
+
 
 /**
  * @desc: 音视频详情
@@ -31,14 +33,16 @@ class VideoPreviewFragment : BaseFragment<BaseViewModel, FragmentVideoPreviewBin
 
     private fun initVideoBg(url: String) {
         val uri = url
-        mViewBind.videoV.setVideoPath(Uri.parse(uri).toString())
-//        mViewBinder.videoV.requestFocus()
-        mViewBind.videoV.setOnCompletionListener { mViewBind.videoV.start() }
+        mViewBind.videoView.setUp(
+            uri,
+            ""
+        )
+//        mViewBind.videoView.posterImageView.setImage("http://p.qpic.cn/videoyun/0/2449_43b6f696980311e59ed467f22794e792_1/640")
     }
 
-    override fun onDestroy() {
-        mViewBind.videoV.setOnCompletionListener(null)
-        super.onDestroy()
+    override fun onPause() {
+        super.onPause()
+        Jzvd.releaseAllVideos();
     }
 
     override fun lazyLoadData() {

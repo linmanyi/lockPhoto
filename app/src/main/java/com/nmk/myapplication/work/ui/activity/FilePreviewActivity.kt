@@ -10,6 +10,7 @@ import com.nmk.myapplication.work.ui.fragment.preview.ImagePreviewFragment
 import com.nmk.myapplication.work.ui.fragment.preview.VideoPreviewFragment
 import com.nmk.myapplication.work.utils.glide.ImageUtil
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
+import me.hgj.jetpackmvvm.ext.view.visibleOrGone
 import me.hgj.jetpackmvvm.util.get
 
 /**
@@ -30,9 +31,11 @@ class FilePreviewActivity : BaseActivity<BaseViewModel, ActivityFilePreviewBindi
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-        val name = intent.getStringExtra("name") ?: ""
+//        val name = intent.getStringExtra("name") ?: ""
         val path = intent.getStringExtra("path") ?: ""
-        mViewBind.titleBar.setTitle(name)
+//        mViewBind.titleBar.setTitle(name)
+//        mViewBind.titleBar.visibleOrGone(ImageUtil.isImgLinkerUrl(path))
+        mViewBind.titleBar.setLeftImgColor(getColor(R.color.white))
         if (ImageUtil.isImgLinkerUrl(path)) {
             supportFragmentManager.beginTransaction().replace(R.id.frameLayout, ImagePreviewFragment.getInstance(path)).commitAllowingStateLoss()
         } else {
