@@ -40,7 +40,7 @@ class MainVM: BaseViewModel() {
     }
 
     val addEd = EventLiveData<String>()
-    fun addFolder(context: Context, name: String) {
+    fun addFolder(name: String) {
         //创建文件夹
         viewModelScope.launch(Dispatchers.IO) {
             kotlin.runCatching {
@@ -90,9 +90,7 @@ class MainVM: BaseViewModel() {
     fun deleteFolder(id: Long,name: String) {
         viewModelScope.launch(Dispatchers.IO) {
             kotlin.runCatching {
-                if (FileUtil.isExitFile(FileConstance.getPrivateFolderPath(name))) {
-                    FileUtil.deleteFile(FileConstance.getPrivateFolderPath(name))
-                }
+                FileUtil.deleteFile(File(FileConstance.getPrivateFolderPath(name)))
                 LockPhotoDB.getInstance().folderDao().deleteById(id)
                 LockPhotoDB.getInstance().fileDao().queryDataByFolder(id)
             }.onFailure {

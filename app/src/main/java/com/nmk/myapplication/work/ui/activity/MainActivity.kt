@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.drake.brv.BindingAdapter
-import com.drake.brv.item.ItemSwipe
 import com.drake.brv.utils.models
 import com.drake.brv.utils.setup
 import com.luck.picture.lib.utils.ToastUtils
@@ -30,6 +29,7 @@ import me.hgj.jetpackmvvm.ext.view.visibleOrGone
 class MainActivity : BaseActivity<MainVM, ActivityMainBinding>() {
 
     private lateinit var adapter: BindingAdapter
+    private val folderList = arrayListOf<FolderInfo>()
 
     companion object{
         fun startActivity(context: Context) {
@@ -77,7 +77,7 @@ class MainActivity : BaseActivity<MainVM, ActivityMainBinding>() {
         mViewBind.titleBar.onClickRightListener = object : TitleBar.OnClickRightListener{
             override fun rightOnClick(v: View, position: Int) {
                 AddFolderDialog.showDialog(this@MainActivity) {
-                    mViewModel.addFolder(this@MainActivity,it)
+                    mViewModel.addFolder(it)
                 }
             }
         }
@@ -85,6 +85,7 @@ class MainActivity : BaseActivity<MainVM, ActivityMainBinding>() {
             MainMenuDialog.showDialog(this)
 //            SettingActivity.startActivity(this@MainActivity)
         }
+        mViewBind.content.models = folderList
     }
 
     override fun onResume() {
@@ -94,7 +95,8 @@ class MainActivity : BaseActivity<MainVM, ActivityMainBinding>() {
 
     override fun createObserver() {
         mViewModel.getDataED.observeInActivity(this) {
-            mViewBind.content.models = it
+            folderList.clear()
+            folderList.addAll(it)
             mViewBind.emptyTv.visibleOrGone(it.isEmpty())
         }
         mViewModel.deleteFolderED.observeInActivity(this) {
