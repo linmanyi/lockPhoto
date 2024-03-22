@@ -25,4 +25,11 @@ object FileConstance {
     fun getPrivatePath(): String {
         return "$mainPath/"
     }
+
+    /**
+     * 完整路径
+     */
+    fun getFullPrivatePath(path: String = ""): String {
+        return "${FileUtil.getSdCardPath()}/$mainPath/$path"
+    }
 }

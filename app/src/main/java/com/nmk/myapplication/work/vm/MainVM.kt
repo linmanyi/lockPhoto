@@ -90,7 +90,7 @@ class MainVM: BaseViewModel() {
     fun deleteFolder(id: Long,name: String) {
         viewModelScope.launch(Dispatchers.IO) {
             kotlin.runCatching {
-                FileUtil.deleteFile(File(FileConstance.getPrivateFolderPath(name)))
+                FileUtil.deleteFile(File(FileConstance.getFullPrivatePath(name)))
                 LockPhotoDB.getInstance().folderDao().deleteById(id)
                 LockPhotoDB.getInstance().fileDao().queryDataByFolder(id)
             }.onFailure {

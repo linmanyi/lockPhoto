@@ -3,6 +3,7 @@ package com.nmk.myapplication.work.ui.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.FileUtils
 import android.view.View
 import com.drake.brv.BindingAdapter
 import com.drake.brv.utils.models
@@ -19,9 +20,15 @@ import com.nmk.myapplication.work.ui.dialog.MainMenuDialog
 import com.nmk.myapplication.work.ui.dialog.TipsDialog
 import com.nmk.myapplication.work.ui.view.titlebar.TitleBar
 import com.nmk.myapplication.work.utils.common.CommonDateFormatUtil.getFormatHMYMD
+import com.nmk.myapplication.work.utils.file.FileConstance
+import com.nmk.myapplication.work.utils.file.FileUtil
 import com.nmk.myapplication.work.utils.glide.ImageUtil
 import com.nmk.myapplication.work.vm.MainVM
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import me.hgj.jetpackmvvm.ext.view.visibleOrGone
+import java.io.File
 
 /**
  * 主页
@@ -85,6 +92,7 @@ class MainActivity : BaseActivity<MainVM, ActivityMainBinding>() {
             MainMenuDialog.showDialog(this)
 //            SettingActivity.startActivity(this@MainActivity)
         }
+        mViewBind.content.adapter = adapter
         mViewBind.content.models = folderList
     }
 
@@ -97,6 +105,7 @@ class MainActivity : BaseActivity<MainVM, ActivityMainBinding>() {
         mViewModel.getDataED.observeInActivity(this) {
             folderList.clear()
             folderList.addAll(it)
+            adapter.notifyDataSetChanged()
             mViewBind.emptyTv.visibleOrGone(it.isEmpty())
         }
         mViewModel.deleteFolderED.observeInActivity(this) {

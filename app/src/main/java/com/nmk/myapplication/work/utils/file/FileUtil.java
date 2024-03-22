@@ -189,8 +189,8 @@ public class FileUtil {
                 for (File f : childFile) {
                     deleteFile(f);
                 }
-                // 这里不删除文件夹，在6.0以下系统会不能下载图片和显示
-                //file.delete();
+                // 删除文件夹
+                file.delete();
             }
         }
     }

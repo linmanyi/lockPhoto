@@ -10,6 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 import me.hgj.jetpackmvvm.callback.livedata.event.EventLiveData
+import java.io.File
 
 class SettingMV : BaseViewModel() {
     /**
@@ -22,7 +23,7 @@ class SettingMV : BaseViewModel() {
                 LoadingManager.getInstance().showDialog(context)
                 LockPhotoDB.getInstance().fileDao().deleteAll()
                 LockPhotoDB.getInstance().folderDao().deleteAll()
-                FileUtil.deleteFile(FileConstance.getPrivatePath())
+                FileUtil.deleteFile(File(FileConstance.getFullPrivatePath()))
             }.invokeOnCompletion {
                 deleteAllED.postValue(true)
             }
