@@ -75,8 +75,8 @@
 
     <com.luck.picture.lib.widget.CompleteSelectView
         android:id="@+id/ps_complete_select"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="95dp"
+        android:layout_height="32dp"
         android:paddingHorizontal="25dp"
         android:paddingVertical="5dp"
         android:layout_gravity="center"

@@ -53,7 +53,8 @@
             android:id="@+id/deleteTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@mipmap/ic_launcher"
+            android:drawableTop="@mipmap/ic_second_delete"
+            android:drawablePadding="5dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/delete"/>
@@ -62,7 +63,8 @@
             android:id="@+id/moveTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@mipmap/ic_launcher"
+            android:drawableTop="@mipmap/ic_second_move"
+            android:drawablePadding="5dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/move"/>

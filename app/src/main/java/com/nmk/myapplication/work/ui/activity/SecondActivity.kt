@@ -54,6 +54,7 @@ class SecondActivity : BaseActivity<FileMV, ActivitySecondBinding>() {
         mViewBind.vp.adapter = MyViewPagerAdapter()
         mViewBind.vp.setCurrentItem(position, true)
         mViewBind.vpText.text = "${position + 1}/${previewViews.size}"
+        mViewBind.titleBar.setLeftImgColor(getColor(R.color.white))
     }
 
     override fun initView(bundle: Bundle?) {

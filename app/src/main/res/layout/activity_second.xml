@@ -10,7 +10,8 @@
     <com.nmk.myapplication.work.ui.view.titlebar.TitleBar
         android:id="@+id/titleBar"
         style="@style/titleBarStyle"
-        android:background="@color/white"
+        android:background="@color/main_color"
+        app:title_color="@color/white"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
@@ -46,7 +47,8 @@
             android:id="@+id/deleteTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@mipmap/ic_launcher"
+            android:drawableTop="@mipmap/ic_second_delete"
+            android:drawablePadding="5dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/delete"/>
@@ -55,7 +57,8 @@
             android:id="@+id/detailTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@mipmap/ic_launcher"
+            android:drawableTop="@mipmap/ic_second_detail"
+            android:drawablePadding="5dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/detail"/>
@@ -64,7 +67,8 @@
             android:id="@+id/moveTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@mipmap/ic_launcher"
+            android:drawableTop="@mipmap/ic_second_move"
+            android:drawablePadding="5dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/move"/>
@@ -73,7 +77,8 @@
             android:id="@+id/downloadTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@mipmap/ic_launcher"
+            android:drawableTop="@mipmap/ic_second_download"
+            android:drawablePadding="5dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/download"/>
