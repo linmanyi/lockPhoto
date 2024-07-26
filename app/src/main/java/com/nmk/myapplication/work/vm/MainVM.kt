@@ -6,6 +6,7 @@ import com.luck.picture.lib.utils.ToastUtils
 import com.nmk.myapplication.work.date.FolderInfo
 import com.nmk.myapplication.work.db.LockPhotoDB
 import com.nmk.myapplication.work.db.data.FolderModel
+import com.nmk.myapplication.work.network.http.data.DataUiState
 import com.nmk.myapplication.work.utils.file.FileConstance
 import com.nmk.myapplication.work.utils.file.FileUtil
 import kotlinx.coroutines.Dispatchers
@@ -65,7 +66,7 @@ class MainVM: BaseViewModel() {
         }
     }
 
-    val getFolderED = EventLiveData<FolderInfo?>()
+    val getFolderED = EventLiveData<DataUiState<FolderInfo?>>()
     fun getFolder(id: Long) {
         viewModelScope.launch(Dispatchers.IO) {
             val list = arrayListOf<FolderInfo>()
@@ -79,9 +80,9 @@ class MainVM: BaseViewModel() {
                     })
                 }
             }.onSuccess {
-                getFolderED.postValue(list.getOrNull(0))
+                getFolderED.postValue(DataUiState(isSuccess = true, data = list.getOrNull(0)))
             }.onFailure {
-                getFolderED.postValue(null)
+                getFolderED.postValue(DataUiState(isSuccess = false, data = null))
             }
         }
     }

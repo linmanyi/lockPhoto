@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
@@ -62,6 +64,17 @@ android {
     }
     buildFeatures {
         viewBinding true
+    }
+    android.applicationVariants.all {
+        String buildType = it.buildType.name
+        String date = new Date().format("MMdd-HH-mm")
+        outputs.all { apk ->
+            if (buildType == "release") {
+                apk.outputFileName = "../../../apk/release/AISleep${versionName}_${date}_${buildType}.apk"
+            } else {
+                apk.outputFileName = "../../../apk/debug/AISleep${versionName}_${date}_${buildType}.apk"
+            }
+        }
     }
 }
 

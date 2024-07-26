@@ -58,10 +58,10 @@ class MainEditActivity: BaseActivity<MainVM, FolderActivityEditBinding>() {
 
     override fun createObserver() {
         mViewModel.getFolderED.observeInActivity(this) {
-            if (it != null) {
-                mViewBind.titleEditView.text = it.fileName
-                if (it.cover.isNotEmpty()) {
-                    ImageUtil.loadImg(this@MainEditActivity,mViewBind.coverImv,it.cover)
+            if (it.data != null) {
+                mViewBind.titleEditView.text = it.data?.fileName
+                if (it.data?.cover?.isNotEmpty() == true) {
+                    ImageUtil.loadImg(this@MainEditActivity,mViewBind.coverImv,it.data?.cover)
                 }
             } else {
                 ToastUtils.showToast(this@MainEditActivity,getString(R.string.no_folder))
