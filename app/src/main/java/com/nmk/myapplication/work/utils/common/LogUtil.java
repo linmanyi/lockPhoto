@@ -5,7 +5,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.nmk.myapplication.BuildConfig;
+
+import androidx.databinding.ktx.BuildConfig;
+
 import com.nmk.myapplication.app.MyApplication;
 import com.nmk.myapplication.work.utils.log.XLogDiskManager;
 
