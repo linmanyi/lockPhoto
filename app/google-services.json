@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "158669938369",
+    "project_id": "lockphoto-4f45d",
+    "storage_bucket": "lockphoto-4f45d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:158669938369:android:ef52d7a133b722839f7e40",
+        "android_client_info": {
+          "package_name": "com.nmk.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZIqmKXkqUtUmlGBjuSs1S7OIZ8GW1its"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
