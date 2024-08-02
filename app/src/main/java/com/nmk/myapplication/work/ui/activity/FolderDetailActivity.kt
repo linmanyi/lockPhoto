@@ -16,11 +16,17 @@ import com.nmk.myapplication.work.base.BaseActivity
 import com.nmk.myapplication.work.date.FileInfo
 import com.nmk.myapplication.work.ext.setClickNotDoubleListener
 import com.nmk.myapplication.work.ui.common.loading.LoadingManager
+import com.nmk.myapplication.work.ui.dialog.DeleteSettingDialog
+import com.nmk.myapplication.work.ui.dialog.DeleteSettingDialog.Companion.DELETE_FILE_NO_PROMPT_KEY
 import com.nmk.myapplication.work.ui.dialog.FileMoreDialog
 import com.nmk.myapplication.work.ui.view.titlebar.TitleBar
+import com.nmk.myapplication.work.utils.common.CacheUtil
 import com.nmk.myapplication.work.utils.glide.ImageUtil
 import com.nmk.myapplication.work.vm.FileMV
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import me.hgj.jetpackmvvm.ext.view.visibleOrGone
+import java.io.File
 
 /**
  * 文件夹内
@@ -91,10 +97,19 @@ class FolderDetailActivity : BaseActivity<FileMV, FolderActivityFolderBinding>()
         }
         mViewModel.addFilesED.observeInActivity(this) {
             LoadingManager.getInstance().hideDialog()
-            if (it)
+            if (it.isSuccess) {
+                val data = it.data
                 mViewModel.getData(id)
-            else
+                if (!CacheUtil.getBoolean(DELETE_FILE_NO_PROMPT_KEY,false)) {
+                    DeleteSettingDialog.showDialog(this@FolderDetailActivity) {
+                        //删除本地文件
+                        val files = data?.map { File(it) }
+                        files?.let { it1 -> mViewModel.deleteLocalFile(it1) }
+                    }
+                }
+            } else {
                 ToastUtils.showToast(this, getString(R.string.loading_error))
+            }
         }
     }
 }

@@ -10,7 +10,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FFFFFFFF</color>
     <color name="white">#FF000000</color>
-    <color name="textColor_333333">#333333</color>
+    <color name="textColor_333333">#FFFFFFFF</color>
     <color name="tranceColor">#00000000</color>
 
     <color name="common_default_or_error">#F0F0F0</color>

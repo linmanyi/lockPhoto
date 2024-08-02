@@ -7,6 +7,7 @@ import com.nmk.myapplication.work.date.FolderInfo
 import com.nmk.myapplication.work.db.LockPhotoDB
 import com.nmk.myapplication.work.db.data.FolderModel
 import com.nmk.myapplication.work.network.http.data.DataUiState
+import com.nmk.myapplication.work.utils.common.LogUtil
 import com.nmk.myapplication.work.utils.file.FileConstance
 import com.nmk.myapplication.work.utils.file.FileUtil
 import kotlinx.coroutines.Dispatchers
@@ -56,6 +57,7 @@ class MainVM: BaseViewModel() {
                         }
                     )
                     FileUtil.createMoreFiles(FileConstance.getPrivateFolderPath(name))
+                    LogUtil.i("fileFun","delete ${FileConstance.getPrivateFolderPath(name)}")
                 }
             }.onFailure {
                 addEd.postValue("创建失败")
@@ -93,9 +95,10 @@ class MainVM: BaseViewModel() {
             kotlin.runCatching {
                 FileUtil.deleteFile(File(FileConstance.getFullPrivatePath(name)))
                 LockPhotoDB.getInstance().folderDao().deleteById(id)
-                LockPhotoDB.getInstance().fileDao().queryDataByFolder(id)
+                LogUtil.i("fileFun","delete ${FileConstance.getFullPrivatePath(name)}")
             }.onFailure {
                 deleteFolderED.postValue(false)
+                LogUtil.i("fileFun","delete ${FileConstance.getFullPrivatePath(name)} error")
             }
         }.invokeOnCompletion {
             deleteFolderED.postValue(it == null)

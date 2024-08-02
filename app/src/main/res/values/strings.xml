@@ -31,6 +31,7 @@
     <string name="download_failure">Download Failure</string>
     <string name="no_folder">Can\'t Find the Folder</string>
     <string name="delete_photo_album_content">Are you sure delete this Album?</string>
+    <string name="delete_setting_content">为了你的相册安全，建议删除相册的原文件</string>
 
     <!--主页-->
     <string name="main_photo_album">Picture</string>
@@ -44,6 +45,7 @@
     <string name="loading">Loading</string>
     <string name="loading_error">Loading Error</string>
     <string name="tip">"Tip"</string>
+    <string name="no_prompt">不再提示</string>
 
     <!--error message-->
     <string name="error_message_parse_error">Parsing error, try later</string>

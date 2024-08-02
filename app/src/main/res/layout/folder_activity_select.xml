@@ -18,7 +18,7 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@+id/titleBar"
-        android:text="确定"
+        android:text="@string/sure"
         android:clickable="false"
         app:h_shape_solid="@color/main_color"
         android:textColor="@color/white"

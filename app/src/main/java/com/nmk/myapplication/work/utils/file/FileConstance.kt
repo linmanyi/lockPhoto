@@ -32,4 +32,8 @@ object FileConstance {
     fun getFullPrivatePath(path: String = ""): String {
         return "${FileUtil.getSdCardPath()}/$mainPath/$path"
     }
+
+    fun getDownloadPath(): String {
+        return FileUtil.getDownloadPath()
+    }
 }

@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.nmk.myapplication",
+  "variantName": "release",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 100000,
+      "versionName": "1.0.0",
+      "outputFile": "../../../apk/release/AISleep1.0.0_0726-17-56_release.apk"
+    }
+  ],
+  "elementType": "File"
+}

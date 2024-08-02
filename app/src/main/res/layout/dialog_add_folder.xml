@@ -59,7 +59,7 @@
         android:layout_marginTop="28dp"
         android:gravity="center"
         android:paddingVertical="6dp"
-        android:text="确定"
+        android:text="@string/sure"
         android:textColor="@color/white"
         app:h_selector_selected_solid="@color/main_color"
         app:h_shape_corners_radius="2dp"

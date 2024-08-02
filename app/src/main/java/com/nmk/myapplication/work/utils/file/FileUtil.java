@@ -223,95 +223,12 @@ public class FileUtil {
      *
      * @param filesName 文件名称
      */
-    public static boolean saveLoadFile(Context context,File file) {
-
+    public static void saveLoadFile(File file, String filesName) {
         try {
-            if (ImageUtil.isImgLinkerUrl(file.getPath())) {
-                Bitmap bitmap = BitmapFactory.decodeFile(file.getPath());
-                return saveBitmapToAlbumBeforeQ(context, bitmap);
-            } else {
-                return saveVideoToAlbumBeforeQ(context,file.getPath());
-            }
-
+            InputStream inputStream = new FileInputStream(file.getPath());
+            inputstreamToDownload(inputStream, filesName);
         } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    private static boolean saveBitmapToAlbumBeforeQ(Context context, Bitmap bitmap) {
-        File picDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
-        File destFile = new File(picDir, context.getPackageName() + File.separator + System.currentTimeMillis() + ".jpg");
-//            FileUtils.copy(imageFile, destFile.getAbsolutePath());
-        OutputStream os = null;
-        boolean result = false;
-        try {
-            if (!destFile.exists()) {
-                destFile.getParentFile().mkdirs();
-                destFile.createNewFile();
-            }
-            os = new BufferedOutputStream(new FileOutputStream(destFile));
-            result = bitmap.compress(Bitmap.CompressFormat.JPEG, 50, os);
-            if (!bitmap.isRecycled()) bitmap.recycle();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (os != null) {
-                    os.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        MediaScannerConnection.scanFile(
-                context,
-                new String[]{destFile.getAbsolutePath()},
-                new String[]{"image/*"},
-                (path, uri) -> {
-                    // Scan Completed
-                });
-        return result;
-    }
-
-    private static boolean saveVideoToAlbumBeforeQ(Context context, String videoFile) {
-        File picDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
-        File tempFile = new File(videoFile);
-        File destFile = new File(picDir, context.getPackageName() + File.separator + tempFile.getName());
-        FileInputStream ins = null;
-        BufferedOutputStream ous = null;
-        try {
-            ins = new FileInputStream(tempFile);
-            ous = new BufferedOutputStream(new FileOutputStream(destFile));
-            long nread = 0L;
-            byte[] buf = new byte[1024];
-            int n;
-            while ((n = ins.read(buf)) > 0) {
-                ous.write(buf, 0, n);
-                nread += n;
-            }
-            MediaScannerConnection.scanFile(
-                    context,
-                    new String[]{destFile.getAbsolutePath()},
-                    new String[]{"video/*"},
-                    (path, uri) -> {
-                        // Scan Completed
-                    });
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        } finally {
-            try {
-                if (ins != null) {
-                    ins.close();
-                }
-                if (ous != null) {
-                    ous.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            throw new RuntimeException(e);
         }
     }
 
@@ -337,6 +254,35 @@ public class FileUtil {
             e.printStackTrace();
         }
         return inputStream;
+    }
+
+    public static File inputstreamToDownload(InputStream ins, String fileName) {
+        OutputStream os;
+        File file;
+        try {
+            String path = getDownloadPath() + "/" + fileName;
+            os = new FileOutputStream(path);
+            int bytesRead;
+            byte[] buffer = new byte[8192];
+            while ((bytesRead = ins.read(buffer, 0, 8192)) != -1) {
+                os.write(buffer, 0, bytesRead);
+            }
+            os.close();
+            ins.close();
+
+            file = new File(path);
+            if (!file.exists()) {
+                try {
+                    file.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return file;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**

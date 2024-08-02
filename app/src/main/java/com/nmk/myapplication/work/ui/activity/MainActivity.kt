@@ -53,6 +53,8 @@ class MainActivity : BaseActivity<MainVM, ActivityMainBinding>() {
                 val model = getModel<FolderInfo>()
                 if (model.cover.isNotEmpty()) {
                     ImageUtil.loadFile(this@MainActivity,contentView.coverImg,model.cover)
+                } else {
+                    contentView.coverImg.setImageResource(R.mipmap.icon_folder)
                 }
                 contentView.titleTv.text = model.fileName
                 contentView.dateTv.text = getFormatHMYMD(model.createTime).replace("/","-")

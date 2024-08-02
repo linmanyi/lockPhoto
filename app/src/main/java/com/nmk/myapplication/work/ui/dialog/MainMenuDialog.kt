@@ -8,6 +8,7 @@ import com.lxj.xpopup.enums.PopupAnimation
 import com.nmk.myapplication.R
 import com.nmk.myapplication.databinding.MainMenuDialogBinding
 import com.nmk.myapplication.work.ext.setClickNotDoubleListener
+import com.nmk.myapplication.work.ui.activity.SettingActivity
 import com.nmk.myapplication.work.utils.view.ViewUtil
 
 /**
@@ -43,6 +44,9 @@ class MainMenuDialog(context: Context): PositionPopupView(context) {
         mViewBinding = MainMenuDialogBinding.bind(popupImplView)
         mViewBinding.pictureTv.setClickNotDoubleListener {
 
+        }
+        mViewBinding.settingTv.setClickNotDoubleListener {
+            SettingActivity.startActivity(context)
         }
     }
 }

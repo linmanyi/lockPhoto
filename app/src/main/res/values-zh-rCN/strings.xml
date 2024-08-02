@@ -31,6 +31,7 @@
     <string name="download_failure">下载失败</string>
     <string name="no_folder">没有找到该文件夹</string>
     <string name="delete_photo_album_content">是否删除相册？删除后不可恢复</string>
+    <string name="delete_setting_content">为了你的相册安全，建议删除相册的原文件</string>
 
     <!--主页-->
     <string name="main_photo_album">相册</string>
@@ -43,7 +44,8 @@
     <string name="cancel">取消</string>
     <string name="loading">加载中...</string>
     <string name="loading_error">加载失败</string>
-    <string name="tip">"提示"</string>
+    <string name="tip">提示</string>
+    <string name="no_prompt">不再提示</string>
 
     <!--error message-->
     <string name="error_message_parse_error">解析错误，请稍后再试</string>
