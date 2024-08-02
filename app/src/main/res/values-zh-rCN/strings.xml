@@ -39,6 +39,11 @@
     <string name="main_setting">设置</string>
     <string name="main_about">关于我们</string>
 
+    <!--设置-->
+    <string name="change_password">更改密码</string>
+    <string name="clear_picture">清空相册</string>
+    <string name="is_delete_original">是否删除原文件</string>
+
     <string name="empty">没有数据</string>
     <string name="sure">确定</string>
     <string name="cancel">取消</string>

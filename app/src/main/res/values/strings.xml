@@ -31,7 +31,7 @@
     <string name="download_failure">Download Failure</string>
     <string name="no_folder">Can\'t Find the Folder</string>
     <string name="delete_photo_album_content">Are you sure delete this Album?</string>
-    <string name="delete_setting_content">为了你的相册安全，建议删除相册的原文件</string>
+    <string name="delete_setting_content">For the safety of your album, it is recommended to delete the original file of the album</string>
 
     <!--主页-->
     <string name="main_photo_album">Picture</string>
@@ -39,13 +39,18 @@
     <string name="main_setting">Setting</string>
     <string name="main_about">About</string>
 
+    <!--设置-->
+    <string name="change_password">Change Password</string>
+    <string name="clear_picture">Delete All Files</string>
+    <string name="is_delete_original">Delete The Original File</string>
+
     <string name="empty">No More</string>
     <string name="sure">Sure</string>
     <string name="cancel">Cancel</string>
     <string name="loading">Loading</string>
     <string name="loading_error">Loading Error</string>
     <string name="tip">"Tip"</string>
-    <string name="no_prompt">不再提示</string>
+    <string name="no_prompt">No prompt</string>
 
     <!--error message-->
     <string name="error_message_parse_error">Parsing error, try later</string>
