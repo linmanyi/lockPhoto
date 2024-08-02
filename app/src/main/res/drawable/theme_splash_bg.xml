@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape>
+            <solid android:color="@color/main_color" />
+        </shape>
+    </item>
+
+    <item
+        android:width="130dp"
+        android:height="130dp"
+        android:gravity="center">
+        <bitmap
+            android:src="@mipmap/ic_logo" />
+    </item>
+
+</layer-list>

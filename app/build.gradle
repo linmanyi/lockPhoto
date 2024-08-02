@@ -70,9 +70,9 @@ android {
         String date = new Date().format("MMdd-HH-mm")
         outputs.all { apk ->
             if (buildType == "release") {
-                apk.outputFileName = "../../../apk/release/AISleep${versionName}_${date}_${buildType}.apk"
+                apk.outputFileName = "../../../apk/release/LockPhoto${versionName}_${date}_${buildType}.apk"
             } else {
-                apk.outputFileName = "../../../apk/debug/AISleep${versionName}_${date}_${buildType}.apk"
+                apk.outputFileName = "../../../apk/debug/LockPhoto${versionName}_${date}_${buildType}.apk"
             }
         }
     }
@@ -108,7 +108,6 @@ dependencies {
     implementation 'com.github.liangjingkanji:BRV:1.5.3'
     //room
     implementation 'androidx.room:room-runtime:2.3.0'
-    implementation 'com.google.firebase:firebase-crashlytics:19.0.3'
     kapt 'androidx.room:room-compiler:2.3.0'
     implementation 'androidx.room:room-ktx:2.3.0'
 
@@ -117,15 +116,19 @@ dependencies {
     //侧滑
     implementation 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.2.1'
 
-    //播放器
+    //播放器 https://github.com/Jzvd/JZVideo
     implementation 'cn.jzvd:jiaozivideoplayer:7.7.0'
 
     //本地日志存储
     implementation 'com.elvishew:xlog:1.10.1'
 
+    //
+    implementation 'androidx.core:core-splashscreen:1.0.0-beta02'
+
     //firebase
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
     implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation 'com.google.firebase:firebase-crashlytics:19.0.3'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

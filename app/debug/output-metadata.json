@@ -5,7 +5,7 @@
     "kind": "Directory"
   },
   "applicationId": "com.nmk.myapplication",
-  "variantName": "release",
+  "variantName": "debug",
   "elements": [
     {
       "type": "SINGLE",
@@ -13,7 +13,7 @@
       "attributes": [],
       "versionCode": 100000,
       "versionName": "1.0.0",
-      "outputFile": "../../../apk/release/LockPhoto1.0.0_0802-18-29_release.apk"
+      "outputFile": "../../../apk/debug/AISleep1.0.0_0802-17-43_debug.apk"
     }
   ],
   "elementType": "File"
