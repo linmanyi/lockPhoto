@@ -1,19 +1,17 @@
 package com.nmk.myapplication.work.vm
 
-import android.content.Context
 import androidx.lifecycle.viewModelScope
-import com.luck.picture.lib.utils.ToastUtils
+import com.nmk.myapplication.work.base.BaseViewModel
 import com.nmk.myapplication.work.date.FolderInfo
 import com.nmk.myapplication.work.db.LockPhotoDB
 import com.nmk.myapplication.work.db.data.FolderModel
-import com.nmk.myapplication.work.network.http.data.DataUiState
+import com.nmk.myapplication.work.utils.EventLiveData
 import com.nmk.myapplication.work.utils.common.LogUtil
 import com.nmk.myapplication.work.utils.file.FileConstance
 import com.nmk.myapplication.work.utils.file.FileUtil
+import com.nmk.myapplication.work.utils.http.data.DataUiState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
-import me.hgj.jetpackmvvm.callback.livedata.event.EventLiveData
 import java.io.File
 
 class MainVM: BaseViewModel() {

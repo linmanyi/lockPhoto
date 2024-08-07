@@ -1,6 +1,4 @@
-package com.nmk.myapplication.work.network.http.data
-
-import me.hgj.jetpackmvvm.network.BaseResponse
+package com.nmk.myapplication.work.utils.http.data
 
 /**
  * 作者　: hegaojian

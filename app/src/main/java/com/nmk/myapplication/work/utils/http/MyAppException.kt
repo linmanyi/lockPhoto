@@ -1,4 +1,4 @@
-package com.nmk.myapplication.work.network.http
+package com.nmk.myapplication.work.utils.http
 
 import com.nmk.myapplication.R
 import com.nmk.myapplication.app.MyApplication

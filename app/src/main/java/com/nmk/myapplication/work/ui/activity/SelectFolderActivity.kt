@@ -14,11 +14,11 @@ import com.nmk.myapplication.databinding.FolderItemSelectBinding
 import com.nmk.myapplication.work.base.BaseActivity
 import com.nmk.myapplication.work.base.EventConstant
 import com.nmk.myapplication.work.date.FolderInfo
+import com.nmk.myapplication.work.ext.gone
+import com.nmk.myapplication.work.ext.visibleOrGone
 import com.nmk.myapplication.work.utils.glide.ImageUtil
 import com.nmk.myapplication.work.vm.FileMV
 import com.nmk.myapplication.work.vm.MainVM
-import me.hgj.jetpackmvvm.ext.view.gone
-import me.hgj.jetpackmvvm.ext.view.visibleOrGone
 
 /**
  * 选择文件夹

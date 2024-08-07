@@ -3,8 +3,6 @@ package com.nmk.myapplication.work.base
 import android.content.Context
 import androidx.viewbinding.ViewBinding
 import kotlinx.coroutines.*
-import me.hgj.jetpackmvvm.base.fragment.BaseVmVbFragment
-import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 
 /**
  *

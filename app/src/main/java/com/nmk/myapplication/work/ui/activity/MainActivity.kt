@@ -3,7 +3,6 @@ package com.nmk.myapplication.work.ui.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.FileUtils
 import android.view.View
 import com.drake.brv.BindingAdapter
 import com.drake.brv.utils.models
@@ -15,20 +14,14 @@ import com.nmk.myapplication.databinding.FolderItemBinding
 import com.nmk.myapplication.work.base.BaseActivity
 import com.nmk.myapplication.work.date.FolderInfo
 import com.nmk.myapplication.work.ext.setClickNotDoubleListener
+import com.nmk.myapplication.work.ext.visibleOrGone
 import com.nmk.myapplication.work.ui.dialog.AddFolderDialog
 import com.nmk.myapplication.work.ui.dialog.MainMenuDialog
 import com.nmk.myapplication.work.ui.dialog.TipsDialog
 import com.nmk.myapplication.work.ui.view.titlebar.TitleBar
 import com.nmk.myapplication.work.utils.common.CommonDateFormatUtil.getFormatHMYMD
-import com.nmk.myapplication.work.utils.file.FileConstance
-import com.nmk.myapplication.work.utils.file.FileUtil
 import com.nmk.myapplication.work.utils.glide.ImageUtil
 import com.nmk.myapplication.work.vm.MainVM
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import me.hgj.jetpackmvvm.ext.view.visibleOrGone
-import java.io.File
 
 /**
  * 主页

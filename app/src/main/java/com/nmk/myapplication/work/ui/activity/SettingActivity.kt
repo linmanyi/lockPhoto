@@ -3,8 +3,6 @@ package com.nmk.myapplication.work.ui.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.CompoundButton
-import com.google.android.material.chip.ChipGroup
 import com.luck.picture.lib.utils.ToastUtils
 import com.nmk.myapplication.R
 import com.nmk.myapplication.databinding.ActivitySettingBinding

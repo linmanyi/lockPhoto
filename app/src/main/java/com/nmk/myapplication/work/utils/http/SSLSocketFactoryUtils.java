@@ -1,4 +1,4 @@
-package com.nmk.myapplication.work.network.http;
+package com.nmk.myapplication.work.utils.http;
 
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
@@ -14,7 +14,6 @@ import javax.net.ssl.X509TrustManager;
 public class SSLSocketFactoryUtils {
     /*
      * 默认信任所有的证书
-     * TODO{优化} 最好加上证书认证，主流App都有自己的证书
      * */
     public static SSLSocketFactory createSSLSocketFactory() {
         SSLSocketFactory sslSocketFactory = null;

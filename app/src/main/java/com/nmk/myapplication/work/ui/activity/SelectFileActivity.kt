@@ -2,7 +2,6 @@ package com.nmk.myapplication.work.ui.activity
 
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import com.drake.brv.utils.grid
 import com.drake.brv.utils.models
@@ -17,13 +16,11 @@ import com.nmk.myapplication.work.base.EventConstant
 import com.nmk.myapplication.work.date.FileInfo
 import com.nmk.myapplication.work.date.FolderInfo
 import com.nmk.myapplication.work.ext.setClickNotDoubleListener
+import com.nmk.myapplication.work.ext.visible
+import com.nmk.myapplication.work.ext.visibleOrGone
 import com.nmk.myapplication.work.ui.common.loading.LoadingManager
-import com.nmk.myapplication.work.ui.dialog.FileMoreDialog
 import com.nmk.myapplication.work.utils.glide.ImageUtil
 import com.nmk.myapplication.work.vm.FileMV
-import me.hgj.jetpackmvvm.ext.view.visible
-import me.hgj.jetpackmvvm.ext.view.visibleOrGone
-import java.io.File
 
 /**
  * 选择图片

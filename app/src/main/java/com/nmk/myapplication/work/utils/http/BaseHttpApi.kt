@@ -1,9 +1,7 @@
-package com.nmk.myapplication.work.network.http
+package com.nmk.myapplication.work.utils.http
 
 import com.google.gson.GsonBuilder
-import com.nmk.myapplication.work.network.http.data.HttpConstance
-import me.hgj.jetpackmvvm.network.BaseNetworkApi
-import me.hgj.jetpackmvvm.network.CoroutineCallAdapterFactory
+import com.nmk.myapplication.app.MyApplication
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -18,9 +16,9 @@ abstract class BaseHttpApi : BaseNetworkApi() {
 
     abstract fun getInterceptorList(): List<Interceptor>
 
-    fun <T> getApi(serviceClass: Class<T>): T {
-        return getApi(serviceClass, HttpConstance.BaseUrl)
-    }
+//    fun <T> getApi(serviceClass: Class<T>): T {
+//        return getApi(serviceClass, MyApplication.mBuilder.BaseUrl)
+//    }
 
     override fun setHttpClientBuilder(builder: OkHttpClient.Builder): OkHttpClient.Builder {
         val interceptorList = getInterceptorList()
@@ -40,7 +38,7 @@ abstract class BaseHttpApi : BaseNetworkApi() {
     override fun setRetrofitBuilder(builder: Retrofit.Builder): Retrofit.Builder {
         return builder.apply {
             addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
-            addCallAdapterFactory(CoroutineCallAdapterFactory())
+            //addCallAdapterFactory(CoroutineCallAdapterFactory())
         }
     }
 }

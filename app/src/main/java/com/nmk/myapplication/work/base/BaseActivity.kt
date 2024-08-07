@@ -5,18 +5,14 @@ import android.content.res.Resources
 import android.os.Build
 import android.os.Bundle
 import android.os.Looper
-import android.os.PersistableBundle
 import android.os.StrictMode
 import android.view.View
-import android.view.Window
 import androidx.viewbinding.ViewBinding
 import com.nmk.myapplication.R
 import com.nmk.myapplication.work.manager.ActivityManager
 import com.nmk.myapplication.work.ui.common.BaseDialogManager
 import com.nmk.myapplication.work.ui.view.titlebar.TitleBar
 import com.nmk.myapplication.work.utils.system.StatusBarUtil
-import me.hgj.jetpackmvvm.base.activity.BaseVmVbActivity
-import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 import me.jessyan.autosize.AutoSizeCompat
 
 abstract class BaseActivity<VM : BaseViewModel, DB : ViewBinding> : BaseVmVbActivity<VM, DB>() {

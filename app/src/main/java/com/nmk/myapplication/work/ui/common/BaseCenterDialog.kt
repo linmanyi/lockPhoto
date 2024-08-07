@@ -1,13 +1,13 @@
 package com.nmk.myapplication.work.ui.common
 
 import android.content.Context
-import com.nmk.myapplication.work.network.http.HttpManager
 import com.nmk.myapplication.work.ext.isDestroy
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.core.CenterPopupView
-import com.nmk.myapplication.work.network.http.MyAppException
+import com.nmk.myapplication.work.manager.HttpManager
+import com.nmk.myapplication.work.utils.http.MyAppException
+import com.nmk.myapplication.work.utils.http.data.BaseResponse
 import kotlinx.coroutines.Job
-import me.hgj.jetpackmvvm.network.BaseResponse
 
 /**
  * 全局底部弹窗父类

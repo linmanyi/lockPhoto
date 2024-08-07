@@ -4,12 +4,11 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import com.nmk.myapplication.databinding.FragmentImagePreviewBinding
 import com.nmk.myapplication.work.base.BaseFragment
-import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
-import me.hgj.jetpackmvvm.util.get
+import com.nmk.myapplication.work.base.BaseViewModel
 
 /**
  * @desc: 图片详情
- * @author：Created by LinManyi on 2024/2/20
+ * @author：Created by My on 2024/2/20
  */
 
 class ImagePreviewFragment: BaseFragment<BaseViewModel, FragmentImagePreviewBinding>() {

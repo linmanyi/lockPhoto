@@ -6,12 +6,10 @@ import android.os.Bundle
 import com.nmk.myapplication.R
 import com.nmk.myapplication.databinding.ActivityFilePreviewBinding
 import com.nmk.myapplication.work.base.BaseActivity
+import com.nmk.myapplication.work.base.BaseViewModel
 import com.nmk.myapplication.work.ui.fragment.preview.ImagePreviewFragment
 import com.nmk.myapplication.work.ui.fragment.preview.VideoPreviewFragment
 import com.nmk.myapplication.work.utils.glide.ImageUtil
-import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
-import me.hgj.jetpackmvvm.ext.view.visibleOrGone
-import me.hgj.jetpackmvvm.util.get
 
 /**
  * @desc: 文件详情界面

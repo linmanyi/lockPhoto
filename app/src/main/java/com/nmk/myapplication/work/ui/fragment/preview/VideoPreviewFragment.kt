@@ -1,17 +1,15 @@
 package com.nmk.myapplication.work.ui.fragment.preview
 
-import android.R
-import android.net.Uri
 import android.os.Bundle
 import cn.jzvd.Jzvd
 import com.nmk.myapplication.databinding.FragmentVideoPreviewBinding
 import com.nmk.myapplication.work.base.BaseFragment
-import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
+import com.nmk.myapplication.work.base.BaseViewModel
 
 
 /**
  * @desc: 音视频详情
- * @author：Created by LinManyi on 2024/2/20
+ * @author：Created by My on 2024/2/20
  */
 
 class VideoPreviewFragment : BaseFragment<BaseViewModel, FragmentVideoPreviewBinding>() {

@@ -3,10 +3,10 @@ package com.nmk.myapplication.work.ui.activity
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
-import com.nmk.myapplication.work.base.BaseActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 import com.nmk.myapplication.databinding.ActivitySplashBinding
+import com.nmk.myapplication.work.base.BaseActivity
+import com.nmk.myapplication.work.base.BaseViewModel
 import com.nmk.myapplication.work.manager.UserInfoManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

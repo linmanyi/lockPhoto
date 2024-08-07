@@ -11,8 +11,6 @@ import com.nmk.myapplication.work.date.FileInfo
 import com.nmk.myapplication.work.ext.setClickNotDoubleListener
 import com.nmk.myapplication.work.ui.activity.FilePreviewActivity
 import com.nmk.myapplication.work.utils.glide.ImageUtil
-import me.hgj.jetpackmvvm.ext.view.gone
-import me.hgj.jetpackmvvm.ext.view.visible
 
 class FilePreviewView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0,

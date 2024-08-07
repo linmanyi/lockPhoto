@@ -36,13 +36,17 @@
 # MVVM架构
 -keep class me.hgj.jetpackmvvm.**{*;}
 ################ ViewBinding & DataBinding & ViewModel ###############
--keep class * extends androidx.lifecycle.ViewModel{*;}
--keep public interface androidx.viewbinding.ViewBinding
+#-keep class * extends androidx.lifecycle.ViewModel{*;}
+#-keep public interface androidx.viewbinding.ViewBinding
 -keep class * implements androidx.viewbinding.ViewBinding{*;}
--keepclassmembers class * implements androidx.viewbinding.ViewBinding {
-  public static * inflate(android.view.LayoutInflater);
-  public static * inflate(android.view.LayoutInflater, android.view.ViewGroup, boolean);
-  public static * bind(android.view.View);
+#-keepclassmembers class * implements androidx.viewbinding.ViewBinding {
+#  public static * inflate(android.view.LayoutInflater);
+#  public static * inflate(android.view.LayoutInflater, android.view.ViewGroup, boolean);
+#  public static * bind(android.view.View);
+#}
+-keepclassmembers class ** implements androidx.viewbinding.ViewBinding {
+   public static *** inflate(...);
+   public static *** bind(***);
 }
 
 # 图片选择https://github.com/LuckSiege/PictureSelector/blob/version_component/README_CN.md
@@ -69,4 +73,22 @@
 -dontwarn tv.danmaku.ijk.media.player.*
 -keep interface tv.danmaku.ijk.media.player.** { *; }
 
+#权限请求
+-keep class com.hjq.permissions.** {*;}
+
+# 网络框架---------Retrofit+okHttp
+-dontwarn javax.annotation.**
+-dontwarn javax.inject.**
+# OkHttp3
+-dontwarn okhttp3.logging.**
+-keep class okhttp3.internal.**{*;}
+-dontwarn okio.**
+# Retrofit
+-dontwarn retrofit2.**
+-keep class retrofit2.** { *; }
+-keepattributes Signature-keepattributes
+-dontwarn com.google.gson.**
+-keepattributes EnclosingMethod
+
 -keep class com.nmk.myapplication.work.date.** { *; }
+-keep class com.nmk.myapplication.work.db.data.** { *; }

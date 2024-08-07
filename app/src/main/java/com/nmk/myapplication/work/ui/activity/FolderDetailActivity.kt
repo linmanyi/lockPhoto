@@ -2,12 +2,14 @@ package com.nmk.myapplication.work.ui.activity
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import com.drake.brv.BindingAdapter
 import com.drake.brv.utils.grid
 import com.drake.brv.utils.setup
+import com.hjq.permissions.OnPermissionCallback
+import com.hjq.permissions.Permission
+import com.hjq.permissions.XXPermissions
 import com.luck.picture.lib.utils.ToastUtils
 import com.nmk.myapplication.R
 import com.nmk.myapplication.databinding.FileItemBinding
@@ -15,17 +17,14 @@ import com.nmk.myapplication.databinding.FolderActivityFolderBinding
 import com.nmk.myapplication.work.base.BaseActivity
 import com.nmk.myapplication.work.date.FileInfo
 import com.nmk.myapplication.work.ext.setClickNotDoubleListener
+import com.nmk.myapplication.work.ext.visibleOrGone
 import com.nmk.myapplication.work.ui.common.loading.LoadingManager
 import com.nmk.myapplication.work.ui.dialog.DeleteSettingDialog
 import com.nmk.myapplication.work.ui.dialog.DeleteSettingDialog.Companion.DELETE_FILE_NO_PROMPT_KEY
-import com.nmk.myapplication.work.ui.dialog.FileMoreDialog
 import com.nmk.myapplication.work.ui.view.titlebar.TitleBar
 import com.nmk.myapplication.work.utils.common.CacheUtil
 import com.nmk.myapplication.work.utils.glide.ImageUtil
 import com.nmk.myapplication.work.vm.FileMV
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import me.hgj.jetpackmvvm.ext.view.visibleOrGone
 import java.io.File
 
 /**
@@ -75,9 +74,17 @@ class FolderDetailActivity : BaseActivity<FileMV, FolderActivityFolderBinding>()
         }
         mViewBind.titleBar.onClickRightListener = object :TitleBar.OnClickRightListener {
             override fun rightOnClick(v: View, position: Int) {
-                SelectFileActivity.startActivity(this@FolderDetailActivity,id,2)
-            }
+                XXPermissions.with(this@FolderDetailActivity).permission(Permission.MANAGE_EXTERNAL_STORAGE).request(object :
+                    OnPermissionCallback {
+                    override fun onGranted(permissions: MutableList<String>, allGranted: Boolean) {
+                        SelectFileActivity.startActivity(this@FolderDetailActivity,id,2)
+                    }
 
+                    override fun onDenied(permissions: MutableList<String>, doNotAskAgain: Boolean) {
+
+                    }
+                })
+            }
         }
         mViewBind.addImv.setClickNotDoubleListener {
             mViewModel.addFiles(this@FolderDetailActivity, id, fileName, null)

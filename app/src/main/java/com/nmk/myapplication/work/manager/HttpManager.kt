@@ -1,9 +1,11 @@
-package com.nmk.myapplication.work.network.http
+package com.nmk.myapplication.work.manager
 
-import com.hray.library.util.http.ExceptionHandle
+import com.nmk.myapplication.work.utils.common.LogUtil
+import com.nmk.myapplication.work.utils.http.ExceptionHandle
+import com.nmk.myapplication.work.utils.http.MyAppException
 import kotlinx.coroutines.*
-import me.hgj.jetpackmvvm.ext.executeResponse
-import me.hgj.jetpackmvvm.network.BaseResponse
+import com.nmk.myapplication.work.utils.http.data.BaseResponse
+import com.nmk.myapplication.work.utils.http.executeResponse
 
 /**
  * @desc： 弹窗请求Http
@@ -17,19 +19,19 @@ class HttpManager {
      * 发起HTTP请求
      */
     fun <T> sendHttp(block: suspend () -> BaseResponse<T>,
-                 success: (T) -> Unit,
-                 error: (MyAppException) -> Unit = {},
-                 isShowDialog: Boolean = false,
-                 loadingMessage: String = ""): Job{
+                     success: (T) -> Unit,
+                     error: (MyAppException) -> Unit = {},
+                     isShowDialog: Boolean = false,
+                     loadingMessage: String = ""): Job{
         //如果需要弹窗 通知Activity/fragment弹窗
         val job = CoroutineScope(Dispatchers.IO).launch {
             runCatching {
-//                if (isShowDialog) LoadingDialogManager.getInstance().showLoadingDialog(loadingMessage, false, null)
+                if (isShowDialog) LoadingDialogManager.getInstance().showLoadingDialog(loadingMessage, false, null)
                 //请求体
                 block()
             }.onSuccess {
                 //网络请求成功 关闭弹窗
-//                if (isShowDialog) LoadingDialogManager.getInstance().hideLoadingDialog()
+                if (isShowDialog) LoadingDialogManager.getInstance().hideLoadingDialog()
                 runCatching {
                     //校验请求结果码是否正确，不正确会抛出异常走下面的onFailure
                     executeResponse(it) { t ->
@@ -39,7 +41,7 @@ class HttpManager {
                     }
                 }.onFailure { e ->
                     //打印错误消息
-//                    LogUtil.http(String.format(LogUtil.VALUE_FORMAT, LogUtil.TAG_HTTP, "HttpApiError：${e.message}"))
+                    LogUtil.http(String.format(LogUtil.VALUE_FORMAT, LogUtil.TAG_HTTP, "HttpApiError：${e.message}"))
                     //打印错误栈信息
                     e.printStackTrace()
                     //失败回调
@@ -49,9 +51,9 @@ class HttpManager {
                 }
             }.onFailure {
                 //记录错误日志
-//                LogUtil.http(String.format(LogUtil.VALUE_FORMAT, LogUtil.TAG_HTTP, "HttpApiError：${it.message}"))
+                LogUtil.http(String.format(LogUtil.VALUE_FORMAT, LogUtil.TAG_HTTP, "HttpApiError：${it.message}"))
                 //网络请求异常 关闭弹窗
-//                if (isShowDialog) LoadingDialogManager.getInstance().hideLoadingDialog()
+                if (isShowDialog) LoadingDialogManager.getInstance().hideLoadingDialog()
                 //打印错误栈信息
                 it.printStackTrace()
                 //失败回调
@@ -89,6 +91,14 @@ class HttpManager {
             listJob[i].cancel()
             listJob.removeAt(i)
         }
+    }
+
+    /**
+     * 当前是否存在正在请求的任务
+     */
+    fun isExitJob(): Boolean{
+        val activeJob = listJob.find { it.isActive }
+        return activeJob != null
     }
 
 }

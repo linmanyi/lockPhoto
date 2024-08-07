@@ -1,6 +1,5 @@
-package com.hray.library.util.http
+package com.nmk.myapplication.work.utils.http
 
-import com.nmk.myapplication.work.network.http.BaseHttpApi
 import okhttp3.Interceptor
 
 /**

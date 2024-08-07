@@ -1,4 +1,4 @@
-package com.nmk.myapplication.work.network.http.data
+package com.nmk.myapplication.work.utils.http.data
 
 /**
  * 作者　: hegaojian

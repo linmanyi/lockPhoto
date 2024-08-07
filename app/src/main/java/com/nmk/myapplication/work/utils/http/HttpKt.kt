@@ -1,17 +1,18 @@
-package com.hray.library.util.http
+package com.nmk.myapplication.work.utils.http
 
 import android.net.ParseException
 import androidx.lifecycle.viewModelScope
 import com.google.gson.JsonParseException
 import com.google.gson.stream.MalformedJsonException
-import com.nmk.myapplication.work.network.http.Error
-import com.nmk.myapplication.work.network.http.MyAppException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
-import me.hgj.jetpackmvvm.ext.executeResponse
-import me.hgj.jetpackmvvm.network.AppException
-import me.hgj.jetpackmvvm.network.BaseResponse
+import com.nmk.myapplication.work.base.BaseViewModel
+import com.nmk.myapplication.work.utils.common.LogUtil
+import com.nmk.myapplication.work.utils.common.LogUtil.TAG_HTTP
+import com.nmk.myapplication.work.utils.common.LogUtil.VALUE_FORMAT
+import com.nmk.myapplication.work.utils.http.data.BaseResponse
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.coroutineScope
 import org.json.JSONException
 import retrofit2.HttpException
 import java.net.ConnectException
@@ -40,7 +41,7 @@ fun <T> BaseViewModel.sendHttp(
                 }
             }.onFailure { e ->
                 //打印错误消息
-//                LogUtil.http(String.format(VALUE_FORMAT, TAG_HTTP, "HttpApiError：${e.message}"))
+                LogUtil.http(String.format(VALUE_FORMAT, TAG_HTTP, "HttpApiError：${e.message}"))
                 //打印错误栈信息
                 e.printStackTrace()
                 //失败回调
@@ -48,7 +49,7 @@ fun <T> BaseViewModel.sendHttp(
             }
         }.onFailure {
             //记录错误日志
-//            LogUtil.http(String.format(VALUE_FORMAT, TAG_HTTP, "HttpApiError：${it.message}, block=${block}"))
+            LogUtil.http(String.format(VALUE_FORMAT, TAG_HTTP, "HttpApiError：${it.message}, block=${block}"))
             //网络请求异常 关闭弹窗
             loadingChange.dismissDialog.postValue(false)
             //打印错误栈信息
@@ -101,6 +102,29 @@ object ExceptionHandle {
         }
         ex = MyAppException(Error.UNKNOWN, e)
         return ex
+    }
+}
+
+/**
+ * 请求结果过滤，判断请求服务器请求结果是否成功，不成功则会抛出异常
+ */
+suspend fun <T> executeResponse(
+    response: BaseResponse<T>,
+    success: suspend CoroutineScope.(T) -> Unit
+) {
+    coroutineScope {
+        when {
+            response.isSucces() -> {
+                success(response.getResponseData())
+            }
+            else -> {
+                throw AppException(
+                    response.getResponseCode(),
+                    response.getResponseMsg(),
+                    response.getResponseMsg()
+                )
+            }
+        }
     }
 }
 
