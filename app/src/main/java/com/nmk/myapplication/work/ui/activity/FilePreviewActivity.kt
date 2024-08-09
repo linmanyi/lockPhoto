@@ -3,12 +3,13 @@ package com.nmk.myapplication.work.ui.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import com.nmk.myapplication.R
 import com.nmk.myapplication.databinding.ActivityFilePreviewBinding
 import com.nmk.myapplication.work.base.BaseActivity
 import com.nmk.myapplication.work.base.BaseViewModel
-import com.nmk.myapplication.work.ui.fragment.preview.ImagePreviewFragment
 import com.nmk.myapplication.work.ui.fragment.preview.VideoPreviewFragment
+import com.nmk.myapplication.work.ui.view.titlebar.TitleBar
 import com.nmk.myapplication.work.utils.glide.ImageUtil
 
 /**
@@ -34,9 +35,12 @@ class FilePreviewActivity : BaseActivity<BaseViewModel, ActivityFilePreviewBindi
 //        mViewBind.titleBar.setTitle(name)
 //        mViewBind.titleBar.visibleOrGone(ImageUtil.isImgLinkerUrl(path))
         mViewBind.titleBar.setLeftImgColor(getColor(R.color.white))
-        if (ImageUtil.isImgLinkerUrl(path)) {
-            supportFragmentManager.beginTransaction().replace(R.id.frameLayout, ImagePreviewFragment.getInstance(path)).commitAllowingStateLoss()
-        } else {
+        mViewBind.titleBar.onClickLeftListener = object : TitleBar.OnClickLeftListener {
+            override fun leftOnClick(v: View, isBack: Boolean) {
+                this@FilePreviewActivity.finish()
+            }
+        }
+        if (ImageUtil.isMp4AnimUrl(path)) {
             supportFragmentManager.beginTransaction().replace(R.id.frameLayout, VideoPreviewFragment.getInstance(path)).commitAllowingStateLoss()
         }
     }

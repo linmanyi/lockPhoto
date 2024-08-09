@@ -10,15 +10,16 @@ plugins {
 
 android {
     namespace 'com.nmk.myapplication'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.nmk.myapplication"
         minSdk 23
-        targetSdk 33
+        targetSdk 34
         versionCode 100000
         versionName "1.0.0"
 
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {
