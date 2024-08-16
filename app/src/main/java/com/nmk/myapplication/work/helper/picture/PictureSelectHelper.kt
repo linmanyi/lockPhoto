@@ -29,6 +29,7 @@ object PictureSelectHelper {
             .isDisplayCamera(true)
             .setSelectedData(select)
             .isGif(true)
+            .isFastSlidingSelect(true)
             .setMaxSelectNum(99)
             .setMaxVideoSelectNum(99)
             .setImageEngine(GlideEngine.createGlideEngine())

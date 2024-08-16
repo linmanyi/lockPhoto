@@ -9,7 +9,7 @@ import com.drake.brv.utils.setup
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.luck.picture.lib.utils.ToastUtils
 import com.nmk.myapplication.R
-import com.nmk.myapplication.databinding.FileItemBinding
+import com.nmk.myapplication.databinding.FileItemTableBinding
 import com.nmk.myapplication.databinding.FolderActivitySelectBinding
 import com.nmk.myapplication.work.base.BaseActivity
 import com.nmk.myapplication.work.base.EventConstant
@@ -48,9 +48,9 @@ class SelectFileActivity : BaseActivity<FileMV, FolderActivitySelectBinding>() {
         type = intent.getIntExtra("type",0)
         mViewBind.content.grid(3).setup {
             singleMode = type == 1
-            addType<FileInfo> { R.layout.file_item }
+            addType<FileInfo> { R.layout.file_item_table }
             onBind {
-                val binding = getBinding<FileItemBinding>()
+                val binding = getBinding<FileItemTableBinding>()
                 val model = getModel<FileInfo>()
                 binding.selectImv.visible()
                 if (ImageUtil.isImgLinkerUrl(model.content)) {

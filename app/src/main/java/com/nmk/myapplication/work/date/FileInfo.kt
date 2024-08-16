@@ -34,18 +34,18 @@ data class FileInfo(
     var size: String = "0B",//文件大小
 
     var select: Boolean = false,//是否选择
-): Parcelable {
+) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readLong(),
-        parcel.readString()?:"",
+        parcel.readString() ?: "",
         parcel.readLong(),
-        parcel.readString()?:"",
+        parcel.readString() ?: "",
         parcel.readLong(),
         parcel.readInt(),
         parcel.readInt(),
-        parcel.readString()?:"",
-        parcel.readString()?:"",
-        parcel.readByte() != 0.toByte()
+        parcel.readString() ?: "",
+        parcel.readString() ?: "",
+        parcel.readByte() != 0.toByte(),
     ) {
     }
 
@@ -90,3 +90,14 @@ data class FileInfo(
         }
     }
 }
+
+/**
+ * 文件排序bean
+ * isAscending：是否升序
+ */
+data class FileSolidBean(
+    var id: Int = 0,
+    var name: String = "",
+    var isAscending: Boolean = true,
+    var isSelect: Boolean = true,
+)

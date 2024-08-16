@@ -13,6 +13,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="textColor_333333">#333333</color>
     <color name="textColor_666666">#666666</color>
+    <color name="textColor_999999">#999999</color>
     <color name="tranceColor">#00000000</color>
     <color name="lineColor_E7E7E7">#E7E7E7</color>
     <color name="baseTransColor">#00000000</color>

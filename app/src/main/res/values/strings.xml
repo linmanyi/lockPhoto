@@ -25,6 +25,8 @@
     <string name="file_name">Title:</string>
     <string name="file_time">Create Time:</string>
     <string name="file_size">Size:</string>
+    <string name="file_select_more">Select</string>
+    <string name="file_select_all">Select All</string>
     <string name="delete_failure">Delete Failure</string>
     <string name="edit_failure">Edit Failure</string>
     <string name="move_failure">Move Failure</string>

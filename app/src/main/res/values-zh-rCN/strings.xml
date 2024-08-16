@@ -25,6 +25,8 @@
     <string name="file_name">文件名：</string>
     <string name="file_time">时间：</string>
     <string name="file_size">大小：</string>
+    <string name="file_select_more">多选</string>
+    <string name="file_select_all">全选</string>
     <string name="delete_failure">删除失败</string>
     <string name="edit_failure">修改失败</string>
     <string name="move_failure">移动失败</string>

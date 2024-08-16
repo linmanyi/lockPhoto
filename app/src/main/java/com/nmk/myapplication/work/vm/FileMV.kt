@@ -200,4 +200,9 @@ class FileMV : BaseViewModel() {
             downloadED.postValue(false)
         }
     }
+
+    var sortType = ""
+    fun updateSort() {
+
+    }
 }

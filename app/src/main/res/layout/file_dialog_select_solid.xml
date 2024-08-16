@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.nmk.myapplication.work.ui.view.shape.widget.HConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="360dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:h_shape_solid="@color/white"
+    app:h_shape_corners_radius_left_top="12dp"
+    app:h_shape_corners_radius_right_top="12dp">
+
+    <TextView
+        android:id="@+id/titleTv"
+        style="@style/textStyle"
+        android:textSize="16sp"
+        android:text="排序"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:textFontWeight="600"/>
+    
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/titleTv"
+        android:layout_marginVertical="10dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</com.nmk.myapplication.work.ui.view.shape.widget.HConstraintLayout>

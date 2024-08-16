@@ -10,10 +10,71 @@
         android:id="@+id/titleBar"
         style="@style/titleBarStyle"
         android:background="@color/main_color"
-        app:title_color="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:right_src="@mipmap/icon_more"/>
+        app:right_text="@string/file_select_more"
+        app:title_color="@color/white" />
+
+    <com.nmk.myapplication.work.ui.view.shape.widget.HTextView
+        android:id="@+id/selectAllTv"
+        style="@style/textStyle"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="10dp"
+        android:alpha="0.5"
+        android:clickable="false"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="3dp"
+        android:text="@string/file_select_all"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:visibility="gone"
+        app:h_shape_corners_radius="12dp"
+        app:h_shape_solid="@color/main_color"
+        app:layout_constraintBottom_toTopOf="@+id/listFunLl"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/cancelTv"
+        style="@style/textStyle"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:clickable="false"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="3dp"
+        android:text="@string/cancel"
+        android:textColor="@color/textColor_333333"
+        android:textSize="14sp"
+        android:visibility="gone"
+        app:h_shape_corners_radius="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/listFunLl"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible" />
+
+    <LinearLayout
+        android:id="@+id/listFunLl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_goneMarginTop="44dp"
+        app:layout_constraintTop_toBottomOf="@+id/titleBar">
+
+        <TextView
+            android:id="@+id/typeTv"
+            style="@style/textStyle"
+            android:layout_weight="1"
+            android:paddingVertical="5dp"
+            android:gravity="center"
+            android:text="格式"/>
+
+        <TextView
+            android:id="@+id/solidTv"
+            style="@style/textStyle"
+            android:layout_weight="1"
+            android:paddingVertical="5dp"
+            android:gravity="center"
+            android:text="排序"/>
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/content"
@@ -21,30 +82,63 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/funLl"
+        app:layout_constraintTop_toBottomOf="@+id/listFunLl" />
+
+    <LinearLayout
+        android:id="@+id/funLl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingVertical="10dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleBar" />
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/deleteTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/ic_second_delete"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:text="@string/delete" />
+
+        <TextView
+            android:id="@+id/moveTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/ic_second_move"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:text="@string/move" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/emptyLl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="@+id/content"
-        app:layout_constraintBottom_toBottomOf="@+id/content">
+        app:layout_constraintBottom_toBottomOf="@+id/content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/content">
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/emptyTv"
+            style="@style/textStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/textStyle"
-            android:text="@string/empty"/>
+            android:text="@string/empty" />
 
     </LinearLayout>
 
@@ -52,14 +146,14 @@
         android:id="@+id/addImv"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:src="@mipmap/icon_create"
-        app:tint="@color/white"
-        app:h_shape_type="oval"
-        android:padding="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="35dp"
-        app:h_shape_solid="@color/main_color"/>
+        android:padding="15dp"
+        android:src="@mipmap/icon_create"
+        app:h_shape_solid="@color/main_color"
+        app:h_shape_type="oval"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
