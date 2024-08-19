@@ -23,7 +23,7 @@ class FileMV : BaseViewModel() {
      * 获取文件数据
      */
     val getDataDE = EventLiveData<ArrayList<FileInfo>>()
-    fun getData(id: Long) {
+    fun getData(id: Long, solidId: Int = 1, isASC: Boolean = true) {
         if (id == 0L) {
             getDataDE.postValue(arrayListOf())
             return
@@ -31,7 +31,23 @@ class FileMV : BaseViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             val list = arrayListOf<FileInfo>()
             kotlin.runCatching {
-                val data = LockPhotoDB.getInstance().fileDao().queryDataByFolder(id)
+                val data = when(solidId) {
+                    0 -> {
+                        if (isASC) LockPhotoDB.getInstance().fileDao().queryDataByFolderNameAsc(id) else LockPhotoDB.getInstance().fileDao().queryDataByFolderNameDESC(id)
+                    }
+                    1 -> {
+                        if (isASC) LockPhotoDB.getInstance().fileDao().queryDataByFolderTimeAsc(id) else LockPhotoDB.getInstance().fileDao().queryDataByFolderTimeDESC(id)
+                    }
+                    2 -> {
+                        if (isASC) LockPhotoDB.getInstance().fileDao().queryDataByFolderSizeAsc(id) else LockPhotoDB.getInstance().fileDao().queryDataByFolderSizeDESC(id)
+                    }
+                    3 -> {
+                        if (isASC) LockPhotoDB.getInstance().fileDao().queryDataByFolderTypeAsc(id) else LockPhotoDB.getInstance().fileDao().queryDataByFolderTypeDESC(id)
+                    }
+                    else -> {
+                        if (isASC) LockPhotoDB.getInstance().fileDao().queryDataByFolderTimeAsc(id) else LockPhotoDB.getInstance().fileDao().queryDataByFolderTimeDESC(id)
+                    }
+                }
                 data.forEach {
                     list.add(
                         FileInfo(
@@ -77,8 +93,6 @@ class FileMV : BaseViewModel() {
                             val path =
                                 FileConstance.getPrivateFilePath(folderName, it?.fileName ?: "")
                             FileUtil.saveFile(File(it?.realPath), path)
-                            val fileSize =
-                                FileUtil.getAutoFileOrFilesSize(path)
                             val strings = path.split(".")
                             list.add(FileModel().apply {
                                 this.fileName = it?.fileName.toString()
@@ -88,7 +102,7 @@ class FileMV : BaseViewModel() {
                                 width = it?.width ?: 0
                                 height = it?.height ?: 0
                                 type = strings[strings.size - 1].uppercase()
-                                size = fileSize
+                                size = it?.size?:0
                             })
                         }
                     }

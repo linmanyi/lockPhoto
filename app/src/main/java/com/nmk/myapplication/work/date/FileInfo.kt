@@ -31,7 +31,7 @@ data class FileInfo(
     var width: Int = 0,
     var height: Int = 0,
     var type: String = "",//类型
-    var size: String = "0B",//文件大小
+    var size: Long = 0,//文件大小
 
     var select: Boolean = false,//是否选择
 ) : Parcelable {
@@ -44,7 +44,7 @@ data class FileInfo(
         parcel.readInt(),
         parcel.readInt(),
         parcel.readString() ?: "",
-        parcel.readString() ?: "",
+        parcel.readLong(),
         parcel.readByte() != 0.toByte(),
     ) {
     }
@@ -58,7 +58,7 @@ data class FileInfo(
         parcel.writeInt(width)
         parcel.writeInt(height)
         parcel.writeString(type)
-        parcel.writeString(size)
+        parcel.writeLong(size)
         parcel.writeByte(if (select) 1 else 0)
     }
 
@@ -99,5 +99,5 @@ data class FileSolidBean(
     var id: Int = 0,
     var name: String = "",
     var isAscending: Boolean = true,
-    var isSelect: Boolean = true,
+    var isSelect: Boolean = false,
 )

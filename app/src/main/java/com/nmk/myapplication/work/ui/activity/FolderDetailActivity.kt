@@ -26,9 +26,11 @@ import com.nmk.myapplication.work.ext.visibleOrInvisible
 import com.nmk.myapplication.work.ui.common.loading.LoadingManager
 import com.nmk.myapplication.work.ui.dialog.DeleteSettingDialog
 import com.nmk.myapplication.work.ui.dialog.DeleteSettingDialog.Companion.DELETE_FILE_NO_PROMPT_KEY
+import com.nmk.myapplication.work.ui.dialog.SelectSolidDialog
 import com.nmk.myapplication.work.ui.view.titlebar.TitleBar
 import com.nmk.myapplication.work.utils.common.CacheUtil
 import com.nmk.myapplication.work.utils.common.CommonDateFormatUtil
+import com.nmk.myapplication.work.utils.file.FileUtil
 import com.nmk.myapplication.work.utils.glide.ImageUtil
 import com.nmk.myapplication.work.vm.FileMV
 import java.io.File
@@ -42,6 +44,8 @@ class FolderDetailActivity : BaseActivity<FileMV, FolderActivityFolderBinding>()
     private lateinit var adapter: BindingAdapter
     private var type = TABLE
     private var checkVisibility: Boolean = false//是否显示选择
+    private var solidId = 1
+    private var solidIsAscending = true
 
     companion object {
         fun startActivity(context: Context, id: Long, fileName: String) {
@@ -83,7 +87,7 @@ class FolderDetailActivity : BaseActivity<FileMV, FolderActivityFolderBinding>()
                         }
                         binding.timeTv.text = CommonDateFormatUtil.getFormatHMYMD(model.createTime)
                         binding.titleTv.text = model.fileName
-                        binding.sizeTv.text = model.size
+                        binding.sizeTv.text = FileUtil.FormetFileSize(model.size)
                         binding.selectImv.visibleOrGone(checkVisibility)
                         binding.selectImv.setImageResource(if (model.select) R.mipmap.icon_select else R.mipmap.icon_un_select_trans)
                     }
@@ -162,6 +166,13 @@ class FolderDetailActivity : BaseActivity<FileMV, FolderActivityFolderBinding>()
             }
             adapter.notifyDataSetChanged()
         }
+        mViewBind.solidTv.setClickNotDoubleListener {
+            SelectSolidDialog.showDialog(this,solidId,solidIsAscending) { id, isAscending ->
+                mViewModel.getData(this.id,id,isAscending)
+                solidId = id
+                solidIsAscending = isAscending
+            }
+        }
     }
 
     private fun updateTitleBar(boolean: Boolean) {
@@ -183,7 +194,7 @@ class FolderDetailActivity : BaseActivity<FileMV, FolderActivityFolderBinding>()
 
     override fun onResume() {
         super.onResume()
-        mViewModel.getData(id)
+        mViewModel.getData(id,solidId,solidIsAscending)
     }
 
     override fun createObserver() {
@@ -196,7 +207,7 @@ class FolderDetailActivity : BaseActivity<FileMV, FolderActivityFolderBinding>()
             LoadingManager.getInstance().hideDialog()
             if (it.isSuccess) {
                 val data = it.data
-                mViewModel.getData(id)
+                mViewModel.getData(id,solidId,solidIsAscending)
                 if (!CacheUtil.getBoolean(DELETE_FILE_NO_PROMPT_KEY,false)) {
                     DeleteSettingDialog.showDialog(this@FolderDetailActivity) {
                         //删除本地文件
@@ -211,7 +222,7 @@ class FolderDetailActivity : BaseActivity<FileMV, FolderActivityFolderBinding>()
         mViewModel.deleteFileED.observeInActivity(this) {
             LoadingManager.getInstance().hideDialog()
             if (it)
-                mViewModel.getData(id)
+                mViewModel.getData(id,solidId,solidIsAscending)
             else
                 ToastUtils.showToast(this,getString(R.string.delete_failure))
         }
