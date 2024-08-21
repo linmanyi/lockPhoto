@@ -7,6 +7,7 @@ import com.luck.picture.lib.utils.ToastUtils
 import com.nmk.myapplication.R
 import com.nmk.myapplication.databinding.ActivitySettingBinding
 import com.nmk.myapplication.work.base.BaseActivity
+import com.nmk.myapplication.work.base.CacheConstant.DELETE_ORIGIN
 import com.nmk.myapplication.work.ext.setClickNotDoubleListener
 import com.nmk.myapplication.work.ui.activity.LockActivity.Companion.SETTING_PASSWORD
 import com.nmk.myapplication.work.ui.common.loading.LoadingManager
@@ -34,9 +35,9 @@ class SettingActivity: BaseActivity<SettingMV, ActivitySettingBinding>() {
         mViewBind.clearTv.setClickNotDoubleListener {
             mViewModel.deleteAll(this)
         }
-        mViewBind.deleteOriginSw.isChecked = CacheUtil.getBoolean(DELETE_FILE_NO_PROMPT_KEY,false)
+        mViewBind.deleteOriginSw.isChecked = CacheUtil.getBoolean(DELETE_ORIGIN,false)
         mViewBind.deleteOriginSw.setOnCheckedChangeListener { buttonView, isChecked ->
-            CacheUtil.putBoolean(DELETE_FILE_NO_PROMPT_KEY,isChecked)
+            CacheUtil.putBoolean(DELETE_ORIGIN,isChecked)
         }
     }
 

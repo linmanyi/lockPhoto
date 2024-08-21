@@ -17,6 +17,7 @@ import com.nmk.myapplication.databinding.FileItemListBinding
 import com.nmk.myapplication.databinding.FileItemTableBinding
 import com.nmk.myapplication.databinding.FolderActivityFolderBinding
 import com.nmk.myapplication.work.base.BaseActivity
+import com.nmk.myapplication.work.base.CacheConstant.DELETE_ORIGIN
 import com.nmk.myapplication.work.date.FileInfo
 import com.nmk.myapplication.work.ext.invisible
 import com.nmk.myapplication.work.ext.setClickNotDoubleListener
@@ -213,7 +214,12 @@ class FolderDetailActivity : BaseActivity<FileMV, FolderActivityFolderBinding>()
                         //删除本地文件
                         val files = data?.map { File(it) }
                         files?.let { it1 -> mViewModel.deleteLocalFile(it1) }
+                        CacheUtil.putBoolean(DELETE_ORIGIN,true)
                     }
+                }
+                if (CacheUtil.getBoolean(DELETE_ORIGIN,false)) {
+                    val files = data?.map { File(it) }
+                    files?.let { it1 -> mViewModel.deleteLocalFile(it1) }
                 }
             } else {
                 ToastUtils.showToast(this, getString(R.string.loading_error))

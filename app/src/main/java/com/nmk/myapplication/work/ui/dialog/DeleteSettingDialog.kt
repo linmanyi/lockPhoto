@@ -7,6 +7,7 @@ import androidx.core.widget.addTextChangedListener
 import com.nmk.myapplication.R
 import com.nmk.myapplication.databinding.DialogAddFolderBinding
 import com.nmk.myapplication.databinding.DialogDeleteSettingBinding
+import com.nmk.myapplication.work.base.CacheConstant.DELETE_ORIGIN
 import com.nmk.myapplication.work.ext.setClickNotDoubleListener
 import com.nmk.myapplication.work.ui.common.BaseBottomDialog
 import com.nmk.myapplication.work.ui.common.BaseCenterDialog
@@ -37,6 +38,7 @@ class DeleteSettingDialog(context: Context): BaseCenterDialog(context) {
         mViewBinding = DialogDeleteSettingBinding.bind(popupImplView)
         mViewBinding.cancelTv.setClickNotDoubleListener{
             CacheUtil.putBoolean(DELETE_FILE_NO_PROMPT_KEY, isSelectNoPrompt)
+            CacheUtil.putBoolean(DELETE_ORIGIN,false)
             dismiss()
         }
         mViewBinding.checkboxImv.setClickNotDoubleListener {

@@ -27,6 +27,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.DecimalFormat;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -173,7 +174,7 @@ public class FileUtil {
      * @param file 要删除的根目录
      */
     public static void deleteFile(File file) {
-        if (file.exists() == false) {
+        if (!file.exists()) {
             return;
         } else {
             if (file.isFile()) {
@@ -364,20 +365,20 @@ public class FileUtil {
      * 转换文件大小
      */
     public static String FormetFileSize(long fileS) {
-//        DecimalFormat df = RTLUtils.INSTANCE.getDecimalFormat("#.00", true);
+        DecimalFormat df = new DecimalFormat("#.00");
         String fileSizeString;
         String wrongSize = "0B";
         if (fileS == 0) {
             return wrongSize;
         }
         if (fileS < 1024) {
-            fileSizeString = (double) fileS + "B";
+            fileSizeString = df.format((double) fileS) + "B";
         } else if (fileS < 1048576) {
-            fileSizeString = ((double) fileS / 1024) + "KB";
+            fileSizeString = df.format(((double) fileS / 1024)) + "KB";
         } else if (fileS < 1073741824) {
-            fileSizeString = ((double) fileS / 1048576) + "MB";
+            fileSizeString = df.format(((double) fileS / 1048576)) + "MB";
         } else {
-            fileSizeString = ((double) fileS / 1073741824) + "GB";
+            fileSizeString = df.format(((double) fileS / 1073741824)) + "GB";
         }
         return fileSizeString;
     }
