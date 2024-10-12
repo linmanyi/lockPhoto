@@ -48,6 +48,7 @@
    public static *** inflate(...);
    public static *** bind(***);
 }
+-keep public class * extends android.app.Activity
 
 # 图片选择https://github.com/LuckSiege/PictureSelector/blob/version_component/README_CN.md
 -keep class com.luck.picture.lib.** { *; }
