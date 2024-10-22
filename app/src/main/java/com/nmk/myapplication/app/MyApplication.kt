@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.Context
 import com.nmk.myapplication.work.utils.log.XLogDiskManager
 import com.tencent.mmkv.MMKV
+import me.jessyan.autosize.AutoSize
 
 class MyApplication: Application() {
 
@@ -17,7 +18,13 @@ class MyApplication: Application() {
     override fun onCreate() {
         super.onCreate()
         mContext = this
+        initAutoSize()
         MMKV.initialize(mContext)
         XLogDiskManager.getInstance().initXLogConfig()
+    }
+
+    private fun initAutoSize() {
+        AutoSize.initCompatMultiProcess(this)
+        AutoSize.checkAndInit(this)
     }
 }
